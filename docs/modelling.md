@@ -4,10 +4,10 @@ Now that we have a better understanding of the data, let's start predicting.
 
 ## Introduction
 
-Before we dive into the actual modelling, let's spend some time observing what we're trying to achieve.
+Before we dive into the actual modelling, let's spend some time thinking about what we're trying to achieve, and avoid a common pitfall.
 
-We are tasked with predicting the 24h-later-load given 10 years of hourly load data. 
-Young and freshly out-of-college, we could let our excitement win and dive straight into implementing some complex¹ ML-based time-series prediction model.² We would measure our approach through the previously-chosen performance metric -- MAPE -- and would -- let's assume -- end up with a MAPE of 8%.
+Given 10 years of hourly energy load data, we are tasked with predicting the 24h-later-load.
+Young and freshly out-of-college, we could let our excitement win and dive straight into implementing some complex^1 ML-based time-series prediction model.[^2] We would measure our approach through the previously-chosen performance metric -- MAPE -- and would -- let's assume -- end up with a MAPE of 8%.
 
 Amazing !
 
@@ -42,8 +42,8 @@ And now the same question comes back: Is that good ?
 
 This brings me to my second point:
 
-	 **Most industry problems have a "this is good-enough" threshold.**
-
+<center><h1><font size="6"><b>Most industry problems have a "this is good-enough" threshold.</b></font></h1></center>							
+	 
 <figure markdown="span">
   ![Image title](images/modelling/placeholder.png){ width="300" }
   <figcaption>TODO PLOT MODEL COMPLEXITY vs PERFORMANCE METRIC, adding horizontal line for "good-enough"</figcaption>
@@ -60,7 +60,7 @@ Once we know what to measure, a back-and-forth with the user², trying out diffe
 
 Now let's say we are trying different approaches, yielding different MAPE scores, but none of them really satisfy us. One thing to keep in my is my third point:
 
-	    **Most prediction problems have a performance upper-bound.** 
+<center><h1><font size="6"><b>Most prediction problems have a performance upper-bound.</b></font></h1></center>							 
 
 That is, there is _usually_ some amount of randomness when predicting the future from a given set of observations. A direct consequence of that is that regardless of how good your model is, you will not be able to perfectly predict the future.
 
@@ -82,8 +82,13 @@ What we can do is measure the human-level performance on that task, which would 
 Now that we've talked extensively about model performances, let's move onto some actual modelling.
 
 ¹ When I talk about complexity here, I don't mean amount of parameters -- although it is usually correlated -- but complexity of the overall ML lifecycle of our approach.
+
 ¹ We all know that itch.
+
 ¹ To state the obvious: Simple approaches are _usually_ easier to develop, industrialize and deploy than complex ones.
+
 ³ I am _by far_ not the first person to make that point -- with KISS being one example of it -- but it's so easy to forget that I think it's important to emboss.
+
 ² If that's what you want to do, academy/research has a higher density of such problem statements
+
 ³ When possible
