@@ -1,6 +1,9 @@
+# :material-atom: Modelling
+
 Now that we have a better understanding of the data, let's start predicting.
 
 ## Introduction
+
 Before we dive into the actual modelling, let's spend some time observing what we're trying to achieve.
 
 We are tasked with predicting the 24h-later-load given 10 years of hourly load data. 
