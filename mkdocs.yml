@@ -1,0 +1,13 @@
+site_name: Swiss Energy Forecast
+site_url: https://swissenergy.arthurgassner.ch
+theme:
+  name: material
+  palette:
+    scheme: slate  # Options: default, slate, or custom
+    primary: plum  # Primary color
+    accent: pink     # Accent color
+extra_javascript:
+  - https://cdn.plot.ly/plotly-latest.min.js
+markdown_extensions:
+  - attr_list
+  - md_in_html
