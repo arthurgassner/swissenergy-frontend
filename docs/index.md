@@ -1,6 +1,6 @@
 # Swiss Energy Forecast
 
-<div id="plotly-chart" style="width: 100%; height: 400px;"></div> <!-- Container for the Plotly chart -->
+<div id="plotly-chart" style="width: 100%; height: 400px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);"></div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
