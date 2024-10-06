@@ -7,7 +7,7 @@
 <script>
     async function fetchLastUpdated() {
         try {
-            const response = await fetch('http://127.0.0.1:8080/latest-model-training-ts');
+            const response = await fetch('https://vps.arthurgassner.ch/latest-model-training-ts');
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.statusText);
             }
@@ -50,7 +50,7 @@
 <script>
   // Fetch latest forecast data (GET request)
   async function fetchForecastData() {
-    const response = await fetch('http://127.0.0.1:8080/latest-forecast');
+    const response = await fetch('https://vps.arthurgassner.ch/latest-forecast');
     if (!response.ok) {
       throw new Error('Network response was not ok: ' + response.statusText);
     }
@@ -59,7 +59,7 @@
 
   // Fetch ENTSOE loads data (POST request)
   async function fetchEntsoeLoads() {
-    const response = await fetch('http://127.0.0.1:8080/entsoe-loads', {
+    const response = await fetch('https://vps.arthurgassner.ch/entsoe-loads', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
