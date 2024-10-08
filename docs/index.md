@@ -7,13 +7,13 @@
 <script>
     async function fetchLastUpdated() {
         try {
-            const response = await fetch('https://vps.arthurgassner.ch/latest-model-training-ts');
+            const response = await fetch('https://vps.arthurgassner.ch/latest-forecast-ts');
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.statusText);
             }
 
             const data = await response.json();
-            displayLastUpdated(data.latest_model_training_ts);
+            displayLastUpdated(data.latest_forecast_ts);
         } catch (error) {
             console.error('Error fetching data:', error);
             document.getElementById('last-updated').textContent = 'Error fetching last updated time.';
