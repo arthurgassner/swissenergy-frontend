@@ -72,10 +72,12 @@
     return response.json();
   }
 
-  // Create Plotly traces
+  // Create Plotly traces with 24h future time adjustment
   function createTraces(forecastData, entsoeData) {
+    const oneDayInSeconds = 86400; // 24 hours in seconds
+
     const actualLoadTrace = {
-      x: entsoeData.timestamps,
+      x: entsoeData.timestamps.map(t => new Date((t + oneDayInSeconds) * 1000)), // Shift 24h into the future
       y: entsoeData['24h_later_load'],
       mode: 'lines',
       type: 'scatter',
@@ -83,7 +85,7 @@
     };
 
     const officialForecastTrace = {
-      x: entsoeData.timestamps,
+      x: entsoeData.timestamps.map(t => new Date((t + oneDayInSeconds) * 1000)), // Shift 24h into the future
       y: entsoeData['24h_later_forecast'],
       mode: 'lines',
       type: 'scatter',
@@ -93,7 +95,7 @@
     };
 
     const ourForecastTrace = {
-      x: forecastData.timestamps,
+      x: forecastData.timestamps.map(t => new Date((t + oneDayInSeconds) * 1000)), // Shift 24h into the future
       y: forecastData.predicted_24h_later_load,
       mode: 'lines',
       type: 'scatter',
