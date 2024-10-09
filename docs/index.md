@@ -96,7 +96,7 @@
 
     const ourForecastTrace = {
       x: forecastData.timestamps.map(t => new Date(new Date(t).getTime() + oneDayInMilliseconds)), // Shift 24h into the future
-      y: forecastData.predicted_24h_later_load,
+      y: forecastData.predicted_24h_later_load.map(y => Math.round(y)),
       mode: 'lines',
       type: 'scatter',
       name: 'Our previous-day forecasted load [MW]'
