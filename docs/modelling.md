@@ -108,3 +108,14 @@ Now that we've talked extensively about model performances, let's move onto some
 ² If that's what you want to do, academy/research has a higher density of such problem statements
 
 ³ When possible
+
+## Dummy Baseline 
+
+## Time-serie forecasting as a regression
+
+<figure markdown="span">
+  ![Image title](images/modelling/placeholder.png){ width="300" }
+  <figcaption>TODO RESHAPING THE DATA TO FIT A REGRESSION TASK</figcaption>
+</figure>
+
+## Leveraging past-load's statistics
