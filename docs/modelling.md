@@ -2,11 +2,27 @@
 
 Now that we have a better understanding of the data, let's start predicting.
 
-## Introduction
+## Define the problem
 
-Before we dive into the actual modelling, let's spend some time thinking about what we're trying to achieve, and avoid a common pitfall.
+> Insert great quote about how defining the problem is half the battle.
 
-Given 10 years of hourly energy load data, we are tasked with predicting the 24h-later-load.
+Before we start solving our modelling problem, we must define the problem.
+
+There are several correct ways to define our task. 
+In this case, we can take inspiration from the way the ENTSO-E website names their prediction, i.e. `Day-ahead Total Load Forecast`, and assume that they forecast the consumption between `hour` and `hour + 1` using the data available a full day before `hour`.
+
+> As I would find out later, forecasts are usually added to the website in bulk, at 05:41 in the morning. Still, we picked this approach and are sticking with it. This would allow the solution's users to peek 24h into the future at any time of the day.
+
+Our modelling task could then be phrased as such: 
+
+```
+At time t, given all the load data prior to t, predict the load in MW at t + 24h
+```
+
+## Where to start
+
+Where can we even start solving this ?
+
 Young and freshly out-of-college, we could let our excitement win and dive straight into implementing some complex^1 ML-based time-series prediction model.[^2] We would measure our approach through the previously-chosen performance metric -- MAPE -- and would -- let's assume -- end up with a MAPE of 8%.
 
 Amazing !
