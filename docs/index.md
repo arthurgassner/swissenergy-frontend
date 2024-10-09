@@ -74,10 +74,10 @@
 
   // Create Plotly traces with 24h future time adjustment
   function createTraces(forecastData, entsoeData) {
-    const oneDayInSeconds = 86400; // 24 hours in seconds
+    const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
 
     const actualLoadTrace = {
-      x: entsoeData.timestamps.map(t => new Date((t + oneDayInSeconds) * 1000)), // Shift 24h into the future
+      x: entsoeData.timestamps.map(t => new Date(new Date(t).getTime() + oneDayInMilliseconds)), // Shift 24h into the future
       y: entsoeData['24h_later_load'],
       mode: 'lines',
       type: 'scatter',
@@ -85,7 +85,7 @@
     };
 
     const officialForecastTrace = {
-      x: entsoeData.timestamps.map(t => new Date((t + oneDayInSeconds) * 1000)), // Shift 24h into the future
+      x: entsoeData.timestamps.map(t => new Date(new Date(t).getTime() + oneDayInMilliseconds)), // Shift 24h into the future
       y: entsoeData['24h_later_forecast'],
       mode: 'lines',
       type: 'scatter',
@@ -95,7 +95,7 @@
     };
 
     const ourForecastTrace = {
-      x: forecastData.timestamps.map(t => new Date((t + oneDayInSeconds) * 1000)), // Shift 24h into the future
+      x: forecastData.timestamps.map(t => new Date(new Date(t).getTime() + oneDayInMilliseconds)), // Shift 24h into the future
       y: forecastData.predicted_24h_later_load,
       mode: 'lines',
       type: 'scatter',
@@ -136,6 +136,8 @@
     try {
       const forecastData = await fetchForecastData();
       const entsoeData = await fetchEntsoeLoads();
+      console.log(forecastData)
+      console.log(entsoeData)
       renderChart(forecastData, entsoeData);
     } catch (error) {
       console.error('Error fetching data:', error);
