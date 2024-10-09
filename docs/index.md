@@ -147,4 +147,83 @@
 </script>
 
 
-TODO add bareplot MAPE values
+<div id="plotly-bar-chart"></div>
+
+<script>
+// Fetch MAPE data (GET request)
+async function fetchMapeData() {
+    const response = await fetch('https://vps.arthurgassner.ch/latest-mape');
+    if (!response.ok) {
+        throw new Error('Network response was not ok: ' + response.statusText);
+    }
+    return response.json();
+}
+
+// Create Plotly traces for the bar plot
+function createBarTraces(mapeData) {
+    // Extract durations and MAPE values
+    const durationsEntsoe = Object.keys(mapeData.entsoe_model); // ['1h', '24h', '7d', '4w']
+    const mapeEntsoe = Object.values(mapeData.entsoe_model);    // Corresponding MAPE values
+
+    const durationsOurModel = Object.keys(mapeData.our_model);  // ['1h', '24h']
+    const mapeOurModel = Object.values(mapeData.our_model);     // Corresponding MAPE values
+
+    // Trace for ENTSOE model
+    const entsoeTrace = {
+        x: durationsEntsoe,
+        y: mapeEntsoe,
+        name: 'ENTSO-E Model',
+        type: 'bar'
+    };
+
+    // Trace for Our model
+    const ourModelTrace = {
+        x: durationsOurModel,
+        y: mapeOurModel,
+        name: 'Our Model',
+        type: 'bar'
+    };
+
+    return [entsoeTrace, ourModelTrace];
+}
+
+// Create layout for the bar plot
+function createBarLayout() {
+    return {
+        title: 'MAPE comparision between ENTSO-E\'s model and our model',
+        xaxis: { title: 'Duration' },
+        yaxis: { title: 'MAPE (%)' },
+        barmode: 'group', // Group bars for comparison
+        plot_bgcolor: '#1e1e1e', // Dark background for the plot area
+        paper_bgcolor: '#1e1e1e', // Dark background for the plot area
+        font: { color: '#ffffff' }, // White font for better contrast
+        legend: {
+            xanchor: 'center',
+            yanchor: 'top',
+            y: 1.15,
+            x: 0.5,
+            orientation: 'h'
+        }
+    };
+}
+
+// Render the Plotly chart
+function renderBarChart(mapeData) {
+    const traces = createBarTraces(mapeData);
+    const layout = createBarLayout();
+    Plotly.newPlot('plotly-bar-chart', traces, layout);
+}
+
+// Main function to fetch data and render chart
+async function main() {
+    try {
+        const mapeData = await fetchMapeData();
+        renderBarChart(mapeData);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+// Initialize when DOM content is loaded
+document.addEventListener("DOMContentLoaded", main);
+</script>
