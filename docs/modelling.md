@@ -19,6 +19,8 @@ To solve it, we first need to translate it into a _modelling task_, i.e. to form
 There are several correct ways to do so. 
 In our case, we take inspiration from the way the ENTSO-E names their own prediction, i.e -- `Day-ahead Total Load Forecast` -- and assume that they forecast the consumption between `hour` and `hour + 1` using the data available a full day before `hour`.[^1]
 
+[^1]: As I would figure out later, forecasts are usually added to the ENTSO-E website in bulk, at 05:41 in the morning. Still, we picked this approach and are sticking with it. It is interesting to note that I _assumed_ that's how they generated their predictions, and should have asked them directly via email -- as outlined in the motivation part of this writeup.
+
 Our modelling task could then be formulated as such: 
 
 !!! note "Modelling task"
@@ -36,94 +38,80 @@ graph LR
 
 Where can we even start solving this ?
 
-Young and freshly out-of-college, we could let our excitement win and dive straight into implementing some complex[^2] ML-based time-series prediction model. We'd then measure our approach through the previously-chosen performance metric -- MAPE -- and would -- let's assume -- end up with a MAPE of 8%.
+Let's stand back a little bit and think about the choice in front of us.
+We're about to build some machine learning model to solve our modelling task.
+We can go with an ARIMA model, a transformer-based approach, or even the latest NeurIPS paper.[^2]
+Really, we have to choose how complex[^3] our first attempt at modelling should be.
 
-Amazing !
+[^2]: We all know that itch.
+[^3]: When I talk about complexity here, I don't mean amount of parameters -- although it is usually correlated -- but complexity of the overall ML lifecycle of our approach. We are building a full-fledged solution -- along with tooling to maintain, fix and update our solution. Its complexity goes beyond how many fake-neurons our model has.
 
-And now we're left to ask: Is that good ?
+Young and freshly out-of-college, we could let our excitement win and dive straight into implementing the most complex ML-based time-series prediction model. Assuming that surely complexity and modernity are synonymous with performance. This would be a mistake, as our goal is _not_ to build the best model, but to answer the need of the business.[^4] 
+
+[^4]: If that's what you want to do, academy/research has a higher density of such problem statements
+
+!!! tip "There is such a thing as good-enough"
+    Most industry problems have a "this is good-enough" threshold.
+
+This "good-enough" threshold is the lowest performance that satisfies the needs of the business. It's often hard to express in hard numbers, and comes from understanding the business needs. Often, you will end up with an approximation acting as a proxy, meaning that a model performing up to that standard _should_ fulfill those needs.[^5] 
+
+[^5]: Here we talk about performance as if it was uni-dimensional. It rarely is You should consider -- amongst other things -- the raw performance, the inference time, the ease of maintenance, the explainability, the upfront training cost and the deployment cost. 
 
 <figure markdown="span">
-  ![Image title](images/modelling/placeholder.png){ width="300" }
-  <figcaption>PLOT MODEL COMPLEXITY vs PERFORMANCE METRIC, with one data point at a "HIGHLY COMPLEX"</figcaption>
+  ![Image title](images/modelling/placeholder.png){ width="100%" }
+  <figcaption>PLOT MODEL COMPLEXITY vs PERFORMANCE METRIC, with good-enough threshold"</figcaption>
 </figure>
 
-At this point, there would be no way to know. 
-What's worse is, we wouldn't even know if it's better than a simpler -- often called "dummy" -- approach. 
-What we would know is that getting to that 8% cost us time and effort -- more effort than starting with a _dummy approach_. To add salt on the wound, going forward with our complex approach would cost us more ressources than it would had our approach been simple.[^3]
+Back at our initial choice, and we have either start simple or complex.
 
-What would then be our next step ? Well, we would implement that "simpler" approach to see how much good all of this complexity brought us and be able to **compare**.
-Being able to **compare** performances allows us to better understand the cost/benefit ratio of adding complexity to the model. 
+!!! tip "Please"
+    Start simple[^6]
+				
+
+[^6]: I am _by far_ not the first person to make that point -- with KISS being one example of it -- but it's so easy to forget that I think it's important to hammer it in.
+
+We **really** should start simple, for many reasons:
+
+- A simple solution might place us above the "good-enough" threshold, saving us a lot of work.
+- It is often difficult to know where the "good-enough" threshold should be. Building a simple approach and getting user feedback allows us to place it above or below that approach's performance.
+- A simple solution is an effective benchmarking tool against which we can rank other solutions.
+- A simple solution is a good sanity check that our understanding of problem and data source are sound.
+- Let's assume we started with a complex solution. The cost (in time and ressource) to go onwards with it -- in terms of industrialization, deployment and maintenance -- would far outweigh the cost of _trying_ a simple solution. And if a simple solution was acceptable, then we'd go for the simple solution. Hence, even if we started from a complex approach, we'd build the simple approach _just to check_ and justify the complex approach.
+- It's easier to start simple and add complexity step by step.
+
+Wonderful, let's say we listened and started with a simple approach -- a _dummy baseline_. Unfortunately, the user is not satisfied -- i.e. the business need is not answered.
 
 <figure markdown="span">
-  ![Image title](images/modelling/placeholder.png){ width="300" }
-  <figcaption>TODO PLOT MODEL COMPLEXITY vs PERFORMANCE METRIC with two data points, one simple and one complex</figcaption>
+  ![Image title](images/modelling/placeholder.png){ width="100%" }
+  <figcaption>TODO PLOT MODEL COMPLEXITY vs PERFORMANCE METRIC with good-enough threshold, and a simple datapoint under the threshold</figcaption>
 </figure>
 
-This brings me to my first point:
+From that point on, we can add complexity step-by-step, till we -- hopefully -- surpasses the "good-enough" threshold.
 
-<center><h1><font size="6"><b>Start simple[^1]</b></font></h1></center>							
+As we try different approaches, we should be mindful of the performance upper-bound we are facing.
 
-Let's now assume we did that. We started simple, built a _dummy baseline_ and got a great performance: a MAPE of 10%.
-
-Amazing !
-
-And now the same question comes back: Is that good ?
-
-This brings me to my second point:
-
-<center><h1><font size="6"><b>Most industry problems have a "this is good-enough" threshold.</b></font></h1></center>							
-	 
-<figure markdown="span">
-  ![Image title](images/modelling/placeholder.png){ width="300" }
-  <figcaption>TODO PLOT MODEL COMPLEXITY vs PERFORMANCE METRIC, adding horizontal line for "good-enough"</figcaption>
-</figure>
-
-In most situations, we are not doing machine learning to chase the highest ever performance at all costs;² We're solving a business problem. 
-Machine learning is a tool for us to solve that problem. But at some point -- at some specific performance score -- the problem can be deemed solved, and we can move onto the next challenge: making our solution available to the user (i.e. customer, colleague, friend, ...).
-
-It is often hard to figure out that threshold. People won't tell you "We'd like a F1 of 0.93", or "The inference time must be under 100ms while keeping the BLUE-score at 0.8". 
-
-Figuring out what matters to the user -- inference time, prediction quality, model explainability, computation cost, ... -- can help us figure out what we should measure.
-
-Once we know what to measure, a back-and-forth with the user², trying out different solutions as the modelling goes on, can help approximate this "good-enough threshold".
-
-Now let's say we are trying different approaches, yielding different MAPE scores, but none of them really satisfy us. One thing to keep in my is my third point:
-
-<center><h1><font size="6"><b>Most prediction problems have a performance upper-bound.</b></font></h1></center>							 
+!!! tip "Performance upper-bound"
+    Most prediction problems have a performance upper-bound.							 
 
 That is, there is _usually_ some amount of randomness when predicting the future from a given set of observations. A direct consequence of that is that regardless of how good your model is, you will not be able to perfectly predict the future.
 
 <figure markdown="span">
-  ![Image title](images/modelling/placeholder.png){ width="300" }
+  ![Image title](images/modelling/placeholder.png){ width="100%" }
   <figcaption>PLOT MODEL COMPLEXITY vs PERFORMANCE METRCI, adding horizontal line for "highest-possible score".</figcaption>
 </figure>
 
 All you can do is hope that this upper-bound is above the "good-enough" threshold.
-To add insult to injury, this upper-bound is rarely available to us. 
+Akin to the "good-enough" threshold, this upper-bound is rarely available to us. 
 What we can do is measure the human-level performance on that task, which would give us a lower-bound to that upper-bound.
 
 <figure markdown="span">
-  ![Image title](images/modelling/placeholder.png){ width="300" }
+  ![Image title](images/modelling/placeholder.png){ width="100%" }
   <figcaption>TODO PLOT MODEL COMPLEXITY vs PERFORMANCE METRCI, adding horizontal line for human-performance</figcaption>
 </figure>
 
-
 Now that we've talked extensively about model performances, let's move onto some actual modelling.
 
-[^1]:
-    As I would figure out later, forecasts are usually added to the ENTSO-E website in bulk, at 05:41 in the morning. Still, we picked this approach and are sticking with it. It is interesting to note that I _assumed_ that's how they generated their predictions, and should have asked them directly via email -- as outlined in the motivation part of this writeup.
 
-[^2]: When I talk about complexity here, I don't mean amount of parameters -- although it is usually correlated -- but complexity of the overall ML lifecycle of our approach. We are building a full-fledged solution -- along with tooling to maintain, fix and update our solution. Its complexity goes beyond how many fake-neurons our model has.
-
-[^3]: I am _by far_ not the first person to make that point -- with KISS being one example of it -- but it's so easy to forget that I think it's important to hammer it in.
-
-¹ We all know that itch.
-
-¹ To state the obvious: Simple approaches are _usually_ easier to develop, industrialize and deploy than complex ones.
-
-² If that's what you want to do, academy/research has a higher density of such problem statements
-
-³ When possible
 
 ## Dummy Baseline 
 
@@ -135,3 +123,7 @@ Now that we've talked extensively about model performances, let's move onto some
 </figure>
 
 ## Leveraging past-load's statistics
+
+## Conclusion
+
+We now have a model performing at a satisfactory standard. We can move onto the next challenge: making our solution available to the user.
