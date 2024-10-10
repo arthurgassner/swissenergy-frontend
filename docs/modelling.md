@@ -15,9 +15,9 @@ In this case, we can take inspiration from the way the ENTSO-E website names the
 
 Our modelling task could then be phrased as such: 
 
-```
-At time t, given all the load data prior to t, predict the load in MW at t + 24h
-```
+!!! note "Problem statement"
+    At time `t`, given all the load data prior to `t`, predict the load in MW at `t + 24h`
+
 
 ## Where to start
 
