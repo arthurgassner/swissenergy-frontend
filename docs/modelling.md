@@ -2,12 +2,18 @@
 
 Now that we have a better understanding of the data, let's start predicting.
 
-## Define the problem
+## Define the modelling task
+
+Before we start solving our modelling task, we must define that task.
 
 !!! quote "Charles Kettering"
     A problem well-stated is a problem half-solved
 
-Before we start solving our modelling problem, we must define the problem.
+Our _Business problem_ could be stated as such:
+
+!!! note "Business problem"
+    We don't know the load ahead of time.
+    Knowing it would allow us 
 
 There are several correct ways to define our task. 
 In this case, we can take inspiration from the way the ENTSO-E website names their prediction, i.e. `Day-ahead Total Load Forecast`, and assume that they forecast the consumption between `hour` and `hour + 1` using the data available a full day before `hour`.
@@ -16,7 +22,7 @@ In this case, we can take inspiration from the way the ENTSO-E website names the
 
 Our modelling task could then be phrased as such: 
 
-!!! note "Problem statement"
+!!! note "Modelling task"
     At time `t`, given all the load data prior to `t`, predict the load in MW at `t + 24h`
 
 

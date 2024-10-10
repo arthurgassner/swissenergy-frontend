@@ -14,6 +14,8 @@ theme:
 plugins: [] # disable search
 nav:
   - Home: index.md                
+  - Motivation: motivation.md                
+  - Data Ingestion: data_ingestion.md                
   - EDA: eda.md
   - Modelling: modelling.md
   - Industrialization: industrialization.md
@@ -21,6 +23,7 @@ nav:
 
 extra_javascript:
   - https://cdn.plot.ly/plotly-latest.min.js
+
 markdown_extensions:
   - attr_list
   - md_in_html
