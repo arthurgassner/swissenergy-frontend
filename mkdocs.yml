@@ -1,6 +1,6 @@
 site_name: Swiss Energy Forecast 
 site_url: https://swissenergy.arthurgassner.ch
-repo_name: arthurgassner/swiss-energy-frontend
+repo_name: swiss-energy-frontend
 repo_url: https://github.com/arthurgassner/swiss-energy-frontend/
 theme:
   name: material
