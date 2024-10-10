@@ -29,7 +29,7 @@ Our modelling task could then be formulated as such:
 <center>
 ```mermaid
 graph LR
-  A[Prior hourly-load data] --> B[machine learning model] --> C[Hourly-load in 24h]
+  A[Prior hourly-load data] --> B[ML model] --> C[Hourly-load in 24h]
 ```
 </center>
 
