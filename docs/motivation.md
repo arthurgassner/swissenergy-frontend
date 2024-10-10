@@ -1,6 +1,6 @@
 # :material-lightbulb-on: Motivation
 
-## What is the purpose of this project ?
+## Why am I doing this?
 
 I wanted to have a place where I could showcase an end-to-end machine learning (ML) use-case.
 Beyond the methodologies -- and tools involved -- I wanted to centralize some pieces of advice, as not to lose sight of them.
