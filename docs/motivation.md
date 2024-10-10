@@ -18,7 +18,7 @@ Eventually, I stumbled upon the [Swiss Energy Dashboard](https://energiedashboar
 
 In industry, most -- if not all -- ML use-cases start with a business problem. That is, you work for a business, they have a problem, and they're turning to you because they think ML might be a way to a solution.
 
-In our case, let's assume the business problem is a colleague coming to you saying
+In our case, let's assume the business problem is a colleague coming to us saying
 
 !!! note "Business Problem"
     We are an energy distribution company.
