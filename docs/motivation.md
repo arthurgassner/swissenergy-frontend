@@ -35,7 +35,7 @@ What is _the future_? How are things currently done? What happens if a predictio
 
     Clarify the **context**, the **constraints**, the **needs** and the **wants**.
 
-    Identify and quality -- in quantity and quality -- the **data sources available**.
+    Identify and qualify -- in quantity and quality -- the **data sources available**.
 
     Get as close to the would-be consumers of your ML solution and **talk to them**.
     
