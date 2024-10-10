@@ -1,29 +1,35 @@
 # :material-atom: Modelling
 
-Now that we have a better understanding of the data, let's start predicting.
-
-## Define the modelling task
-
-Before we start solving our modelling task, we must define that task.
+## From business problem to modelling task
 
 !!! quote "Charles Kettering"
     A problem well-stated is a problem half-solved
 
-Our _Business problem_ could be stated as such:
 
-!!! note "Business problem"
-    We don't know the load ahead of time.
-    Knowing it would allow us 
+Now that we have a better understanding of our data, let's go back to our business problem, i.e.: 
 
-There are several correct ways to define our task. 
-In this case, we can take inspiration from the way the ENTSO-E website names their prediction, i.e. `Day-ahead Total Load Forecast`, and assume that they forecast the consumption between `hour` and `hour + 1` using the data available a full day before `hour`.
+!!! note "Business Problem"
+    We are an energy distribution company.
+    As such, we deal with the consumption of energy throughout our grid.
+    We don't know how said consumption will evolve in the future, and it would help us to know.
 
-> As I would find out later, forecasts are usually added to the website in bulk, at 05:41 in the morning. Still, we picked this approach and are sticking with it. This would allow the solution's users to peek 24h into the future at any time of the day.
+We want -- equipped with our new understanding of the context, constraints and needs of our business -- to solve this problem.
+To solve it, we first need to translate it into a _modelling task_, i.e. to formulate it in terms of input, machine learning model and output. 
 
-Our modelling task could then be phrased as such: 
+There are several correct ways to do so. 
+In our case, we take inspiration from the way the ENTSO-E names their own prediction, i.e -- `Day-ahead Total Load Forecast` -- and assume that they forecast the consumption between `hour` and `hour + 1` using the data available a full day before `hour`.[^1]
+
+Our modelling task could then be formulated as such: 
 
 !!! note "Modelling task"
     At time `t`, given all the load data prior to `t`, predict the load in MW at `t + 24h`
+
+<center>
+```mermaid
+graph LR
+  A[Prior hourly-load data] --> B[machine learning model] --> C[Hourly-load in 24h]
+```
+</center>
 
 
 ## Where to start
@@ -104,13 +110,16 @@ What we can do is measure the human-level performance on that task, which would 
 
 Now that we've talked extensively about model performances, let's move onto some actual modelling.
 
-¹ When I talk about complexity here, I don't mean amount of parameters -- although it is usually correlated -- but complexity of the overall ML lifecycle of our approach.
+[^1]:
+    As I would figure out later, forecasts are usually added to the ENTSO-E website in bulk, at 05:41 in the morning. Still, we picked this approach and are sticking with it. It is interesting to note that I _assumed_ that's how they generated their predictions, and should have asked them directly via email -- as outlined in the motivation part of this writeup.
+
+This would allow the solution's users to peek 24h into the future at any time of the day. When I talk about complexity here, I don't mean amount of parameters -- although it is usually correlated -- but complexity of the overall ML lifecycle of our approach.
 
 ¹ We all know that itch.
 
 ¹ To state the obvious: Simple approaches are _usually_ easier to develop, industrialize and deploy than complex ones.
 
-[^1]: I am _by far_ not the first person to make that point -- with KISS being one example of it -- but it's so easy to forget that I think it's important to emboss.
+[^2]: I am _by far_ not the first person to make that point -- with KISS being one example of it -- but it's so easy to forget that I think it's important to emboss.
 
 ² If that's what you want to do, academy/research has a higher density of such problem statements
 
