@@ -122,6 +122,13 @@ Now that we've talked extensively about model performances, let's move onto some
   <figcaption>TODO RESHAPING THE DATA TO FIT A REGRESSION TASK</figcaption>
 </figure>
 
+## Back-testing 
+
+motivation for backtesting
+
+!!! tip "Foreward split"
+    foreward split 
+
 ## Leveraging past-load's statistics
 
 ## Conclusion
