@@ -36,7 +36,7 @@ graph LR
 
 Where can we even start solving this ?
 
-Young and freshly out-of-college, we could let our excitement win and dive straight into implementing some complex^1 ML-based time-series prediction model.[^2] We would measure our approach through the previously-chosen performance metric -- MAPE -- and would -- let's assume -- end up with a MAPE of 8%.
+Young and freshly out-of-college, we could let our excitement win and dive straight into implementing some complex[^2] ML-based time-series prediction model. We'd then measure our approach through the previously-chosen performance metric -- MAPE -- and would -- let's assume -- end up with a MAPE of 8%.
 
 Amazing !
 
@@ -49,7 +49,7 @@ And now we're left to ask: Is that good ?
 
 At this point, there would be no way to know. 
 What's worse is, we wouldn't even know if it's better than a simpler -- often called "dummy" -- approach. 
-What we would know is that getting to that 8% cost us time and effort, and going forward with our approach would cost us more of it -- more so than a simpler approach.¹
+What we would know is that getting to that 8% cost us time and effort -- more effort than starting with a _dummy approach_. To add salt on the wound, going forward with our complex approach would cost us more ressources than it would had our approach been simple.[^3]
 
 What would then be our next step ? Well, we would implement that "simpler" approach to see how much good all of this complexity brought us and be able to **compare**.
 Being able to **compare** performances allows us to better understand the cost/benefit ratio of adding complexity to the model. 
@@ -113,13 +113,13 @@ Now that we've talked extensively about model performances, let's move onto some
 [^1]:
     As I would figure out later, forecasts are usually added to the ENTSO-E website in bulk, at 05:41 in the morning. Still, we picked this approach and are sticking with it. It is interesting to note that I _assumed_ that's how they generated their predictions, and should have asked them directly via email -- as outlined in the motivation part of this writeup.
 
-This would allow the solution's users to peek 24h into the future at any time of the day. When I talk about complexity here, I don't mean amount of parameters -- although it is usually correlated -- but complexity of the overall ML lifecycle of our approach.
+[^2]: When I talk about complexity here, I don't mean amount of parameters -- although it is usually correlated -- but complexity of the overall ML lifecycle of our approach. We are building a full-fledged solution -- along with tooling to maintain, fix and update our solution. Its complexity goes beyond how many fake-neurons our model has.
+
+[^3]: I am _by far_ not the first person to make that point -- with KISS being one example of it -- but it's so easy to forget that I think it's important to hammer it in.
 
 ¹ We all know that itch.
 
 ¹ To state the obvious: Simple approaches are _usually_ easier to develop, industrialize and deploy than complex ones.
-
-[^2]: I am _by far_ not the first person to make that point -- with KISS being one example of it -- but it's so easy to forget that I think it's important to emboss.
 
 ² If that's what you want to do, academy/research has a higher density of such problem statements
 
