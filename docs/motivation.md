@@ -1,18 +1,18 @@
 # :material-lightbulb-on: Motivation
 
-## What is the purpose of this repo ?
+## What is the purpose of this project ?
 
 I wanted to have a place where I could showcase an end-to-end machine learning (ML) use-case.
-Beyond the methodologies -- and tools involved -- I wanted to centralize some pieces of advices, as not to lose sight of them.
+Beyond the methodologies -- and tools involved -- I wanted to centralize some pieces of advice, as not to lose sight of them.
+None of them should be taken as gospel -- as I am still early in my career -- nor should they be seen as set-in-stone rules; they are more like flexible guidelines to help navigate an ML use-case from start to finish.
 
-Then, I stumbled upon the [Swiss Energy Dashboard](https://energiedashboard.admin.ch/strom/stromverbrauch), made available by the Swiss Federal Office of Energy (SFOE).
+Eventually, I stumbled upon the [Swiss Energy Dashboard](https://energiedashboard.admin.ch/strom/stromverbrauch), made available by the Swiss Federal Office of Energy (SFOE). I figured it would make for an interesting use-case dealing with real-world data.
 
 <figure markdown="span">
   ![Image title](images/motivation/swiss-energy-dashboard.png){ width="800" }
   <figcaption>Electricity consumption plot from the Swiss Energy Dashboard</figcaption>
 </figure>
 
-I figured it would make for an interesting use-case dealing with real-world data.
 
 ## Business problem
 
@@ -30,12 +30,19 @@ Great, but not enough to go from.
 It's capital to better define what's going on around our problem before we start digging.
 What is _the future_? How are things currently done? What happens if a prediction is wrong? Why would it be useful for us to know that future? Who would be impacted? How? What data do we have currently? Can we trust it? How far back does it go?
 
-!!! tip
-    **Never assume anything.**
+!!! tip "Never assume anything"
+    Clarify the **context**, the **constraints**, and the **needs**.
 
-    Clarify the **context**, the **constraints**, the **needs** and the **wants**.
+Let's break it down.
 
-    Identify and qualify -- in quantity and quality -- the **data sources available**.
-
-    Get as close to the would-be consumers of your ML solution and **talk to them**.
+- `Clarify the context`: Who would be impacted by these predictions? Who would use them? How would they use them?
+- `Clarify the constraints`: How much data do we have? How is the quality of that data? Did something change within the data-gathering process?
+- `Clarify the needs`: What is needed actually? A prediction model? How accurate? How often should it run? How far away should it predict? What is shortest path to success?
     
+None of these questions are trivial, nor should they be. It is likely that it will take time and back-and-forth to answer them to a somewhat-comfortable level, if ever. Identifying early on who would be using your ML solution -- and having them in the loop -- greatly reduces the risk of misunderstanding the business problem.
+
+!!! tip "Talk to your users[^1]"
+    Get as close to the would-be users of your ML solution and **talk to them**.
+
+
+[^1]: I talk about _users_ as if we were selling a SaaS; we are not, but we are building a solution **for someone**. That someone is our user. If they don't end up using our solution, we failed.
