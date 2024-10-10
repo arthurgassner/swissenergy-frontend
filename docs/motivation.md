@@ -42,7 +42,7 @@ Let's break it down.
 None of these questions are trivial, nor should they be. It is likely that it will take time and back-and-forth to answer them to a somewhat-comfortable level, if ever. Identifying early-on who would be using your ML solution -- and having them in the loop -- greatly reduces the risk of misunderstanding the business problem.
 
 !!! tip "Talk to your users[^1]"
-    Get as close to the would-be users of your ML solution and **talk to them**.
+    Get as close as possible to the would-be users of your ML solution and **talk to them**.
 
 
 [^1]: I talk about _users_ as if we were selling a SaaS; we are not, but we are building a solution **for someone**. That someone is our user. If they don't end up using our solution, we failed.
