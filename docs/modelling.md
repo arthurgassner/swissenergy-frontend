@@ -4,7 +4,8 @@ Now that we have a better understanding of the data, let's start predicting.
 
 ## Define the problem
 
-> Insert great quote about how defining the problem is half the battle.
+!!! quote "Charles Kettering"
+    A problem well-stated is a problem half-solved
 
 Before we start solving our modelling problem, we must define the problem.
 
