@@ -48,7 +48,7 @@ Being able to **compare** performances allows us to better understand the cost/b
 
 This brings me to my first point:
 
-<center><h1><font size="6"><b>Start simple¹</b></font></h1></center>							
+<center><h1><font size="6"><b>Start simple[^1]</b></font></h1></center>							
 
 Let's now assume we did that. We started simple, built a _dummy baseline_ and got a great performance: a MAPE of 10%.
 
@@ -103,7 +103,7 @@ Now that we've talked extensively about model performances, let's move onto some
 
 ¹ To state the obvious: Simple approaches are _usually_ easier to develop, industrialize and deploy than complex ones.
 
-³ I am _by far_ not the first person to make that point -- with KISS being one example of it -- but it's so easy to forget that I think it's important to emboss.
+[^1]: I am _by far_ not the first person to make that point -- with KISS being one example of it -- but it's so easy to forget that I think it's important to emboss.
 
 ² If that's what you want to do, academy/research has a higher density of such problem statements
 
