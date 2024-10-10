@@ -64,12 +64,6 @@ This "good-enough" threshold is the lowest performance that satisfies the needs 
 
 Back at our initial choice, and we have either start simple or complex.
 
-!!! tip "Please"
-    Start simple[^6]
-				
-
-[^6]: I am _by far_ not the first person to make that point -- with KISS being one example of it -- but it's so easy to forget that I think it's important to hammer it in.
-
 We **really** should start simple, for many reasons:
 
 - A simple solution might place us above the "good-enough" threshold, saving us a lot of work.
@@ -78,6 +72,12 @@ We **really** should start simple, for many reasons:
 - A simple solution is a good sanity check that our understanding of problem and data source are sound.
 - Let's assume we started with a complex solution. The cost (in time and ressource) to go onwards with it -- in terms of industrialization, deployment and maintenance -- would far outweigh the cost of _trying_ a simple solution. And if a simple solution was acceptable, then we'd go for the simple solution. Hence, even if we started from a complex approach, we'd build the simple approach _just to check_ and justify the complex approach.
 - It's easier to start simple and add complexity step by step.
+
+!!! tip "Please"
+    Start simple[^6]
+				
+
+[^6]: I am _by far_ not the first person to make that point -- with KISS being one example of it -- but it's so easy to forget that I think it's important to hammer it in.
 
 Wonderful, let's say we listened and started with a simple approach -- a _dummy baseline_. Unfortunately, the user is not satisfied -- i.e. the business need is not answered.
 
@@ -88,7 +88,7 @@ Wonderful, let's say we listened and started with a simple approach -- a _dummy 
 
 From that point on, we can add complexity step-by-step, till we -- hopefully -- surpasses the "good-enough" threshold.
 
-As we try different approaches, we should be mindful of the performance upper-bound we are facing.
+As we try different approaches, we should be mindful that we are facing a performance upper-bound.
 
 !!! tip "Performance upper-bound"
     Most prediction problems have a performance upper-bound.							 
