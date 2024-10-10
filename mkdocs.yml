@@ -3,6 +3,8 @@ site_url: https://swissenergy.arthurgassner.ch
 repo_url: https://github.com/arthurgassner/swiss-energy-frontend/
 theme:
   name: material
+  icon:
+    logo: fontawesome/solid/plug-circle-bolt
   features:
     - content.footnote.tooltips
   palette:

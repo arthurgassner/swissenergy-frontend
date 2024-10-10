@@ -1,1 +1,1 @@
-# :fontawesome-solid-magnifying-glass: EDA
+# :fontawesome-solid-vial: EDA
