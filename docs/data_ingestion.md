@@ -38,7 +38,7 @@ df = entsoe_client.query_load_and_forecast(
 df.head(5)
 ```
 
-And _voilà!_, the data is available[^3] to us:
+And _voilà!_, the data is available to us[^3]:
 
 <figure markdown="span">
   ![Image title](images/data_ingestion/entsoe_dataframe.png){ width="100%" }
