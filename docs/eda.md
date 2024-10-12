@@ -98,6 +98,8 @@ That was fast.
 
 ## Seasonality
 
+TODO
+
 ## ENTSO-E's official prediction
 
 The ENTSO-E provide their own forecasted load; how good is it?
