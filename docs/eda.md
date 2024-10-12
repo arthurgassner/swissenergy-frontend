@@ -1,14 +1,19 @@
 # :fontawesome-solid-vial: Exploratory Data Analysis (EDA)
 
 Now that we have access to our data source, let's explore it.
-We must ensure we have a good understanding of what the data is, isn't, before we can explore modelling options.
+We must ensure we have a good understanding of what the data is -- and isn't -- before we can explore modelling options.
 
 In other words, let's dive into the **Exploratory Data Analysis (EDA)**.
+
+
+## What does our data look like ?
+
+How far back does our data go? Do we have data for every single hour? Do we have duplicates?
 
 !!! tip Data assessement
     Identify and qualify -- in quantity and quality -- your **data sources**.
 
-## Shape of our data
+To figure this out, lets plot it.
 
 TODO insert code snipper here ?
 
