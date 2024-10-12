@@ -12,7 +12,7 @@ How far back does our data go? Do we have data for every single hour? Do we have
 !!! tip Data assessement
     Identify and qualify -- in quantity and quality -- your **data sources**.
 
-To figure this out, lets plot it.
+To figure this out, let's fetch data for as far back as we can, and plot it.
 
 TODO insert code snipper here ?
 

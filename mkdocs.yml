@@ -9,6 +9,7 @@ theme:
     repo: fontawesome/brands/github
   features:
     - content.footnote.tooltips
+    - content.code.copy
   palette:
     scheme: slate  # Options: default, slate, or custom
     primary: plum  # Primary color
