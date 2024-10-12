@@ -5,7 +5,6 @@ We must ensure we have a good understanding of what the data is -- and isn't -- 
 
 In other words, let's dive into the **Exploratory Data Analysis (EDA)**.
 
-
 ## What does our data look like ?
 
 How far back does our data go? Do we have data for every single hour? Do we have duplicates?
