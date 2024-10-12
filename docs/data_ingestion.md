@@ -7,7 +7,7 @@ Now that we have a better understanding our business problem, we can start the f
 The [European Network of Transmission System Operators](https://www.entsoe.eu/) represents 40 electrcity transmission system operators from 36 countries across Europe. They are one of the main data sources cited by the Swiss Energy Dashboard's [website](https://energiedashboard.admin.ch/strom/stromverbrauch), and checking their website shows that they make available -- amongst other things -- the actual load (hourly in MW) for Switzerland.
 
 <figure markdown="span">
-  ![Image title](images/data_ingestion/entsoe_screenshot.png){ width="100%" }
+  ![Image title](assets/data_ingestion/entsoe_screenshot.png){ width="100%" }
   <figcaption>Hourly actual and forecasted load [MW] for Switzerland, as seen on the ENTSO-E website</figcaption>
 </figure>
 
@@ -41,7 +41,7 @@ df.head(5)
 And _voilà!_, the data is available to us[^3]:
 
 <figure markdown="span">
-  ![Image title](images/data_ingestion/entsoe_dataframe.png){ width="100%" }
+  ![Image title](assets/data_ingestion/entsoe_dataframe.png){ width="100%" }
   <figcaption>First 5 rows of the actual and forecasted load [MW] for Switzerland for the 1st day of 2024, as fetched by the <code>entsoe-py</code> library</figcaption>
 </figure>
 

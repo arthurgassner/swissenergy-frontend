@@ -14,7 +14,7 @@ How far back does our data go? Do we have data for every single hour? Do we have
 
 To figure this out, let's fetch data for as far back as we can, and plot it.
 
-TODO insert code snipper here ?
+<iframe src="../assets/eda/actual_load_lineplot.html" width="100%" height="400"></iframe>
 
 First off, let's look at what the ENTSO-E's REST API gave us:
 

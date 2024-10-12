@@ -58,7 +58,7 @@ This "good-enough" threshold is the lowest performance that satisfies the needs 
 [^5]: Here we talk about performance as if it was uni-dimensional. It rarely is You should consider -- amongst other things -- the raw performance, the inference time, the ease of maintenance, the explainability, the upfront training cost and the deployment cost. 
 
 <figure markdown="span">
-  ![Image title](images/modelling/placeholder.png){ width="100%" }
+  ![Image title](assets/modelling/placeholder.png){ width="100%" }
   <figcaption>PLOT MODEL COMPLEXITY vs PERFORMANCE METRIC, with good-enough threshold"</figcaption>
 </figure>
 
@@ -82,7 +82,7 @@ We **really** should start simple, for many reasons:
 Wonderful, let's say we listened and started with a simple approach -- a _dummy baseline_. Unfortunately, the user is not satisfied -- i.e. the business need is not answered.
 
 <figure markdown="span">
-  ![Image title](images/modelling/placeholder.png){ width="100%" }
+  ![Image title](assets/modelling/placeholder.png){ width="100%" }
   <figcaption>TODO PLOT MODEL COMPLEXITY vs PERFORMANCE METRIC with good-enough threshold, and a simple datapoint under the threshold</figcaption>
 </figure>
 
@@ -96,7 +96,7 @@ As we try different approaches, we should be mindful that we are facing a perfor
 That is, there is _usually_ some amount of randomness when predicting the future from a given set of observations. A direct consequence of that is that regardless of how good your model is, you will not be able to perfectly predict the future.
 
 <figure markdown="span">
-  ![Image title](images/modelling/placeholder.png){ width="100%" }
+  ![Image title](assets/modelling/placeholder.png){ width="100%" }
   <figcaption>PLOT MODEL COMPLEXITY vs PERFORMANCE METRCI, adding horizontal line for "highest-possible score".</figcaption>
 </figure>
 
@@ -105,7 +105,7 @@ Akin to the "good-enough" threshold, this upper-bound is rarely available to us.
 What we can do is measure the human-level performance on that task, which would give us a lower-bound to that upper-bound.
 
 <figure markdown="span">
-  ![Image title](images/modelling/placeholder.png){ width="100%" }
+  ![Image title](assets/modelling/placeholder.png){ width="100%" }
   <figcaption>TODO PLOT MODEL COMPLEXITY vs PERFORMANCE METRCI, adding horizontal line for human-performance</figcaption>
 </figure>
 
@@ -118,7 +118,7 @@ Now that we've talked extensively about model performances, let's move onto some
 ## Time-serie forecasting as a regression
 
 <figure markdown="span">
-  ![Image title](images/modelling/placeholder.png){ width="300" }
+  ![Image title](assets/modelling/placeholder.png){ width="300" }
   <figcaption>TODO RESHAPING THE DATA TO FIT A REGRESSION TASK</figcaption>
 </figure>
 

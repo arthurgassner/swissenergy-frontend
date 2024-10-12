@@ -9,7 +9,7 @@ None of them should be taken as gospel -- as I am still early in my career -- no
 Eventually, I stumbled upon the [Swiss Energy Dashboard](https://energiedashboard.admin.ch/strom/stromverbrauch), made available by the Swiss Federal Office of Energy (SFOE). I figured it would make for an interesting use-case dealing with real-world data.
 
 <figure markdown="span">
-  ![Image title](images/motivation/swiss-energy-dashboard.png){ width="100%" }
+  ![Image title](assets/motivation/swiss-energy-dashboard.png){ width="100%" }
   <figcaption>Electricity consumption plot from the Swiss Energy Dashboard</figcaption>
 </figure>
 
