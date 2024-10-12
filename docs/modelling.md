@@ -118,7 +118,9 @@ We'll start with the following dummy baseline:
 !!! note "Dummy baseline"
     Predict that the hourly-load at time `t + 24h` is yesterday hourly-load at the same hour.
 
-Approaching our problem like this yields the following performance over the past month:
+Approaching our problem like this yields the following results over the past month:
+
+
 
 <center>
 
