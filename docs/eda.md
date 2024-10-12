@@ -62,7 +62,7 @@ They do send us empty data, namely:
 
 ### Missing data
 
-How about missing[^2] data? Do we have all the rows between the first datetime and the last? Let's check.
+How about missing data[^2]? Do we have all the rows between the first datetime and the last? Let's check.
 
 [^2]: By _missing_, I mean that the ENTSO-E did _not_ send data corresponding to some specific hours. 
 
