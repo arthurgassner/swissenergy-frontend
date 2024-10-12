@@ -24,8 +24,14 @@ nav:
   - Industrialization: industrialization.md
   - Deployment: deployment.md
 
+extra_css:
+  - https://unpkg.com/katex@0/dist/katex.min.css
+  
 extra_javascript:
   - https://cdn.plot.ly/plotly-latest.min.js
+  - javascripts/katex.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
 
 markdown_extensions:
   - attr_list
@@ -43,3 +49,8 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.arithmatex:
+      generic: true
+
+
+
