@@ -109,11 +109,25 @@ What we can do is measure the human-level performance on that task, which would 
   <figcaption>TODO PLOT MODEL COMPLEXITY vs PERFORMANCE METRCI, adding horizontal line for human-performance</figcaption>
 </figure>
 
-Now that we've talked extensively about model performances, let's move onto some actual modelling.
-
-
+Now that we've talked extensively about where to start, let's actually start modelling.
 
 ## Dummy Baseline 
+
+We'll start with the following dummy baseline:
+
+!!! note "Dummy baseline"
+    Predict that the hourly-load at time `t + 24h` is yesterday hourly-load at the same hour.
+
+Approaching our problem like this yields the following performance over the past month:
+
+<center>
+
+| MAPE [%]     | Model                          |
+| ------------ | :----------------------------- |
+| 10.8         | ENTSO-E forecast               |
+| ?            | Dummy baseline                 |
+
+</center>
 
 ## Time-serie forecasting as a regression
 

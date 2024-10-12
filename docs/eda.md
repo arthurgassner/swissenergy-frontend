@@ -165,7 +165,7 @@ fig = px.scatter(
 
 <iframe src="../assets/eda/mape_scatterplot.html" width="100%" height="400"></iframe>
 
-As we can see, the MAPE is excellent over the last 1-2 days, and then more than doubles if we look at at the full week, month, and year.[^3]
+As we can see, the MAPE is excellent (~3%) over the last 1-2 days, and then more than doubles if we look at at the full week, month, and year.[^3]
 
 [^3]: I later found out that the `Actual Load` -- as communicated by the ENTSO-E -- gets updated -- likely to be closer to reality -- within roughly a week of the first publication. 
 
