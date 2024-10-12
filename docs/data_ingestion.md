@@ -38,7 +38,7 @@ df = entsoe_client.query_load_and_forecast(
 df.head(5)
 ```
 
-And _voilà!_, the data is available to us:
+And _voilà!_, the data is available[^3] to us:
 
 <figure markdown="span">
   ![Image title](images/data_ingestion/entsoe_dataframe.png){ width="100%" }
@@ -49,3 +49,5 @@ And _voilà!_, the data is available to us:
 [^1]: Thank you `EnergieID` for your work.
 
 [^2]: It is quite unlikely you are the first person needing that wheel. The previous people having needed that wheel likely stumbled upon -- and solved -- problems you cannot yet envision. Building off their work, even if not _exactly_ what you had in mind, will likely win you time.
+
+[^3]: Naturally, we check if the data retrieved through this 3rd-party client matches the data found on the ENTSO-E official website.
