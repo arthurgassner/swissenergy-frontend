@@ -34,7 +34,9 @@ It does seem like some days are missing -- especially in 2024.
 
 ### Empty data
 
-Do does the ENTSO-E API send us empty data (`NaN`)? Let's check.
+Do does the ENTSO-E API send us empty data[^1]? Let's check.
+
+[^1]: By _empty_, I mean that the ENTSO-E sent something, but that something does not contain anything useful, typically a `NaN`.
 
 ```python
 import plotly.express as px
@@ -60,7 +62,9 @@ They do send us empty data, namely:
 
 ### Missing data
 
-How about missing data? Do we have all the rows between the first datetime and the last? Let's check.
+How about missing[^2] data? Do we have all the rows between the first datetime and the last? Let's check.
+
+[^2]: By _missing_, I mean that the ENTSO-E did _not_ send data corresponding to some specific hours. 
 
 ```python
 import plotly.express as px
@@ -79,7 +83,11 @@ fig = px.scatter(
 
 <iframe src="../assets/eda/missing_load_lineplot.html" width="100%" height="400"></iframe>
 
+We don't. A lot of data is missing from the end of 2024, and then the first hour of every year.
+
 ### Duplicated data
+
+How about duplicated data? 
 
 ## Seasonality
 
