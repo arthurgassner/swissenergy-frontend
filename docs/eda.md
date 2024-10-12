@@ -10,7 +10,7 @@ In other words, let's dive into the **Exploratory Data Analysis (EDA)**.
 How far back does our data go? Do we have data for every single hour? Do we have duplicates?
 
 !!! tip Data assessement
-    Identify and qualify -- in quantity and quality -- your **data sources**.
+    Qualify -- in quantity and quality -- your data sources.
 
 To answer these questions, let's start by fetching data for as far back as we can, and plotting it.
 
