@@ -85,10 +85,6 @@ fig = px.scatter(
 
 We don't. A lot of data is missing from the end of 2024, and then the first hour of every year.
 
-### Duplicated data
-
-How about duplicated data? 
-
 ## Seasonality
 
 ## ENTSO-E's official prediction
