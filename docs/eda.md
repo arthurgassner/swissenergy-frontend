@@ -25,11 +25,37 @@ fig = px.line(df, x=df.index, y='Actual Load',
 
 <iframe src="../assets/eda/actual_load_lineplot.html" width="100%" height="400"></iframe>
 
-We can see data ranging from 
+We can see data ranging from 2014 to 2024, with a nice -- and expected -- seasonality throughout the years.
+It does seem like some days are missing -- especially in 2024.
 
-## Duplicates and missing values
+## Empty, missing or duplicated data
 
-## Plot the data
+### Empty data
+
+Do does the ENTSO-E API send us empty data (`NaN`)? Let's check.
+
+```python
+import plotly.express as px
+
+df.loc[df['Actual Load'].isna(), 'color'] = 'Missing Actual Load'
+df.loc[df['Forecasted Load'].isna(), 'color'] = 'Missing Forecasted Load'
+
+fig = px.scatter(x=df[mask].index, y=mask[mask], color=df[mask].color,
+              title='Scatterplot of the missing loads (Actual & Forecasted)',
+              labels={'x': 'Date', 'y': 'Whether the data is missing', 'color': ''})
+```
+
+<iframe src="../assets/eda/missing_load_lineplot.html" width="100%" height="400"></iframe>
+
+They do send us empty data, namely:
+
+- The actual load is empty between now and tomorrow evening. This makes sense, because these are future datetimes for which we have a forecasted load. 
+- The forecasted loads is empty for 24h straight on the 24.11.2014. Looking at the full data, this corresponds to a streak of _missing_ actual loads in 2024.
+- The forecasted loads is empty for 24h straight on the 31.08.2015. Likely some kind of maintenance happened on that day on the ENTSO-E's side.
+
+### Missing data
+
+### Duplicated data
 
 ## Seasonality
 
