@@ -17,10 +17,12 @@ To answer these questions, let's start by fetching data for as far back as we ca
 ```python
 import plotly.express as px
 
-fig = px.line(df, x=df.index, y='Actual Load', 
-              markers=True, 
-              title='Lineplot of all the available Actual Load',
-              labels={'index': 'Date', 'Actual Load': 'Actual Load [MW]'})
+fig = px.line(
+    df, x=df.index, y='Actual Load', 
+    markers=True, 
+    title='Lineplot of all the available Actual Load',
+    labels={'index': 'Date', 'Actual Load': 'Actual Load [MW]'}
+)
 ```
 
 <iframe src="../assets/eda/actual_load_lineplot.html" width="100%" height="400"></iframe>
@@ -37,15 +39,18 @@ Do does the ENTSO-E API send us empty data (`NaN`)? Let's check.
 ```python
 import plotly.express as px
 
-df.loc[df['Actual Load'].isna(), 'color'] = 'Missing Actual Load'
-df.loc[df['Forecasted Load'].isna(), 'color'] = 'Missing Forecasted Load'
+df.loc[df['Actual Load'].isna(), 'color'] = 'Empty Actual Load'
+df.loc[df['Forecasted Load'].isna(), 'color'] = 'Empty Forecasted Load'
 
-fig = px.scatter(x=df[mask].index, y=mask[mask], color=df[mask].color,
-              title='Scatterplot of the missing loads (Actual & Forecasted)',
-              labels={'x': 'Date', 'y': 'Whether the data is missing', 'color': ''})
+mask = df.isna().any(axis=1)
+fig = px.scatter(
+    x=df[mask].index, y=mask[mask], color=df[mask].color,
+    title='Scatterplot of the empty loads (Actual & Forecasted)',
+    labels={'x': 'Date', 'y': 'Whether the data is empty', 'color': ''}
+)
 ```
 
-<iframe src="../assets/eda/missing_load_lineplot.html" width="100%" height="400"></iframe>
+<iframe src="../assets/eda/empty_load_lineplot.html" width="100%" height="400"></iframe>
 
 They do send us empty data, namely:
 
@@ -54,6 +59,25 @@ They do send us empty data, namely:
 - The forecasted loads is empty for 24h straight on the 31.08.2015. Likely some kind of maintenance happened on that day on the ENTSO-E's side.
 
 ### Missing data
+
+How about missing data? Do we have all the rows between the first datetime and the last? Let's check.
+
+```python
+import plotly.express as px
+
+df = df.asfreq('h', fill_value='FILLED')
+
+df.loc[(df == 'FILLED').any(axis=1), 'color'] = 'Missing Load'
+mask = (df == 'FILLED').any(axis=1)
+
+fig = px.scatter(
+    x=df[mask].index, y=mask[mask], color=df[mask].color,
+    title='Scatterplot of the missing loads (Actual & Forecasted)',
+    labels={'x': 'Date', 'y': 'Whether the data is missing', 'color': ''}
+)
+```
+
+<iframe src="../assets/eda/missing_load_lineplot.html" width="100%" height="400"></iframe>
 
 ### Duplicated data
 
