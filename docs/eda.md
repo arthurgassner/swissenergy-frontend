@@ -85,6 +85,17 @@ fig = px.scatter(
 
 We don't. A lot of data is missing from the end of 2024, and then the first hour of every year.
 
+### Duplicated data
+
+Does the ENTSO-E send us rows with the same index? Let's check.
+
+```python
+df.index.is_unique
+# True
+```
+
+That was fast.
+
 ## Seasonality
 
 ## ENTSO-E's official prediction
