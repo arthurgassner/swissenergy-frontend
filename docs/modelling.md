@@ -177,10 +177,10 @@ Approaching our problem like this yields the following results over the past yea
 
 <center>
 
-| MAPE [%]     | Model                          |
-| ------------ | :----------------------------- |
-| 10.8         | ENTSO-E forecast               |
-| 8.97         | Dummy baseline                 |
+| MAPE [%] (past 30 days)   | Model                          |
+| ------------------------- | :----------------------------- |
+| 10.8                      | ENTSO-E forecast               |
+| 8.97                      | Dummy baseline                 |
 
 </center>
 
