@@ -475,12 +475,11 @@ df['7d_median'] = df['1h_ago_load'].rolling(window=24*7, min_periods=1).apply(np
 
 </center>
 
-Beautiful!
-
-### SHAP
-
-### Optimization
+Beautiful! 
 
 ## Conclusion
 
-We now have a model performing at a satisfactory standard. We can move onto the next challenge: making our solution available to the user.
+We now have a model performing at a satisfactory standard -- 4.11% of MAPE over the last year. 
+We could of course continue improving -- picking our features and hyper-parameters in a more robust and scientific manner[^9], but for now, let's move onto our next challenge: making our solution available to the user.
+
+[^9]: To select hyper-parameters -- and features -- [`optuna`](https://github.com/optuna/optuna) is a great optimization framework. To better understand how the selected features matter to the model, [`SHAP`](https://github.com/shap/shap) is a wonderful model-agnostic framework.
