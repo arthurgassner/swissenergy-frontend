@@ -79,7 +79,7 @@ Developping on Linux, I interact with the terminal _a lot_. To make this whole p
 - `zsh` with [`oh-my-zsh`](https://ohmyz.sh), [`zsh-autosuggestions`](https://github.com/zsh-users/zsh-autosuggestions), [`zsh-syntax-highlighting`](https://github.com/zsh-users/zsh-syntax-highlighting) and [`fzf`](https://github.com/junegunn/fzf)
 
 <figure markdown="span">
-  ![Image title](assets/modelling/placeholder.png){ width="50%" }
+  ![Image title](assets/industrialization/zsh.gif){ width="100%" }
   <figcaption>A confortable terminal session, thanks to <code>oh-my-zsh</code> and others</figcaption>
 </figure>
 
