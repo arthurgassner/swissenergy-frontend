@@ -1,33 +1,41 @@
 # :fontawesome-solid-industry: Industrialization
 
+## Introduction 
+
 We now have a working model, performing at an acceptable level. Our goal is to bring it to the user.
 
 Which begs the question: How does our user want to consume our solution? 
 
 The way the ML model will be consumed educates us on how we should deploy it. 
-The way we deploy our model will heavily influence how we will productionalize our ML pipeline.
+The way we deploy our model will heavily influence how we will industrialize[^1] our ML pipeline.
 Hence, it is a good idea to know as early as possible. 
 
-!!! tip "Need educates deployment"
+[^1]: Also called _productionalize_.
+
+!!! tip "User needs educate deployment strategies"
     The needs of the user will dictates how we should deploy the model, not the other way around.
 
     An unused ML solution is a failed ML solution.
+
+## ML System Design
 
 In our case, since the data is published hourly by the ENTSO-E, we would like to
 
 - Fetch the fresh data every hour
 - Train and test the model on the latest data every hour
 - Forecast the load for the next 24h
-- Have the latest forecast available to the user, whenever they'd like[^1]
+- Have the latest forecast available to the user, whenever they'd like[^2]
 
-[^1]: This is called _offline inference_.
+[^2]: This is called _offline inference_.
 
 To answer those needs, we propose the following ML system design: 
 
 <figure markdown="span">
   ![Image title](assets/modelling/placeholder.png){ width="50%" }
-  <figcaption>Deployment architecture</figcaption>
+  <figcaption>ML System Design.</figcaption>
 </figure>
+
+## Maintainability
 
 Now another facet of bringing an ML solution to a user is that we now need to have confidence that our code is maintainable, shareable, and reproducible.
 
@@ -45,22 +53,24 @@ All three issues are interlinked.
 If you're the one maintaining the code, you're basically sharing with future you, who has to reproduce past results.
 As such, we will talk about upping the maintainability of our code.
 
+So far, we were basically experimenting, which allowed for some leeway in terms of coding practices for the sake of speed.
+Now, let's look over some tools to make your code more maintainable.[^3]
+
 <figure markdown="span">
   ![Image title](assets/modelling/placeholder.png){ width="50%" }
   <figcaption>A bunch fo .ipynb ==> a bunch of .py, with a git repo, tests, CI/CD</figcaption>
 </figure>
 
-## Up the maintainability
-
-So far, we were basically experimenting, which allowed for some leeway in terms of coding practices for the sake of speed.
-Now, let's look over some tools to make your code more maintainable.[^2]
-
-[^2]: Some of these tools might feel like common sense to some people, but I prefer to highlight the obvious than be confusing.
+[^3]: Some of these tools might feel like common sense to some people, but I prefer to highlight the obvious than be confusing.
 
 ### Version Control
 
 I use `git` and `Github` for any project from the very beginning. 
 It allows me to treat my last commit as a "at this point it was working" state, and to have my code remotely saved, were anything to happen to my computer.
+
+An upside of using GitHub[^4] is their [Github Actions](https://github.com/features/actions), allowing us to automate part of our workflow, and further improve the shareability of our code.
+
+[^4]: Most `git` hosting solutions have an equivalent.
 
 ### Productivity tools
 
@@ -76,7 +86,7 @@ Developping on Linux, I interact with the terminal _a lot_. To make this whole p
 - [`terminator`](https://gnome-terminator.org) allows for several terminal sessions within one terminal
 
 <figure markdown="span">
-  ![Image title](assets/modelling/placeholder.png){ width="50%" }
+  ![Image title](assets/industrialization/terminator.png){ width="100%" }
   <figcaption>Several terminal sessions in one terminal, thanks to <code>terminator</code></figcaption>
 </figure>
 
@@ -105,7 +115,7 @@ Below are a few non-exhaustive list of guidelines I follow to write readable cod
 
 - Write docstrings and comments
 
-    !!! tip "Docstrings"
+    !!! tip "Write Docstrings"
         Over the years, a lot of docstring flavors saw the light of day. <br>
         Just [pick one you like](https://docs.dasch.swiss/latest/DSP-TOOLS/developers/code-quality-tools/python-docstring-formatting/) and stick to it throughout your codebase.
 
@@ -128,7 +138,4 @@ Below are a few non-exhaustive list of guidelines I follow to write readable cod
 ### Testing
 
 Untested code breaks easily. What happens if in 2 months I make some change to the codebase; can I be confident I didn't break the whole thing?
-That's were tests come in.
-
-Unit test, integration tests, ...
-CICD, github actions
+That's were tests come in. To test python code, [`pytest`](https://docs.pytest.org/en/stable/) is a battle-tested solution.
