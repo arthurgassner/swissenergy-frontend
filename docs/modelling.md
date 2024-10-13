@@ -387,7 +387,7 @@ Let's go back to training our LightGBM model, this time judging it on 1% of the 
 
 Great, on par with our dummy baseline. Let's do better.
 
-### LightGBM with more timestamps
+### Leveraging more timestamps
 
 Currently, the only load-related information our model can use is the 24h-ago-load; how about enrich our data with more timesteps? 
 
