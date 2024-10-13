@@ -1,14 +1,42 @@
 # :fontawesome-solid-industry: Industrialization
 
-We now have a working model, performing at an acceptable level. My goal is to bring it to the user.
-Currently, our code is lack-luster in terms of
+We now have a working model, performing at an acceptable level. Our goal is to bring it to the user.
+
+Which begs the question: How does our user want to consume our solution? 
+
+The way the ML model will be consumed educates us on how we should deploy it. 
+The way we deploy our model will heavily influence how we will productionalize our ML pipeline.
+Hence, it is a good idea to know as early as possible. 
+
+!!! tip "Need educates deployment"
+    The needs of the user will dictates how we should deploy the model, not the other way around.
+
+    An unused ML solution is a failed ML solution.
+
+In our case, since the data is published hourly by the ENTSO-E, we would like to
+
+- Fetch the fresh data every hour
+- Train and test the model on the latest data every hour
+- Forecast the load for the next 24h
+- Have the latest forecast available to the user, whenever they'd like[^1]
+
+[^1]: This is called _offline inference_.
+
+To answer those needs, we propose the following ML system design: 
+
+<figure markdown="span">
+  ![Image title](assets/modelling/placeholder.png){ width="50%" }
+  <figcaption>Deployment architecture</figcaption>
+</figure>
+
+Now another facet of bringing an ML solution to a user is that we now need to have confidence that our code is maintainable, shareable, and reproducible.
 
 - **Maintainability**:
     - Do I have any confidence that my code works as intended?
     - In two months, can I easily come back to it? 
     - If I change some code, how do I know it is still working as intended?
 - **Shareability**: 
-    - Let's say I way to share it to user; how can I do that?
+    - Let's say I way to share it to our user; how can I do that?
     - A friend wants to help me out; how can they do that?
 - **Reproducibility**: 
     - Am I confident that I can easily reproduce the results outlined previously?
@@ -25,9 +53,9 @@ As such, we will talk about upping the maintainability of our code.
 ## Up the maintainability
 
 So far, we were basically experimenting, which allowed for some leeway in terms of coding practices for the sake of speed.
-Now, let's look over some tools to make your code more maintainable.[^1]
+Now, let's look over some tools to make your code more maintainable.[^2]
 
-[^1]: Some of these tools might feel like common sense to some people, but I prefer to highlight the obvious than be confusing.
+[^2]: Some of these tools might feel like common sense to some people, but I prefer to highlight the obvious than be confusing.
 
 ### Version Control
 
