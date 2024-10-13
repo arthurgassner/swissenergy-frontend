@@ -15,10 +15,16 @@ How many rows do we have? In what format is our data stored? How far back does o
 To answer these questions, let's start by fetching data for as far back as we can, and printing some basic informations about it:
 
 ```python
+print("Shape: \t\t", df.shape)
+print(f"Timestamps ranging {df.index.min()} => {df.index.max()}")
+print('dtypes: \t', df.dtypes.to_dict())
+print('index dtype: \t', df.index.dtype)
 ```
 
-
-
+<figure markdown="span">
+  ![Image title](assets/eda/df_print.png){ width="100%" }
+  <figcaption>Basic informations about the fetched ENTSO-E data.</figcaption>
+</figure>
 
 Let's now plot it.
 
