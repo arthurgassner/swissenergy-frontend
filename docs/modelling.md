@@ -295,7 +295,7 @@ Quickly, we hit a wall: generating a year's worth of prediction would take >25h.
   <figcaption>Generating a year's worth of prediction takes more than 25h.</figcaption>
 </figure>
 
-What can we do? Well, one way to address this issue is to subsample the testing timestamps, and use that as a test set. That way, our MAPE over the year will be an _estimate_ of the actual MAPE. To motivate this approach, let's check that this estimate isn't too far off the actual MAPE value.
+What can we do? Well, one way to address this issue is to subsample the testing timestamps, and use that as a test set. That way, our MAPE over the year will be an _estimate_ of the actual MAPE. 
 
 ```python
 from random import sample
@@ -303,6 +303,10 @@ from random import sample
 # Subsample to only train 100 models
 timestamps = sample(timestamps, k=100)
 ```
+
+To motivate this approach, let's check that this estimate isn't too far off the actual MAPE value by training a smaller model -- a LightGBM with only 1 estimator -- on all timestamps, and then computing the MAPE over the year with varying amount of discarded timestamps.
+
+
 
 ### Leveraging time attributes
 
