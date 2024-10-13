@@ -246,6 +246,64 @@ Hence, to predict the next 24h -- 24 predictions -- we'll train 24 models.
 
 Back to our gradient-boosted trees, let's build a LightGBM model leveraging the same data as our dummy model, i.e. the load 24h ago. 
 
+We build it incorporating the back-testing strategy -- and test it as such -- over the last year. Note that this means training 8760 models, one for each hour in a year.
+
+```python
+import lightgbm as lgb
+import pandas as pd
+from tqdm import tqdm
+from sklearn.metrics import mean_absolute_percentage_error
+
+def train_predict(model: lgb.LGBMRegressor, Xy: pd.DataFrame, query_ts: pd.Timestamp) -> float:
+    # Extract the testing X
+    if not query_ts in Xy.index:
+        raise ValueError(f"Query timestamp {query_ts} is missing from Xy's index.")
+    X_test = Xy.loc[[query_ts]].drop(columns=["24h_later_load"])
+
+    # Prepare training data
+    Xy = Xy.dropna(subset=("24h_later_load"))
+    Xy_train = Xy[Xy.index < query_ts]  # Only train on data strictly before the ts
+    X_train, y_train = Xy_train.drop(columns=["24h_later_load"]), Xy_train["24h_later_load"]
+
+    # Train the model
+    model.fit(X_train, y_train)
+
+    # Predict
+    return float(model.predict(X_test)[0])
+
+# Figure out all timestamps within the last year
+with_load_latest_ts = df[~df['24h_later_load'].isna()].index.max() 
+timestamps = df[df.index >= with_load_latest_ts - timedelta(days=365)].index.tolist()
+
+# For each timestamp, train a model and use it to predict the target
+reg = lgb.LGBMRegressor(n_estimators=10_000, force_row_wise=True, verbose=0)
+ts_to_predicted_value = {}
+for ts in tqdm(timestamps):
+    ts_to_predicted_value[ts] = train_predict(model=reg, Xy=df, query_ts=ts)
+
+# Shape up the predictions into a Dataframe
+y_pred = pd.DataFrame(
+    {"predicted_24h_later_load": ts_to_predicted_value.values()},
+    index=pd.DatetimeIndex(ts_to_predicted_value.keys()),
+)
+```
+
+Quickly, we hit a wall: generating a year's worth of prediction would take >25h.
+
+<figure markdown="span">
+  ![Image title](assets/modelling/tqdm_slow.gif){ width="100%" }
+  <figcaption>Generating a year's worth of prediction takes more than 25h.</figcaption>
+</figure>
+
+What can we do? Well, one way to address this issue is to subsample the testing timestamps, and use that as a test set. That way, our MAPE over the year will be an _estimate_ of the actual MAPE. To motivate this approach, let's check that this estimate isn't too far off the actual MAPE value.
+
+```python
+from random import sample
+
+# Subsample to only train 100 models
+timestamps = sample(timestamps, k=100)
+```
+
 ### Leveraging time attributes
 
 Currently, our model treats all rows as identical, regardless of whether it's midnight or noon, sunday or wednesday, june or december. There might be relevant predictive power in this information, so let's enrich our data with it.
