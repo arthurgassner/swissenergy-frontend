@@ -137,18 +137,52 @@ Back to our wrangled dataset:
 We'll start with the following dummy baseline:
 
 !!! note "Dummy baseline"
-    Predict that the hourly-load at time `t + 24h` is yesterday hourly-load at the same hour.
+    Predict that the hourly-load at time `t + 24h` is yesterday hourly-load at the same hour, i.e. the hourly-load at time `t - 24h` [^7]
+
+[^7]: Why not directly use the hourly-load at time `t`? Because as per the modelling task, we only know the historic load _up to_ time `t`, and hence cannot use the load between `t` and `t + 1h` to build our forecast.
+
+```python
+from datetime import timedelta
+from sklearn.metrics import mean_absolute_percentage_error
+import plotly.express as px
+
+# Enrich the data with the 24h_ago_load
+df = df.asfreq('h') # Enforce an hourly frequency
+df['24h_ago_load'] = df['24h_later_load'].shift(48)
+
+# Only consider the last year
+with_load_latest_ts = df[~df['24h_later_load'].isna()].index.max() 
+df = df[df.index >= with_load_latest_ts - timedelta(days=365)]
+
+# Build y_true and y_pred
+df = df.dropna()
+y_true = df['24h_later_load']
+y_pred = df['24h_ago_load']
+print(f'MAPE over the last year: {mean_absolute_percentage_error(y_true, y_pred) * 100:.2f}%') 
+# MAPE over the last year: 8.97%
+
+# Plot the last month
+df = df[df.index >= df.index.max() - timedelta(days=30)]
+
+fig = px.line(
+    df, x=df.index, y=['24h_later_load', '24h_ago_load'], 
+    title='Scatterplot of the ENTSO-E forecast\'s Absolute Percentage Error (APE)',
+    labels={'index': 'Date', 'value': 'Load [MW]', 'variable': ''}
+)
+
+fig.for_each_trace(lambda t: t.update(name={'24h_later_load': 'Ground-truth', '24h_ago_load': 'Dummy forecast'}[t.name]))
+```
 
 Approaching our problem like this yields the following results over the past month:
 
-TODO INSERT PLOT
+<iframe src="../assets/modelling/dummy_forecast_lineplot.html" width="100%" height="400"></iframe>
 
 <center>
 
 | MAPE [%]     | Model                          |
 | ------------ | :----------------------------- |
 | 10.8         | ENTSO-E forecast               |
-| ?            | Dummy baseline                 |
+| 8.97         | Dummy baseline                 |
 
 </center>
 
