@@ -17,7 +17,7 @@ We want -- equipped with our new understanding of the context, constraints and n
 To solve it, we first need to translate it into a _modelling task_, i.e. to formulate it in terms of input, machine learning model and output. 
 
 There are several correct ways to do so. 
-In our case, we take inspiration from the way the ENTSO-E names their own prediction, i.e -- `Day-ahead Total Load Forecast` -- and assume that they forecast the consumption between `hour` and `hour + 1` using the data available a full day before `hour`.[^1]
+In our case, we take inspiration from the way the ENTSO-E names their own prediction, i.e -- `Day-ahead Total Load Forecast` -- and assume that they forecast the consumption between `t` and `t + 1h` using the data available a a full day before `t`.[^1]
 
 [^1]: As I would figure out later, forecasts are usually added to the ENTSO-E website in bulk, at 05:41 in the morning. Still, we picked this approach and are sticking with it. It is interesting to note that I _assumed_ that's how they generated their predictions, and should have asked them directly via email -- as outlined in the motivation part of this writeup.
 
@@ -127,6 +127,13 @@ Now that we've talked extensively about where to start, let's actually start mod
 
 ## Dummy Baseline 
 
+Back to our wrangled dataset:
+
+<figure markdown="span">
+  ![Image title](assets/modelling/df_wrangling.png){ width="50%" }
+  <figcaption>Our data model.</figcaption>
+</figure>
+
 We'll start with the following dummy baseline:
 
 !!! note "Dummy baseline"
@@ -134,7 +141,7 @@ We'll start with the following dummy baseline:
 
 Approaching our problem like this yields the following results over the past month:
 
-
+TODO INSERT PLOT
 
 <center>
 
