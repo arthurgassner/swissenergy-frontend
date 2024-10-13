@@ -1,7 +1,9 @@
 # :fontawesome-solid-vial: Exploratory Data Analysis (EDA)
 
+## Introduction 
+
 Now that we have access to our data source, let's explore it.
-We must ensure we have a good understanding of what the data is -- and isn't -- before we can explore modelling options.
+We must ensure we have a good understanding of what the data is -- and isn't -- before we can move onto modelling options.
 
 In other words, let's dive into the **Exploratory Data Analysis (EDA)**.
 
@@ -12,7 +14,7 @@ How many rows do we have? In what format is our data stored? How far back does o
 !!! tip Data assessement
     Qualify -- in quantity and quality -- your data sources.
 
-To answer these questions, let's start by fetching data for as far back as we can, and printing some basic informations about it:
+To answer these questions, let's start by fetching data for as far back as we can, and printing some basic informations about it.
 
 ```python
 print("Shape: \t\t", df.shape)
@@ -48,7 +50,7 @@ It does seem like some days are missing -- especially in 2024.
 
 ### Empty data
 
-Do does the ENTSO-E API send us empty data[^1]? Let's check.
+Does the ENTSO-E API send us empty data?[^1] Let's check.
 
 [^1]: By _empty_, I mean that the ENTSO-E sent something, but that something does not contain anything useful, typically a `NaN`.
 
@@ -97,7 +99,7 @@ fig = px.scatter(
 
 <iframe src="../assets/eda/missing_load_lineplot.html" width="100%" height="400"></iframe>
 
-We don't. A lot of data is missing from the end of 2024, and then the first hour of every year.
+A lot of data is missing from the end of 2024, and then the first hour of every year.
 
 ### Duplicated data
 
@@ -125,7 +127,7 @@ where $A_t$ is the actual value at timestep $t$, $F_t$ the forecasted value at t
 
 Computing that metric over the entire historical data yields us a MAPE of 5.8% -- i.e. on average, the ENTSO-E's official forecast is off by 5.8%.
 
-But how did that evolve through time? Is the MAPE stable through time, or did the official model's performance change? Let's check by plotting the Absolute Percentage Error (APE) for each timestep.
+But how did that evolve through time? Is the MAPE stable through time, or did the official model's performance change? Let's check by plotting the **Absolute Percentage Error (APE)** for each timestep.
 
 ```python
 import plotly.express as px

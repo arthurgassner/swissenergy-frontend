@@ -2,10 +2,6 @@
 
 ## From business problem to modelling task
 
-!!! quote "Charles Kettering"
-    A problem well-stated is a problem half-solved
-
-
 Now that we have a better understanding of our data, let's go back to our business problem, i.e.: 
 
 !!! note "Business Problem"
@@ -14,12 +10,12 @@ Now that we have a better understanding of our data, let's go back to our busine
     We don't know how said consumption will evolve in the future, and it would help us to know.
 
 We want -- equipped with our new understanding of the context, constraints and needs of our business -- to solve this problem.
-To solve it, we first need to translate it into a _modelling task_, i.e. to formulate it in terms of input, machine learning model and output. 
+To solve it, we first need to translate it into a _**modelling task**_, i.e. to formulate it in terms of input, machine learning model and output. 
 
 There are several correct ways to do so. 
 In our case, we take inspiration from the way the ENTSO-E names their own prediction, i.e -- `Day-ahead Total Load Forecast` -- and assume that they forecast the consumption between `t` and `t + 1h` using the data available a a full day before `t`.[^1]
 
-[^1]: As I would figure out later, forecasts are usually added to the ENTSO-E website in bulk, at 05:41 in the morning. Still, we picked this approach and are sticking with it. It is interesting to note that I _assumed_ that's how they generated their predictions, and should have asked them directly via email -- as outlined in the motivation part of this writeup.
+[^1]: As I would figure out later, forecasts are usually added to the ENTSO-E website in bulk, at around 05:41 in the morning. Still, we picked this approach and are sticking with it. It is interesting to note that I _assumed_ that's how they generated their predictions, and should have asked them directly via email -- as outlined in the motivation part of this writeup.
 
 Our modelling task could then be formulated as such: 
 
@@ -60,9 +56,9 @@ Really, we have to choose how complex[^3] our first attempt at modelling should 
 [^2]: We all know that itch.
 [^3]: When I talk about complexity here, I don't mean amount of parameters -- although it is usually correlated -- but complexity of the overall ML lifecycle of our approach. We are building a full-fledged solution -- along with tooling to maintain, fix and update our solution. Its complexity goes beyond how many fake-neurons our model has.
 
-Young and freshly out-of-college, we could let our excitement win and dive straight into implementing the most complex ML-based time-series prediction model. Assuming that surely complexity and modernity are synonymous with performance. This would be a mistake, as our goal is _not_ to build the best model, but to answer the need of the business.[^4] 
+Young and freshly out-of-college, we could let our excitement win and dive straight into implementing the most complex ML-based time-series prediction model. Assuming that surely complexity and modernity are synonymous with performance, _right_? This would be a mistake, as our goal is _not_ to build the best model, but to answer the need of the business.[^4] 
 
-[^4]: If that's what you want to do, academy/research has a higher density of such problem statements
+[^4]: If that's what you want to do, academy/research has a higher density of such problem statements.
 
 !!! tip "There is such a thing as good-enough"
     Most industry problems have a "this is good-enough" threshold.
@@ -76,14 +72,14 @@ This "good-enough" threshold is the lowest performance that satisfies the needs 
   <figcaption>PLOT MODEL COMPLEXITY vs PERFORMANCE METRIC, with good-enough threshold"</figcaption>
 </figure>
 
-Back at our initial choice, and we have either start simple or complex.
+Back at our initial choice, and we can either start simple or complex.
 
 We **really** should start simple, for many reasons:
 
 - A simple solution might place us above the "good-enough" threshold, saving us a lot of work.
-- It is often difficult to know where the "good-enough" threshold should be. Building a simple approach and getting user feedback allows us to place it above or below that approach's performance.
+- It is often difficult to know where the "good-enough" threshold should be. Building a simple approach and getting user feedback on it allows us to place it above or below that approach's performance.
 - A simple solution is an effective benchmarking tool against which we can rank other solutions.
-- A simple solution is a good sanity check that our understanding of problem and data source are sound.
+- A simple solution is a good sanity check that our understanding of our problem and data sources are sound.
 - Let's assume we started with a complex solution. The cost (in time and ressource) to go onwards with it -- in terms of industrialization, deployment and maintenance -- would far outweigh the cost of _trying_ a simple solution. And if a simple solution was acceptable, then we'd go for the simple solution. Hence, even if we started from a complex approach, we'd build the simple approach _just to check_ and justify the complex approach.
 - It's easier to start simple and add complexity step by step.
 
@@ -93,7 +89,7 @@ We **really** should start simple, for many reasons:
 
 [^6]: I am _by far_ not the first person to make that point -- with KISS being one example of it -- but it's so easy to forget that I think it's important to hammer it in.
 
-Wonderful, let's say we listened and started with a simple approach -- a _dummy baseline_. Unfortunately, the user is not satisfied -- i.e. the business need is not answered.
+Wonderful, let's say we listened and started with a simple approach -- a _dummy baseline_. Unfortunately, the user is not satisfied -- i.e. the business need is not answered, and we're below the "good-enough" threshold.
 
 <figure markdown="span">
   ![Image title](assets/modelling/placeholder.png){ width="100%" }
@@ -107,7 +103,7 @@ As we try different approaches, we should be mindful that we are facing a perfor
 !!! tip "Performance upper-bound"
     Most prediction problems have a performance upper-bound.							 
 
-That is, there is _usually_ some amount of randomness when predicting the future from a given set of observations. A direct consequence of that is that regardless of how good your model is, you will not be able to perfectly predict the future.
+That is, there is _in almost all cases_ some amount of randomness when predicting the future from a given set of observations. A direct consequence of that is that regardless of how good your model is, you will not be able to perfectly predict the future.
 
 <figure markdown="span">
   ![Image title](assets/modelling/placeholder.png){ width="100%" }
@@ -123,7 +119,7 @@ What we can do is measure the human-level performance on that task, which would 
   <figcaption>TODO PLOT MODEL COMPLEXITY vs PERFORMANCE METRCI, adding horizontal line for human-performance</figcaption>
 </figure>
 
-Now that we've talked extensively about where to start, let's actually start modelling.
+Now that we've talked _extensively_ about where to start, let's actually start modelling.
 
 ## Dummy Baseline 
 
@@ -197,7 +193,7 @@ It is easy to deploy, battle-tested, fast to iterate one and performs extremely 
 
 [^7]: For tabular data, gradient-boosted-trees-based approaches often performs on par with -- if not above -- _much more complex_ approaches (NN-based approaches of all flavors).
 
-Whenever I am solving a task where it might an answer, I try it. I'll only whip out the big guns -- i.e. deep learning -- if I really need it.
+Whenever I am solving a task where it might give an answer, I try it. I'll only whip out the big guns -- i.e. deep learning -- if I really need it.
 
 Let's continue our modelling journey by building upon it.
 
@@ -211,7 +207,7 @@ Our problem looks like a classic regression task. As such, one might feel enclin
 2. Train some model on the train set
 3. Test that trained model on the test set
 
-If we did that, we would end up with an great-performing model. We would happily go onto making it available to our users, but then that model would underperform.
+If we did that, we would end up with an great-performing model _on the test set_. We would happily go onto making it available to our users, but then that model would underperform.
 
 Why?
 
@@ -220,7 +216,7 @@ Because we're not solving a typical regression task, we're dealing with timeseri
 [^8]: The assumption that the _train_ data is representative of the _test_ data is also usually made -- silently -- but any mismatch would "only" translate into a low-performing model (on the test set), i.e. we would be aware of how the model would perform in the wild.
 
 !!! tip "Testing should be real-life"
-    Testing conditions should be as close as possible to the real-life conditions.
+    Testing conditions should be as close as possible to real-life conditions.
 
 How does that impact us in our time-series prediction task? Well, by randomly dividing up the data into train and test sets, we're allowing the model to peek into the future. The model is learning to **interpolate**, whereas in real-life it will have to **extrapolate**:
 
@@ -232,9 +228,11 @@ How does that impact us in our time-series prediction task? Well, by randomly di
 Hence, whenever the data we are feeding our model is time-sensitive -- even if not explicitely a time-series -- we should split the train and test set time-wise. 
 
 !!! tip "Predict the future from the past, not the future"
-    Whenever the data is time-sensitive, split it time-wise.
+    Whenever the data is time-sensitive[^9], split it time-wise.
 
-In our case, this translates into is is called **back-testing**.
+[^9]: By _time-sensitive_, I mean any kind of data gathered through time. It does not really matter if the actual time is part of the features, because seemingly-non-time-related features _might_ contain _time-related_ informations. If that is the case, the model might infer the time-data from these features -- even just partially -- and break once in production where it won't be able to leverage it in the same way.
+
+In our case, this calls for what is called **_back-testing_**.
 We're training our model once per prediction, feeding all the data that was available at the fictious time of prediction.
 Hence, to predict the next 24h -- 24 predictions -- we'll train 24 models.
 
@@ -247,7 +245,9 @@ Hence, to predict the next 24h -- 24 predictions -- we'll train 24 models.
 
 Back to our gradient-boosted trees, let's build a LightGBM model leveraging the same data as our dummy model, i.e. the load 24h ago. 
 
-We build it incorporating the back-testing strategy -- and test it as such -- over the last year. Note that this means training 8760 models, one for each hour in a year.
+We build it incorporating the back-testing strategy -- and test it as such -- over the last year. Note that this means training 8760[^10] models, one for each hour in a year.
+
+[^10]: `24 * 365 == 8760` 
 
 ??? note "Train-test a LightGBM model, with back-testing"
     ```python
@@ -308,7 +308,7 @@ import numpy as np
 timestamps = sample(timestamps, k=<N_TIMESTAMPS_TO_CONSIDER>)
 ```
 
-To motivate this approach, let's check that this estimate isn't too far off the actual MAPE value by training a smaller model -- a LightGBM with only 1 estimator -- on all timestamps -- making it 8760 models -- and then computing the yearly-MAPE with varying amount of discarded timestamps.
+To motivate this approach, let's check that this estimate isn't too far off the actual MAPE value by training a smaller model -- a LightGBM with only 1 estimator -- on all timestamps -- making it 8760 models -- and then computing the yearly-MAPE with varying amounts of discarded timestamps.
 
 ??? note "Study the impact of estimating the MAPE through timestamp subsampling"
     ```python
@@ -479,7 +479,7 @@ Beautiful!
 
 ## Conclusion
 
-We now have a model performing at a satisfactory standard -- 4.11% of MAPE over the last year. 
-We could of course continue improving -- picking our features and hyper-parameters in a more robust and scientific manner[^9], but for now, let's move onto our next challenge: making our solution available to the user.
+We now have a model performing at a satisfactory standard -- estimated MAPE of 4.11% over the last year. 
+We could of course continue improving -- picking our features and hyper-parameters in a more robust and scientific manner[^11], but for now, let's move onto our next challenge: making our solution available to the user.
 
-[^9]: To select hyper-parameters -- and features -- [`optuna`](https://github.com/optuna/optuna) is a great optimization framework. To better understand how the selected features matter to the model, [`SHAP`](https://github.com/shap/shap) is a wonderful model-agnostic framework.
+[^11]: To select hyper-parameters -- and features -- [`optuna`](https://github.com/optuna/optuna) is a great optimization framework. To better understand how the selected features matter to the model, [`SHAP`](https://github.com/shap/shap) is a wonderful model-agnostic framework.
