@@ -112,10 +112,6 @@ df.index.is_unique
 
 That was fast.
 
-## Seasonality
-
-TODO
-
 ## ENTSO-E's official prediction
 
 The ENTSO-E provides their own forecasted load; how good is it?
@@ -185,6 +181,12 @@ fig = px.scatter(
 As we can see, the MAPE is excellent (~3%) over the last 1-2 days, and then more than doubles if we look at at the full week, month, and year.[^3]
 
 [^3]: I later found out that the `Actual Load` -- as communicated by the ENTSO-E -- gets updated -- likely to be closer to reality -- within roughly a week of the first publication. 
+
+## Conclusion
+
+Now that we have a good understanding of our data, let's start modelling.[^4]
+
+[^4]: We could of course keep on exploring, and e.g. investigate the seasonality of our data through an auto-correlation plot. But for now, let's move onto our next challenge.
 
 
 
