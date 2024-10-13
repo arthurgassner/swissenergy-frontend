@@ -35,14 +35,13 @@ graph LR
 
 We wrangle the data to better represent our modelling task. That is, each row's index is now the timestamp `t`, and the target -- called `24h_later_load` -- is the actual load [MW] between `t + 24h` and `t + 24h + 1h`.
 
-??? note "Data wrangling to fit the modelling task"
-    ```python
-    from datetime import timedelta
+```python
+from datetime import timedelta
 
-    df = df.set_index(df.index - timedelta(hours=24))
-    df = df.rename(columns={'Actual Load': '24h_later_load'})
-    df.head()
-    ```
+df = df.set_index(df.index - timedelta(hours=24))
+df = df.rename(columns={'Actual Load': '24h_later_load'})
+df.head()
+```
 
 <figure markdown="span">
   ![Image title](assets/modelling/df_wrangling.png){ width="50%" }
@@ -244,7 +243,7 @@ Hence, to predict the next 24h -- 24 predictions -- we'll train 24 models.
   <figcaption>Backtesting, highlighting the train set --> predicted val</figcaption>
 </figure>
 
-### Vanilla LightGBM
+### Naive LightGBM
 
 Back to our gradient-boosted trees, let's build a LightGBM model leveraging the same data as our dummy model, i.e. the load 24h ago. 
 
@@ -379,27 +378,54 @@ Let's go back to training our LightGBM model, this time judging it on 1% of the 
 
 <center>
 
-| yearly-MAPE [%]           | Model                          |
-| ------------------------- | :----------------------------- |
-| 10.8                      | ENTSO-E forecast               |
-| 8.97                      | Dummy baseline                 |
-| ? (estimated)             | LightGBM w/ 24h-ago-load       |
+| Yearly-MAPE [%]                             | Model                          |
+| ------------------------------------------- | :----------------------------- |
+| 10.8                                        | ENTSO-E forecast               |
+| 8.97                                        | Dummy baseline                 |
+| 8.47 (estimated w/ 1% of timestamps)        | LightGBM w/ 24h-ago-load       |
 
 </center>
 
+Great, on par with our dummy baseline. Let's do better.
 
-### Leveraging time attributes
-
-Currently, our model treats all rows as identical, regardless of whether it's midnight or noon, sunday or wednesday, june or december. There might be relevant predictive power in this information, so let's enrich our data with it.
-
-```python
-```
-
-### Leveraging past loads
+### LightGBM with more timestamps
 
 Currently, the only load-related information our model can use is the 24h-ago-load; how about enrich our data with more timesteps? 
 
 ```python
+# Enrich the data w/ more past loads
+df['1h_ago_load'] = df['24h_later_load'].shift(24 + 1)
+df['2h_ago_load'] = df['24h_later_load'].shift(24 + 2)
+df['3h_ago_load'] = df['24h_later_load'].shift(24 + 3)
+df['7d_ago_load'] = df['24h_later_load'].shift(24 + 24*7)
+df.head(3)
+```
+
+<center>
+
+| Yearly-MAPE [%]                             | Model                                 |
+| ------------------------------------------- | :-------------------------------------|
+| 10.8                                        | ENTSO-E forecast                      |
+| 8.97                                        | Dummy baseline                        |
+| 8.47 (estimated w/ 1% of timestamps)        | LightGBM <br>w/ 24h-ago-load          |
+| ? (estimated w/ 1% of timestamps)           | LightGBM <br>w/ several past loads    |
+
+</center>
+
+Even better! Let's dive deeper and further improve our model.
+
+### Leveraging time attributes
+
+Currently, our model treats all rows as identical, regardless of whether it's midnight or noon, sunday or wednesday, june or december. 
+There might be relevant predictive power in this information, so let's enrich our data with this sense of "when" we are.
+
+```python
+# Enrich the df with the datetime attributes
+df['month'] = df.index.month
+df['day'] = df.index.day
+df['hour'] = df.index.hour
+df['weekday'] = df.index.weekday
+df.head(3)
 ```
 
 ### Leveraging past load statistics
