@@ -102,7 +102,7 @@ TODO
 
 ## ENTSO-E's official prediction
 
-The ENTSO-E provide their own forecasted load; how good is it?
+The ENTSO-E provides their own forecasted load; how good is it?
 A common performance metric used to assess the "goodness" of a forecast is the **Mean Absolute Percentage Error (MAPE)**, defined as:
 
 $$\text{MAPE} = \frac{100}{n}\sum^n_i{\left|\frac{A_t - F_t}{A_t}\right|}$$
@@ -131,6 +131,7 @@ fig = px.scatter(
 <iframe src="../assets/eda/ape_scatterplot.html" width="100%" height="400"></iframe>
 
 We notice several things, namely:
+
 - The APE seemes to have increased in 2023 and 2024.
 - There is a year-long oddity where the forecast _almost_ perfectly matches the actual values; this is likely due to something happening on ENTSO-E's side, and skews the overall MAPE towards a lower -- i.e. better -- value.
 - In February 2023, the APE was off the charts; how come?
