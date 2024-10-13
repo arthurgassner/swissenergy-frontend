@@ -36,10 +36,10 @@ What is _the future_? How are things currently done? What happens if a predictio
 Let's break it down.
 
 - `Clarify the context`: Who would be impacted by these predictions? Who would use them? How would they use them?
-- `Clarify the constraints`: How much data do we have? How is the quality of that data? Did something change within the data-gathering process?
+- `Clarify the constraints`: How much data do we have? How is the quality of that data? What does the data-gathering process look like?
 - `Clarify the needs`: What is needed actually? A prediction model? How accurate? How often should it run? How far away should it predict? What is shortest path to success?
     
-None of these questions are trivial, nor should they be. It is likely that it will take time and back-and-forth to answer them to a somewhat-comfortable level, if ever. Identifying early-on who would be using your ML solution -- and having them in the loop -- greatly reduces the risk of misunderstanding the business problem.
+None of these questions are trivial, nor should they be. It is likely that it will take time and back-and-forth to answer them to a somewhat-satisfying level, if ever. Identifying early-on who would be using your ML solution -- and having them in the loop -- greatly reduces the risk of misunderstanding the business problem.
 
 !!! tip "Talk to your users[^1]"
     Get as close as possible to the would-be users of your ML solution and **talk to them**.
