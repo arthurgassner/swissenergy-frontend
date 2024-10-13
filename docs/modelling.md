@@ -33,6 +33,20 @@ graph LR
 ```
 </center>
 
+We wrangle the data to better represent our modelling task. That is, each row's index is now the timestamp `t`, and the target -- called `24h_later_load` -- is the actual load [MW] between `t + 24h` and `t + 24h + 1h`.
+
+```python
+from datetime import timedelta
+
+df = df.set_index(df.index - timedelta(hours=24))
+df = df.rename(columns={'Actual Load': '24h_later_load'})
+df.head()
+```
+
+<figure markdown="span">
+  ![Image title](assets/modelling/df_wrangling.png){ width="50%" }
+  <figcaption>A data model fitting our modelling task.</figcaption>
+</figure>
 
 ## Where to start
 

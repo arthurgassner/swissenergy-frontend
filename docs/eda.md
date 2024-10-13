@@ -7,12 +7,20 @@ In other words, let's dive into the **Exploratory Data Analysis (EDA)**.
 
 ## What does our data look like ?
 
-How far back does our data go? Do we have data for every single hour? Do we have duplicates?
+How many rows do we have? In what format is our data stored? How far back does our data go? Do we have data for every single hour? Do we have duplicates? Do we have empty rows?
 
 !!! tip Data assessement
     Qualify -- in quantity and quality -- your data sources.
 
-To answer these questions, let's start by fetching data for as far back as we can, and plotting it.
+To answer these questions, let's start by fetching data for as far back as we can, and printing some basic informations about it:
+
+```python
+```
+
+
+
+
+Let's now plot it.
 
 ```python
 import plotly.express as px
