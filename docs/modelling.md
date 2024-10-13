@@ -181,7 +181,7 @@ Approaching our problem like this yields the following results over the past yea
 | Yearly-MAPE [%]           | Model                          |
 | ------------------------- | :----------------------------- |
 | 10.8                      | ENTSO-E forecast               |
-| 8.97                      | Dummy baseline                 |
+| **8.97**                  | Dummy baseline                 |
 
 </center>
 
@@ -382,7 +382,7 @@ Let's go back to training our LightGBM model, this time judging it on 1% of the 
 | ------------------------------------------- | :----------------------------- |
 | 10.8                                        | ENTSO-E forecast               |
 | 8.97                                        | Dummy baseline                 |
-| 8.47 (estimated w/ 1% of timestamps)        | LightGBM w/ 24h-ago-load       |
+| **8.47** (estimated w/ 1% of timestamps)    | LightGBM w/ 24h-ago-load       |
 
 </center>
 
@@ -408,7 +408,7 @@ df.head(3)
 | 10.8                                        | ENTSO-E forecast                      |
 | 8.97                                        | Dummy baseline                        |
 | 8.47 (estimated w/ 1% of timestamps)        | LightGBM <br>w/ 24h-ago-load          |
-| 7.98 (estimated w/ 1% of timestamps)        | LightGBM <br>w/ several past loads    |
+| **7.98** (estimated w/ 1% of timestamps)    | LightGBM <br>w/ several past loads    |
 
 </center>
 
