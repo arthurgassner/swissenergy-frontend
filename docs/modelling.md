@@ -166,11 +166,11 @@ df = df[df.index >= df.index.max() - timedelta(days=30)]
 
 fig = px.line(
     df, x=df.index, y=['24h_later_load', '24h_ago_load'], 
-    title='Scatterplot of the ENTSO-E forecast\'s Absolute Percentage Error (APE)',
+    title='Actual load and dummy forecast over the last month',
     labels={'index': 'Date', 'value': 'Load [MW]', 'variable': ''}
 )
 
-fig.for_each_trace(lambda t: t.update(name={'24h_later_load': 'Ground-truth', '24h_ago_load': 'Dummy forecast'}[t.name]))
+fig.for_each_trace(lambda t: t.update(name={'24h_later_load': 'Actual load', '24h_ago_load': 'Dummy forecast'}[t.name]))
 ```
 
 Approaching our problem like this yields the following results over the past year:
