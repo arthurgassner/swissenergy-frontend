@@ -46,7 +46,7 @@ And _voilà!_, the data is available to us[^3]:
 </figure>
 
 
-[^1]: Thank you `EnergieID` for your work.
+[^1]: Thank you [`EnergieID`](https://github.com/EnergieID) for your work.
 
 [^2]: It is quite unlikely you are the first person needing that wheel. The previous people having needed that wheel likely stumbled upon -- and solved -- problems you cannot yet envision. Building off their work, even if not _exactly_ what you had in mind, will likely win you time.
 
