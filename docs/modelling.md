@@ -300,14 +300,13 @@ Quickly, we hit a wall: generating a year's worth of prediction would take >25h.
 
 What can we do? Well, one way to address this issue is to subsample the testing timestamps, and use that as a test set. That way, our MAPE over the year will be an _estimate_ of the actual MAPE. 
 
-??? note "Subsampling the timestamps"
-    ```python
-    from random import sample
-    import numpy as np
+```python
+from random import sample
+import numpy as np
 
-    # Subsample to only train <N_TIMESTAMPS_TO_CONSIDER> models
-    timestamps = sample(timestamps, k=<N_TIMESTAMPS_TO_CONSIDER>)
-    ```
+# Subsample to only train <N_TIMESTAMPS_TO_CONSIDER> models
+timestamps = sample(timestamps, k=<N_TIMESTAMPS_TO_CONSIDER>)
+```
 
 To motivate this approach, let's check that this estimate isn't too far off the actual MAPE value by training a smaller model -- a LightGBM with only 1 estimator -- on all timestamps -- making it 8760 models -- and then computing the yearly-MAPE with varying amount of discarded timestamps.
 
@@ -428,12 +427,53 @@ df['weekday'] = df.index.weekday
 df.head(3)
 ```
 
+<center>
+
+| Yearly-MAPE [%]                             | Model                                 |
+| ------------------------------------------- | :-------------------------------------|
+| 10.8                                        | ENTSO-E forecast                      |
+| 8.97                                        | Dummy baseline                        |
+| 8.47 (estimated w/ 1% of timestamps)        | LightGBM <br>w/ 24h-ago-load          |
+| 7.98 (estimated w/ 1% of timestamps)        | LightGBM <br>w/ several past loads    |
+| **5.40** (estimated w/ 1% of timestamps)    | LightGBM <br>w/ several past loads <br>& datetime attributes   |
+
+</center>
+
+That's great! Can we fly higher?
+
 ### Leveraging past load statistics
 
-Using specific timesteps as features works great -- apparently -- but what if this specific timestep had a "weird" load? The model would then be skewed and underperform. One way to address this is to consider load statistics over different timespans. 
+Using specific timesteps as features works great -- apparently -- but what if this specific timestep had a "weird" load? The model would then be skewed and underperform. One way to address this is to consider load statistics over different timespans.
 
 ```python
+# Compute statistics over the past 8h
+df['8h_min'] = df['1h_ago_load'].rolling(window=8, min_periods=1).apply(np.nanmin)
+df['8h_max'] = df['1h_ago_load'].rolling(window=8, min_periods=1).apply(np.nanmax)
+df['8h_median'] = df['1h_ago_load'].rolling(window=8, min_periods=1).apply(np.nanmedian)
+
+# Compute statistics over the past 24h
+df['24h_min'] = df['1h_ago_load'].rolling(window=24, min_periods=1).apply(np.nanmin)
+df['24h_max'] = df['1h_ago_load'].rolling(window=24, min_periods=1).apply(np.nanmax)
+df['24h_median'] = df['1h_ago_load'].rolling(window=24, min_periods=1).apply(np.nanmedian)
+
+# Compute statistics over the past 7d
+df['7d_min'] = df['1h_ago_load'].rolling(window=24*7, min_periods=1).apply(np.nanmin)
+df['7d_max'] = df['1h_ago_load'].rolling(window=24*7, min_periods=1).apply(np.nanmax)
+df['7d_median'] = df['1h_ago_load'].rolling(window=24*7, min_periods=1).apply(np.nanmedian)
 ```
+
+<center>
+
+| Yearly-MAPE [%]                             | Model                                 |
+| ------------------------------------------- | :-------------------------------------|
+| 10.8                                        | ENTSO-E forecast                      |
+| 8.97                                        | Dummy baseline                        |
+| 8.47 (estimated w/ 1% of timestamps)        | LightGBM <br>w/ 24h-ago-load          |
+| 7.98 (estimated w/ 1% of timestamps)        | LightGBM <br>w/ several past loads    |
+| 5.40 (estimated w/ 1% of timestamps)        | LightGBM <br>w/ several past loads <br>& datetime attributes   |
+| **?.??** (estimated w/ 1% of timestamps)    | LightGBM <br>w/ several past loads <br>& datetime attributes <br>& past load statistics   |
+
+</center>
 
 ### SHAP
 
