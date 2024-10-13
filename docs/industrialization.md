@@ -37,7 +37,7 @@ To answer those needs, we propose the following ML system design:
 
 ## Maintainability
 
-Now another facet of bringing an ML solution to a user is that we now need to have confidence that our code is maintainable, shareable, and reproducible.
+Another facet of bringing an ML solution to a user is that we now need to have confidence that our code is maintainable, shareable, and reproducible. 
 
 - **Maintainability**:
     - Do I have any confidence that my code works as intended?
