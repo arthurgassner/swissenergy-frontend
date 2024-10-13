@@ -273,7 +273,8 @@ def train_predict(model: lgb.LGBMRegressor, Xy: pd.DataFrame, query_ts: pd.Times
 
 # Figure out all timestamps within the last year
 with_load_latest_ts = df[~df['24h_later_load'].isna()].index.max() 
-timestamps = df[df.index >= with_load_latest_ts - timedelta(days=365)].index.tolist()
+mask = (df.index <= with_load_latest_ts) & (df.index >= with_load_latest_ts - timedelta(days=365)) 
+timestamps = df[mask].dropna(subset=('24h_later_load')).index.tolist()
 
 # For each timestamp, train a model and use it to predict the target
 reg = lgb.LGBMRegressor(n_estimators=10_000, force_row_wise=True, verbose=0)
@@ -285,7 +286,7 @@ for ts in tqdm(timestamps):
 y_pred = pd.DataFrame(
     {"predicted_24h_later_load": ts_to_predicted_value.values()},
     index=pd.DatetimeIndex(ts_to_predicted_value.keys()),
-)
+) 
 ```
 
 Quickly, we hit a wall: generating a year's worth of prediction would take >25h.
@@ -299,14 +300,77 @@ What can we do? Well, one way to address this issue is to subsample the testing 
 
 ```python
 from random import sample
+import numpy as np
 
-# Subsample to only train 100 models
-timestamps = sample(timestamps, k=100)
+# Subsample to only train <N_TIMESTAMPS_TO_CONSIDER> models
+timestamps = sample(timestamps, k=<N_TIMESTAMPS_TO_CONSIDER>)
 ```
 
-To motivate this approach, let's check that this estimate isn't too far off the actual MAPE value by training a smaller model -- a LightGBM with only 1 estimator -- on all timestamps, and then computing the MAPE over the year with varying amount of discarded timestamps.
+To motivate this approach, let's check that this estimate isn't too far off the actual MAPE value by training a smaller model -- a LightGBM with only 1 estimator -- on all timestamps -- making it 8760 models -- and then computing the yearly-MAPE with varying amount of discarded timestamps.
+
+```python
+from tqdm import tqdm
+from sklearn.metrics import mean_absolute_percentage_error
+from random import sample
+
+# Figure out all timestamps within the last year
+with_load_latest_ts = df[~df['24h_later_load'].isna()].index.max() 
+mask = (df.index <= with_load_latest_ts) & (df.index >= with_load_latest_ts - timedelta(days=365)) 
+timestamps = df[mask].dropna(subset=('24h_later_load')).index.tolist()
+
+# Subsample to only train 100 models
+# timestamps = sample(timestamps, k=100)
+
+# For each timestamp, train a model and use it to predict the target
+reg = lgb.LGBMRegressor(n_estimators=1, force_row_wise=True, verbose=0)
+ts_to_predicted_value = {}
+for ts in tqdm(timestamps):
+    ts_to_predicted_value[ts] = train_predict(model=reg, Xy=df, query_ts=ts)
+
+# Shape up the predictions into a Dataframe
+y_pred = pd.DataFrame(
+    {"predicted_24h_later_load": ts_to_predicted_value.values()},
+    index=pd.DatetimeIndex(ts_to_predicted_value.keys()),
+)
+
+# Get randomly-ordered timestamps to study the MAPE
+random_timestamps = y_pred.index.tolist()
+np.random.shuffle(random_timestamps) 
+
+# Package the y_pred and y_true into a dataframe
+y_true = df.loc[y_pred.index, ['24h_later_load']]
+y_df = pd.concat([y_true, y_pred], axis=1)
+y_df['APE'] = y_df.apply(lambda row: 100 * abs(row['24h_later_load'] - row['predicted_24h_later_load']) / row['24h_later_load'], axis=1)
+
+# For each discarded proportion, compute the MAPE
+discarded_proportion_to_mape = {}
+for i in tqdm(range(len(random_timestamps))):
+    discarded_proportion = i / len(random_timestamps) * 100
+    discarded_proportion_to_mape[discarded_proportion] = y_df.loc[random_timestamps[i:], 'APE'].mean()
+
+mape_df = pd.DataFrame({
+    'discarded_proportion': discarded_proportion_to_mape.keys(),
+    'estimated_MAPE': discarded_proportion_to_mape.values(),
+})
+
+# Plot
+fig = px.line(
+    mape_df, x='discarded_proportion', y='estimated_MAPE', 
+    title='Evolution of the yearly-MAPE <br>when discarding some proportion of the timestamps making up the year',
+    labels={'discarded_proportion': 'Proportion of discarded timestamps [%]', 'estimated_MAPE': 'Estimated MAPE [%] over the last year'}
+)
+
+fig.add_hline(y=mape_df.loc[0].estimated_MAPE, line_dash="dot",
+              annotation_text="Actual MAPE", 
+              annotation_position="bottom right")
+```
+
+<iframe src="../assets/modelling/mape_degradation_study.html" width="100%" height="400"></iframe>
 
 
+Wonderful! As we hoped, we can get away with only sampling 10% of the data and still having our estimated MAPE be close (within 10%) of the actual MAPE. 
+
+Let's go back to training our LightGBM model, this time judging it on 10% of the data
 
 ### Leveraging time attributes
 
