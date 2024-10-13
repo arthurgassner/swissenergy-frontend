@@ -80,7 +80,7 @@ Developping on Linux, I interact with the terminal _a lot_. To make this whole p
 
 <figure markdown="span">
   ![Image title](assets/industrialization/zsh.gif){ width="100%" }
-  <figcaption>A confortable terminal session, thanks to <code>oh-my-zsh</code> and others</figcaption>
+  <figcaption>A comfortable terminal session, thanks -- amongst others -- to <code>oh-my-zsh</code></figcaption>
 </figure>
 
 - [`terminator`](https://gnome-terminator.org) allows for several terminal sessions within one terminal
