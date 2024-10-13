@@ -408,7 +408,7 @@ df.head(3)
 | 10.8                                        | ENTSO-E forecast                      |
 | 8.97                                        | Dummy baseline                        |
 | 8.47 (estimated w/ 1% of timestamps)        | LightGBM <br>w/ 24h-ago-load          |
-| ? (estimated w/ 1% of timestamps)           | LightGBM <br>w/ several past loads    |
+| 7.98 (estimated w/ 1% of timestamps)        | LightGBM <br>w/ several past loads    |
 
 </center>
 
