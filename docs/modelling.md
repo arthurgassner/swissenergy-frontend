@@ -200,7 +200,7 @@ Whenever I am solving a task where it might an answer, I try it. I'll only whip 
 
 ### Vanilla LightGBM
 
-Let's build an LGBM model leveraging the same data as our dummy model, i.e. the load 24h ago.
+Let's build a LightGBM model leveraging the same data as our dummy model, i.e. the load 24h ago.
 
 ### Backtesting
 
