@@ -19,16 +19,18 @@ Hence, it is a good idea to know as early as possible.
 
 ## ML System Design
 
-In our case, since the data is published hourly by the ENTSO-E, we would like to
+In our case, the user needs to have the latest forecast available whenever they'd like.
 
-- Fetch the fresh data every hour
-- Train and test the model on the latest data every hour
-- Forecast the load for the next 24h
-- Have the latest forecast available to the user, whenever they'd like[^2]
+Since the data is published hourly by the ENTSO-E, this means
+
+- Fetching the fresh data every hour.
+- Training and testing the model on the latest data every hour.
+- Forecasting the load for the next 24h.[^2]
+- Having the latest forecast available to the user.
 
 [^2]: This is called _offline inference_.
 
-To answer those needs, we propose the following ML system design: 
+To answer those requirements, we can propose the following ML system design: 
 
 <figure markdown="span">
   ![Image title](assets/modelling/placeholder.png){ width="50%" }
