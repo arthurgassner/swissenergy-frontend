@@ -10,3 +10,5 @@ CADDY/NGINX - REVERSE PROXY
 DOCKER
 cron
 screen
+.env
+deploy keys
