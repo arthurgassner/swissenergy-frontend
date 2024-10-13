@@ -35,13 +35,14 @@ graph LR
 
 We wrangle the data to better represent our modelling task. That is, each row's index is now the timestamp `t`, and the target -- called `24h_later_load` -- is the actual load [MW] between `t + 24h` and `t + 24h + 1h`.
 
-```python
-from datetime import timedelta
+??? note "Data wrangling to fit the modelling task"
+    ```python
+    from datetime import timedelta
 
-df = df.set_index(df.index - timedelta(hours=24))
-df = df.rename(columns={'Actual Load': '24h_later_load'})
-df.head()
-```
+    df = df.set_index(df.index - timedelta(hours=24))
+    df = df.rename(columns={'Actual Load': '24h_later_load'})
+    df.head()
+    ```
 
 <figure markdown="span">
   ![Image title](assets/modelling/df_wrangling.png){ width="50%" }
@@ -141,43 +142,44 @@ We'll start with the following dummy baseline:
 
 [^7]: Why not directly use the hourly-load at time `t`? Because as per the modelling task, we only know the historic load _up to_ time `t`, and hence cannot use the load between `t` and `t + 1h` to build our forecast.
 
-```python
-from datetime import timedelta
-from sklearn.metrics import mean_absolute_percentage_error
-import plotly.express as px
+??? note "Build, test and plot the dummy baseline"
+    ```python
+    from datetime import timedelta
+    from sklearn.metrics import mean_absolute_percentage_error
+    import plotly.express as px
 
-# Enrich the data with the 24h_ago_load
-df = df.asfreq('h') # Enforce an hourly frequency
-df['24h_ago_load'] = df['24h_later_load'].shift(48)
+    # Enrich the data with the 24h_ago_load
+    df = df.asfreq('h') # Enforce an hourly frequency
+    df['24h_ago_load'] = df['24h_later_load'].shift(48)
 
-# Only consider the last year
-with_load_latest_ts = df[~df['24h_later_load'].isna()].index.max() 
-df = df[df.index >= with_load_latest_ts - timedelta(days=365)]
+    # Only consider the last year
+    with_load_latest_ts = df[~df['24h_later_load'].isna()].index.max() 
+    df = df[df.index >= with_load_latest_ts - timedelta(days=365)]
 
-# Build y_true and y_pred
-df = df.dropna()
-y_true = df['24h_later_load']
-y_pred = df['24h_ago_load']
-print(f'MAPE over the last year: {mean_absolute_percentage_error(y_true, y_pred) * 100:.2f}%') 
-# MAPE over the last year: 8.97%
+    # Build y_true and y_pred
+    df = df.dropna()
+    y_true = df['24h_later_load']
+    y_pred = df['24h_ago_load']
+    print(f'MAPE over the last year: {mean_absolute_percentage_error(y_true, y_pred) * 100:.2f}%') 
+    # MAPE over the last year: 8.97%
 
-# Plot the last month
-df = df[df.index >= df.index.max() - timedelta(days=30)]
+    # Plot the last month
+    df = df[df.index >= df.index.max() - timedelta(days=30)]
 
-fig = px.line(
-    df, x=df.index, y=['24h_later_load', '24h_ago_load'], 
-    title='Actual load and dummy forecast over the last month',
-    labels={'index': 'Date', 'value': 'Load [MW]', 'variable': ''}
-)
+    fig = px.line(
+        df, x=df.index, y=['24h_later_load', '24h_ago_load'], 
+        title='Actual load and dummy forecast over the last month',
+        labels={'index': 'Date', 'value': 'Load [MW]', 'variable': ''}
+    )
 
-fig.for_each_trace(lambda t: t.update(name={'24h_later_load': 'Actual load', '24h_ago_load': 'Dummy forecast'}[t.name]))
-```
+    fig.for_each_trace(lambda t: t.update(name={'24h_later_load': 'Actual load', '24h_ago_load': 'Dummy forecast'}[t.name]))
+    ```
 
 Approaching our problem like this yields the following results over the past year:
 
 <center>
 
-| yearly-MAPE [%]           | Model                          |
+| Yearly-MAPE [%]           | Model                          |
 | ------------------------- | :----------------------------- |
 | 10.8                      | ENTSO-E forecast               |
 | 8.97                      | Dummy baseline                 |
@@ -248,46 +250,47 @@ Back to our gradient-boosted trees, let's build a LightGBM model leveraging the 
 
 We build it incorporating the back-testing strategy -- and test it as such -- over the last year. Note that this means training 8760 models, one for each hour in a year.
 
-```python
-import lightgbm as lgb
-import pandas as pd
-from tqdm import tqdm
-from sklearn.metrics import mean_absolute_percentage_error
+??? note "Train-test a LightGBM model, with back-testing"
+    ```python
+    import lightgbm as lgb
+    import pandas as pd
+    from tqdm import tqdm
+    from sklearn.metrics import mean_absolute_percentage_error
 
-def train_predict(model: lgb.LGBMRegressor, Xy: pd.DataFrame, query_ts: pd.Timestamp) -> float:
-    # Extract the testing X
-    if not query_ts in Xy.index:
-        raise ValueError(f"Query timestamp {query_ts} is missing from Xy's index.")
-    X_test = Xy.loc[[query_ts]].drop(columns=["24h_later_load"])
+    def train_predict(model: lgb.LGBMRegressor, Xy: pd.DataFrame, query_ts: pd.Timestamp) -> float:
+        # Extract the testing X
+        if not query_ts in Xy.index:
+            raise ValueError(f"Query timestamp {query_ts} is missing from Xy's index.")
+        X_test = Xy.loc[[query_ts]].drop(columns=["24h_later_load"])
 
-    # Prepare training data
-    Xy = Xy.dropna(subset=("24h_later_load"))
-    Xy_train = Xy[Xy.index < query_ts]  # Only train on data strictly before the ts
-    X_train, y_train = Xy_train.drop(columns=["24h_later_load"]), Xy_train["24h_later_load"]
+        # Prepare training data
+        Xy = Xy.dropna(subset=("24h_later_load"))
+        Xy_train = Xy[Xy.index < query_ts]  # Only train on data strictly before the ts
+        X_train, y_train = Xy_train.drop(columns=["24h_later_load"]), Xy_train["24h_later_load"]
 
-    # Train the model
-    model.fit(X_train, y_train)
+        # Train the model
+        model.fit(X_train, y_train)
 
-    # Predict
-    return float(model.predict(X_test)[0])
+        # Predict
+        return float(model.predict(X_test)[0])
 
-# Figure out all timestamps within the last year
-with_load_latest_ts = df[~df['24h_later_load'].isna()].index.max() 
-mask = (df.index <= with_load_latest_ts) & (df.index >= with_load_latest_ts - timedelta(days=365)) 
-timestamps = df[mask].dropna(subset=('24h_later_load')).index.tolist()
+    # Figure out all timestamps within the last year
+    with_load_latest_ts = df[~df['24h_later_load'].isna()].index.max() 
+    mask = (df.index <= with_load_latest_ts) & (df.index >= with_load_latest_ts - timedelta(days=365)) 
+    timestamps = df[mask].dropna(subset=('24h_later_load')).index.tolist()
 
-# For each timestamp, train a model and use it to predict the target
-reg = lgb.LGBMRegressor(n_estimators=10_000, force_row_wise=True, verbose=0)
-ts_to_predicted_value = {}
-for ts in tqdm(timestamps):
-    ts_to_predicted_value[ts] = train_predict(model=reg, Xy=df, query_ts=ts)
+    # For each timestamp, train a model and use it to predict the target
+    reg = lgb.LGBMRegressor(n_estimators=10_000, force_row_wise=True, verbose=0)
+    ts_to_predicted_value = {}
+    for ts in tqdm(timestamps):
+        ts_to_predicted_value[ts] = train_predict(model=reg, Xy=df, query_ts=ts)
 
-# Shape up the predictions into a Dataframe
-y_pred = pd.DataFrame(
-    {"predicted_24h_later_load": ts_to_predicted_value.values()},
-    index=pd.DatetimeIndex(ts_to_predicted_value.keys()),
-) 
-```
+    # Shape up the predictions into a Dataframe
+    y_pred = pd.DataFrame(
+        {"predicted_24h_later_load": ts_to_predicted_value.values()},
+        index=pd.DatetimeIndex(ts_to_predicted_value.keys()),
+    ) 
+    ```
 
 Quickly, we hit a wall: generating a year's worth of prediction would take >25h.
 
@@ -298,72 +301,74 @@ Quickly, we hit a wall: generating a year's worth of prediction would take >25h.
 
 What can we do? Well, one way to address this issue is to subsample the testing timestamps, and use that as a test set. That way, our MAPE over the year will be an _estimate_ of the actual MAPE. 
 
-```python
-from random import sample
-import numpy as np
+??? note "Subsampling the timestamps"
+    ```python
+    from random import sample
+    import numpy as np
 
-# Subsample to only train <N_TIMESTAMPS_TO_CONSIDER> models
-timestamps = sample(timestamps, k=<N_TIMESTAMPS_TO_CONSIDER>)
-```
+    # Subsample to only train <N_TIMESTAMPS_TO_CONSIDER> models
+    timestamps = sample(timestamps, k=<N_TIMESTAMPS_TO_CONSIDER>)
+    ```
 
 To motivate this approach, let's check that this estimate isn't too far off the actual MAPE value by training a smaller model -- a LightGBM with only 1 estimator -- on all timestamps -- making it 8760 models -- and then computing the yearly-MAPE with varying amount of discarded timestamps.
 
-```python
-from tqdm import tqdm
-from sklearn.metrics import mean_absolute_percentage_error
-from random import sample
+??? note "Study the impact of estimating the MAPE through timestamp subsampling"
+    ```python
+    from tqdm import tqdm
+    from sklearn.metrics import mean_absolute_percentage_error
+    from random import sample
 
-# Figure out all timestamps within the last year
-with_load_latest_ts = df[~df['24h_later_load'].isna()].index.max() 
-mask = (df.index <= with_load_latest_ts) & (df.index >= with_load_latest_ts - timedelta(days=365)) 
-timestamps = df[mask].dropna(subset=('24h_later_load')).index.tolist()
+    # Figure out all timestamps within the last year
+    with_load_latest_ts = df[~df['24h_later_load'].isna()].index.max() 
+    mask = (df.index <= with_load_latest_ts) & (df.index >= with_load_latest_ts - timedelta(days=365)) 
+    timestamps = df[mask].dropna(subset=('24h_later_load')).index.tolist()
 
-# Subsample to only train 100 models
-# timestamps = sample(timestamps, k=100)
+    # Subsample to only train 100 models
+    # timestamps = sample(timestamps, k=100)
 
-# For each timestamp, train a model and use it to predict the target
-reg = lgb.LGBMRegressor(n_estimators=1, force_row_wise=True, verbose=0)
-ts_to_predicted_value = {}
-for ts in tqdm(timestamps):
-    ts_to_predicted_value[ts] = train_predict(model=reg, Xy=df, query_ts=ts)
+    # For each timestamp, train a model and use it to predict the target
+    reg = lgb.LGBMRegressor(n_estimators=1, force_row_wise=True, verbose=0)
+    ts_to_predicted_value = {}
+    for ts in tqdm(timestamps):
+        ts_to_predicted_value[ts] = train_predict(model=reg, Xy=df, query_ts=ts)
 
-# Shape up the predictions into a Dataframe
-y_pred = pd.DataFrame(
-    {"predicted_24h_later_load": ts_to_predicted_value.values()},
-    index=pd.DatetimeIndex(ts_to_predicted_value.keys()),
-)
+    # Shape up the predictions into a Dataframe
+    y_pred = pd.DataFrame(
+        {"predicted_24h_later_load": ts_to_predicted_value.values()},
+        index=pd.DatetimeIndex(ts_to_predicted_value.keys()),
+    )
 
-# Get randomly-ordered timestamps to study the MAPE
-random_timestamps = y_pred.index.tolist()
-np.random.shuffle(random_timestamps) 
+    # Get randomly-ordered timestamps to study the MAPE
+    random_timestamps = y_pred.index.tolist()
+    np.random.shuffle(random_timestamps) 
 
-# Package the y_pred and y_true into a dataframe
-y_true = df.loc[y_pred.index, ['24h_later_load']]
-y_df = pd.concat([y_true, y_pred], axis=1)
-y_df['APE'] = y_df.apply(lambda row: 100 * abs(row['24h_later_load'] - row['predicted_24h_later_load']) / row['24h_later_load'], axis=1)
+    # Package the y_pred and y_true into a dataframe
+    y_true = df.loc[y_pred.index, ['24h_later_load']]
+    y_df = pd.concat([y_true, y_pred], axis=1)
+    y_df['APE'] = y_df.apply(lambda row: 100 * abs(row['24h_later_load'] - row['predicted_24h_later_load']) / row['24h_later_load'], axis=1)
 
-# For each discarded proportion, compute the MAPE
-discarded_proportion_to_mape = {}
-for i in tqdm(range(len(random_timestamps))):
-    discarded_proportion = i / len(random_timestamps) * 100
-    discarded_proportion_to_mape[discarded_proportion] = y_df.loc[random_timestamps[i:], 'APE'].mean()
+    # For each discarded proportion, compute the MAPE
+    discarded_proportion_to_mape = {}
+    for i in tqdm(range(len(random_timestamps))):
+        discarded_proportion = i / len(random_timestamps) * 100
+        discarded_proportion_to_mape[discarded_proportion] = y_df.loc[random_timestamps[i:], 'APE'].mean()
 
-mape_df = pd.DataFrame({
-    'discarded_proportion': discarded_proportion_to_mape.keys(),
-    'estimated_MAPE': discarded_proportion_to_mape.values(),
-})
+    mape_df = pd.DataFrame({
+        'discarded_proportion': discarded_proportion_to_mape.keys(),
+        'estimated_MAPE': discarded_proportion_to_mape.values(),
+    })
 
-# Plot
-fig = px.line(
-    mape_df, x='discarded_proportion', y='estimated_MAPE', 
-    title='Evolution of the yearly-MAPE <br>when discarding some proportion of the timestamps making up the year',
-    labels={'discarded_proportion': 'Proportion of discarded timestamps [%]', 'estimated_MAPE': 'Estimated MAPE [%] over the last year'}
-)
+    # Plot
+    fig = px.line(
+        mape_df, x='discarded_proportion', y='estimated_MAPE', 
+        title='Evolution of the yearly-MAPE <br>when discarding some proportion of the timestamps making up the year',
+        labels={'discarded_proportion': 'Proportion of discarded timestamps [%]', 'estimated_MAPE': 'Estimated MAPE [%] over the last year'}
+    )
 
-fig.add_hline(y=mape_df.loc[0].estimated_MAPE, line_dash="dot",
-              annotation_text="Actual MAPE", 
-              annotation_position="bottom right")
-```
+    fig.add_hline(y=mape_df.loc[0].estimated_MAPE, line_dash="dot",
+                  annotation_text="Actual MAPE", 
+                  annotation_position="bottom right")
+    ```
 
 <iframe src="../assets/modelling/mape_degradation_study.html" width="100%" height="400"></iframe>
 
