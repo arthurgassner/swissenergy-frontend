@@ -471,9 +471,11 @@ df['7d_median'] = df['1h_ago_load'].rolling(window=24*7, min_periods=1).apply(np
 | 8.47 (estimated w/ 1% of timestamps)        | LightGBM <br>w/ 24h-ago-load          |
 | 7.98 (estimated w/ 1% of timestamps)        | LightGBM <br>w/ several past loads    |
 | 5.40 (estimated w/ 1% of timestamps)        | LightGBM <br>w/ several past loads <br>& datetime attributes   |
-| **?.??** (estimated w/ 1% of timestamps)    | LightGBM <br>w/ several past loads <br>& datetime attributes <br>& past load statistics   |
+| **4.11** (estimated w/ 1% of timestamps)    | LightGBM <br>w/ several past loads <br>& datetime attributes <br>& past load statistics   |
 
 </center>
+
+Beautiful!
 
 ### SHAP
 
