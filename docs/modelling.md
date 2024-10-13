@@ -188,21 +188,37 @@ Approaching our problem like this yields the following results over the past yea
 
 Now, that's surprising -- I'd have expected our dummy forecast to be worse than the official one. It is likely they are relying on less informations than us to forecast the future loads.[^1] Still, we can work off this baseline to further improve our approach.
 
-## Time-serie forecasting as a regression
+## LightGBM to the rescue
 
-<figure markdown="span">
-  ![Image title](assets/modelling/placeholder.png){ width="300" }
-  <figcaption>TODO RESHAPING THE DATA TO FIT A REGRESSION TASK</figcaption>
-</figure>
+I love `lightgbm`.
 
-## Back-testing 
+It is easy to deploy, battle-tested, fast to iterate one and performs extremely well. [^7]
+
+[^7]: For tabular data, gradient-boosted-trees-based approaches often performs on par with -- if not above -- _much more complex_ approaches (NN-based approaches of all flavors).
+
+Whenever I am solving a task where it might an answer, I try it. I'll only whip out the big guns -- i.e. deep learning -- if I really need it.
+
+### Vanilla LightGBM
+
+Let's build an LGBM model leveraging the same data as our dummy model, i.e. the load 24h ago.
+
+### Backtesting
 
 motivation for backtesting
 
 !!! tip "Foreward split"
     foreward split 
 
-## Leveraging past-load's statistics
+### Leveraging time attributes
+
+Currently, our model treats all rows as identical, regardless of whether it's midnight or noon, sunday or wednesday, june or december. There might be relevant predictive power in this information, so let's enrich our data with it.
+
+```python
+```
+
+### Leveraging past loads
+
+### Leveraging past load statistics
 
 ## Conclusion
 
