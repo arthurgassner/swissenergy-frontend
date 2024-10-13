@@ -173,9 +173,7 @@ fig = px.line(
 fig.for_each_trace(lambda t: t.update(name={'24h_later_load': 'Ground-truth', '24h_ago_load': 'Dummy forecast'}[t.name]))
 ```
 
-Approaching our problem like this yields the following results over the past month:
-
-<iframe src="../assets/modelling/dummy_forecast_lineplot.html" width="100%" height="400"></iframe>
+Approaching our problem like this yields the following results over the past year:
 
 <center>
 
@@ -185,6 +183,10 @@ Approaching our problem like this yields the following results over the past mon
 | 8.97         | Dummy baseline                 |
 
 </center>
+
+<iframe src="../assets/modelling/dummy_forecast_lineplot.html" width="100%" height="400"></iframe>
+
+Now, that's surprising -- I'd have expected our dummy forecast to be worse than the official one. It is likely they are relying on less informations than us to forecast the future loads.[^1] Still, we can work off this baseline to further improve our approach.
 
 ## Time-serie forecasting as a regression
 
