@@ -37,6 +37,8 @@ To answer those requirements, we can propose the following ML system design:
   <figcaption>ML System Design.</figcaption>
 </figure>
 
+The details of this design will be adressed in the Deployment section.
+
 ## Maintainability
 
 Another facet of bringing an ML solution to a user is that we now need to have confidence that our code is maintainable, shareable, and reproducible. 
