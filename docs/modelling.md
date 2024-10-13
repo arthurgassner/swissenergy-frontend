@@ -177,7 +177,7 @@ Approaching our problem like this yields the following results over the past yea
 
 <center>
 
-| MAPE [%] (past 30 days)   | Model                          |
+| yearly-MAPE [%]           | Model                          |
 | ------------------------- | :----------------------------- |
 | 10.8                      | ENTSO-E forecast               |
 | 8.97                      | Dummy baseline                 |
@@ -370,7 +370,18 @@ fig.add_hline(y=mape_df.loc[0].estimated_MAPE, line_dash="dot",
 
 Wonderful! As we hoped, we can get away with only sampling 10% of the data and still having our estimated MAPE be close (within 10%) of the actual MAPE. 
 
-Let's go back to training our LightGBM model, this time judging it on 10% of the data
+Let's go back to training our LightGBM model, this time judging it on 1% of the data, i.e. 87 samples:
+
+<center>
+
+| yearly-MAPE [%]           | Model                          |
+| ------------------------- | :----------------------------- |
+| 10.8                      | ENTSO-E forecast               |
+| 8.97                      | Dummy baseline                 |
+| ? (estimated)             | LightGBM w/ 24h-ago-load       |
+
+</center>
+
 
 ### Leveraging time attributes
 
