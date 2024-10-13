@@ -198,14 +198,53 @@ It is easy to deploy, battle-tested, fast to iterate one and performs extremely 
 
 Whenever I am solving a task where it might an answer, I try it. I'll only whip out the big guns -- i.e. deep learning -- if I really need it.
 
+Let's continue our modelling journey by building upon it.
+
+### Back-testing
+
+Now, before we dive into training -- and testing -- an LightGBM-based model -- any model really -- we should take a step back and think about what we're about to do.
+
+Our problem looks like a classic regression task. As such, one might feel enclined to follow the classic regression-task flow, i.e.
+
+1. Randomly divide the data into train and test sets 
+2. Train some model on the train set
+3. Test that trained model on the test set
+
+If we did that, we would end up with an great-performing model. We would happily go onto making it available to our users, but then that model would underperform.
+
+Why?
+
+Because we're not solving a typical regression task, we're dealing with timeseries. Whenever we are training/testing a model, our testing conditions should mimic as closely as possible our real-life conditions. Essentially, we're assuming that the test data has been drawn from the same distribution as our real-life data. If that assumption is wrong, then any performance on the test set might not correlate to our model's real-life performance.[^8]
+
+[^8]: The assumption that the _train_ data is representative of the _test_ data is also usually made -- silently -- but any mismatch would "only" translate into a low-performing model (on the test set), i.e. we would be aware of how the model would perform in the wild.
+
+!!! tip "Testing should be real-life"
+    Testing conditions should be as close as possible to the real-life conditions.
+
+How does that impact us in our time-series prediction task? Well, by randomly dividing up the data into train and test sets, we're allowing the model to peek into the future. The model is learning to **interpolate**, whereas in real-life it will have to **extrapolate**:
+
+<figure markdown="span">
+  ![Image title](assets/modelling/placeholder.png){ width="50%" }
+  <figcaption>Interpolation vs Extrapolation</figcaption>
+</figure>
+
+Hence, whenever the data we are feeding our model is time-sensitive -- even if not explicitely a time-series -- we should split the train and test set time-wise. 
+
+!!! tip "Predict the future from the past, not the future"
+    Whenever the data is time-sensitive, split it time-wise.
+
+In our case, this translates into is is called **back-testing**.
+We're training our model once per prediction, feeding all the data that was available at the fictious time of prediction.
+Hence, to predict the next 24h -- 24 predictions -- we'll train 24 models.
+
+<figure markdown="span">
+  ![Image title](assets/modelling/placeholder.png){ width="50%" }
+  <figcaption>Backtesting, highlighting the train set --> predicted val</figcaption>
+</figure>
+
 ### Vanilla LightGBM
 
-Let's build a LightGBM model leveraging the same data as our dummy model, i.e. the load 24h ago. 
-
-motivation for backtesting
-
-!!! tip "Foreward split"
-    foreward split 
+Back to our gradient-boosted trees, let's build a LightGBM model leveraging the same data as our dummy model, i.e. the load 24h ago. 
 
 ### Leveraging time attributes
 
