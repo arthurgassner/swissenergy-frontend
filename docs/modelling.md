@@ -200,9 +200,7 @@ Whenever I am solving a task where it might an answer, I try it. I'll only whip 
 
 ### Vanilla LightGBM
 
-Let's build a LightGBM model leveraging the same data as our dummy model, i.e. the load 24h ago.
-
-### Backtesting
+Let's build a LightGBM model leveraging the same data as our dummy model, i.e. the load 24h ago. 
 
 motivation for backtesting
 
@@ -218,7 +216,21 @@ Currently, our model treats all rows as identical, regardless of whether it's mi
 
 ### Leveraging past loads
 
+Currently, the only load-related information our model can use is the 24h-ago-load; how about enrich our data with more timesteps? 
+
+```python
+```
+
 ### Leveraging past load statistics
+
+Using specific timesteps as features works great -- apparently -- but what if this specific timestep had a "weird" load? The model would then be skewed and underperform. One way to address this is to consider load statistics over different timespans. 
+
+```python
+```
+
+### SHAP
+
+### Optimization
 
 ## Conclusion
 
