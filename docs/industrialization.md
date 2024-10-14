@@ -8,20 +8,22 @@ Which begs the question: How does our user want to consume our solution?
 
 The way the ML model will be consumed educates us on how we should deploy it. 
 The way we deploy our model will heavily influence how we will industrialize[^1] our ML pipeline.
-Hence, it is a good idea to know as early as possible. 
+Hence, the overall deployment strategy should be known as soon as possible.
 
 [^1]: Also called _productionalize_.
 
 !!! tip "User needs educate deployment strategies"
-    The needs of the user will dictates how we should deploy the model, not the other way around.
+    The needs of the user will educate how we should deploy the model, not the other way around.
 
     An unused ML solution is a failed ML solution.
 
+In this section, we will go over the ML system design of our solution, followed by tools and tips on how to end up with a reliable and readable software.
+
 ## ML System Design
 
-In our case, the user needs to have the latest forecast available whenever they'd like.
+In our case, the user **needs** to have the latest forecast available whenever they'd like.
 
-Since the data is published hourly by the ENTSO-E, this means
+Since the ENTSO-E data is published hourly, this means
 
 - Fetching the fresh data every hour.
 - Training and testing the model on the latest data every hour.
@@ -30,7 +32,7 @@ Since the data is published hourly by the ENTSO-E, this means
 
 [^2]: This is called _offline inference_.
 
-To answer those requirements, we can propose the following ML system design: 
+To answer those requirements, we propose the following ML system design: 
 
 <figure markdown="span">
   ![Image title](assets/modelling/placeholder.png){ width="50%" }
