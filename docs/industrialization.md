@@ -43,7 +43,7 @@ Upon receiving the appropriate request through the REST API, the machine will re
   <figcaption>System Design of our ML solution.</figcaption>
 </figure>
 
-## Maintainability
+## Production-ready software
 
 Another facet of bringing an ML solution to a user is that we now need to have confidence that our code is maintainable, shareable, and reproducible. 
 
