@@ -2,6 +2,10 @@
 
 ## Introduction
 
+We now have a maintainable end-to-end solution, that no one can use -- unless they get physical access to our computer.
+
+In this section, we'll see how to deploy an ML solution so that our user can consume it.
+
 ## Someone else's computer
 
 What is a VPS, pricing, getting one
