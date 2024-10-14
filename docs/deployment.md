@@ -67,7 +67,14 @@ Now, to make things more comfortable, we can setup our VPS with productivity too
 
 ## Pull the software's latest version
 
-Deploy keys to get my software
+Great, now we have a freshly-intalled machine. How can we get our production-ready code onto it? With [Github deploy keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys).
+
+Deploy keys are SSH keys that grant read-only access to a single repository. 
+
+<figure markdown="span">
+  ![Image title](assets/modelling/placeholder.png){ width="100%" }
+  <figcaption>Screenshot of the github deploykey interface, adding the rmeote machine's ssh key.</figcaption>
+</figure>
 
 ## Containerize with Docker
 
