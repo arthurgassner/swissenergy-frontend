@@ -21,7 +21,7 @@ On the other end of that spectrum, we can rent a **Virtual Private Server (VPS)*
 The internet is ripe with low-cost VPS offers. I went with Infomaniak -- a Swiss-based cloud services company -- but others exist.
 
 <figure markdown="span">
-  ![Image title](assets/deployment/infomaniak.png){ width="100%" }
+  ![Image title](assets/deployment/infomaniak.png){ width="80%" }
   <figcaption>A side-project-dedicated machine for 3CHF/month.</figcaption>
 </figure>
 
