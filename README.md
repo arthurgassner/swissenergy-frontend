@@ -4,4 +4,4 @@ This repo contains the frontend of the `swissenergy.arthurgassner.ch` website, s
 
 ![](img/landing_page.gif)
 
-:rocket: The **live website** can be found [here](swissenergy.arthurgassner.ch). :rocket:
+:rocket: The **live website** can be found [here](https://swissenergy.arthurgassner.ch). :rocket:
