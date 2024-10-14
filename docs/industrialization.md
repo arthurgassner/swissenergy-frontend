@@ -143,3 +143,7 @@ Below are a few non-exhaustive list of guidelines I follow to write readable cod
 
 Untested code breaks easily. What happens if in 2 months I make some change to the codebase; can I be confident I didn't break the whole thing?
 That's were tests come in. To test python code, [`pytest`](https://docs.pytest.org/en/stable/) is a battle-tested solution.
+
+## Conclusion
+
+We now have a maintainable end-to-end solution. We can move onto deploying to our user, so that they can start using it. 
