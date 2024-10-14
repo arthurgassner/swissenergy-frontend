@@ -2,7 +2,9 @@
 
 ## Introduction 
 
-Now that we have a better understanding of our business problem, we can start the first step towards a solution: **getting the data**.
+Now that we have a better understanding of our business problem, we can start the first step towards a solution: getting the data.
+
+This 
 
 ## Our data source: ENTSO-E
 

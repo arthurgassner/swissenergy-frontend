@@ -1,8 +1,14 @@
 # :material-atom: Modelling
 
+## Introduction
+
+We now have a better understanding of our data. Before going onto training a model, we must better understand the problem our user is facing. Only then can we start modelling.
+
+This section goes over the process of getting from understood data to working model.
+
 ## From business problem to modelling task
 
-Now that we have a better understanding of our data, let's go back to our business problem, i.e.: 
+Let's go back to our business problem, i.e.: 
 
 !!! note "Business Problem"
     We are an energy distribution company.
