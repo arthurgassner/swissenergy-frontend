@@ -76,6 +76,24 @@ An upside of using GitHub[^4] is their [Github Actions](https://github.com/featu
 
 [^4]: Most `git` hosting solutions have an equivalent.
 
+### Use `.env`
+
+Using `git` means creating a trail of every single (commited) state that the software has been in.
+It would be easy for one to hard-code a sensitive -- i.e. private -- variable, such as an API key -- and have it saved in that trail, seemingly-forever.[^5]
+
+[^5]: You can always edit a file's history, but it's messy.
+
+Additionally, we might have certain variables that would depend on our environment -- developpement or production.
+
+Using an `.env` file solves both of these issues.
+
+!!! tip "Use `.env`"
+    Private or environment-dependent variables should go in an `.env`, which you will not be commited to history.[^6]
+
+    I use and like [`python-dotenv`](https://github.com/theskumar/python-dotenv), but alternatives exist.
+
+[^6]: Thank you `.gitignore`
+
 ### Productivity tools
 
 Developping on Linux, I interact with the terminal _a lot_. To make this whole process more comfortable, I highly-recommend several tools:
@@ -102,7 +120,7 @@ To compartimentalize all the Python libraries used in a given project, use a **v
 !!! tip "Use a virtual environment"
     I use `conda`, but others exist.
 
-### Use a `requirements.txt`
+### Use `requirements.txt`
 
 So far, we've been `pip install`ing needed libraries willy-nilly. 
 That is not very reproducible, and hence we should write a file to centralize the needed libraries -- versionned -- that our project relies on, i.e. the `requirements.txt`
