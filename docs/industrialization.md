@@ -83,7 +83,7 @@ An upside of using GitHub[^5] is their [Github Actions](https://github.com/featu
 ### Use `.env`
 
 Using `git` means creating a trail of every single (commited) state that the software has been in.
-It would be easy for one to hard-code a sensitive -- i.e. private -- variable, such as an API key -- and have it saved in that trail, seemingly-forever.[^6]
+It would be easy for one to hard-code sensitive -- i.e. private -- data, such as an API key or a password -- and have it saved in that trail, seemingly-forever.[^6]
 
 [^6]: You can always edit a file's history, but it's messy.
 
