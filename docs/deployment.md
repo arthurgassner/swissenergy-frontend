@@ -8,26 +8,32 @@ In this section, we'll see how to deploy an ML solution so that our user can con
 
 ## Someone else's computer
 
-I don't want to give physical access to my computer to my user, so how about renting someone's computer and give our user access to that computer instead? 
+We don't want to give our user physical access to our computer, so how about renting someone else's computer and giving our user access to that computer instead? 
 
 That's where cloud computing comes in.
 
-One way to address this would be to go on our Azure, AWS or GCP platform and setup a ressource to host our ML solution. What these platforms provide is convenience and scalability, but that comes at a price.
+One way to go about it would be to go on our Azure, AWS or GCP platform and setup a ressource to host our ML solution. What these platforms provide is convenience and scalability, but that comes at a price.
 
-On the other end of that spectrum, we can rent a **Virtual Private Server (VPS)**.[^1]
+On the other end of that spectrum, we can rent a **Virtual Private Server (VPS)**[^1] and setup everything ourselves.
 
-[^1]: It is basically a piece of physical machine. A lot bit like a _Virtual Machine (VM)_.
+[^1]: It is basically a piece of physical machine. A lot bit like a _Virtual Machine (VM)_. I really like this solution because one VPS can be used in several projects. It's like having a side-project-dedicated machine.
 
 The internet is ripe with low-cost VPS offers. I went with Infomaniak -- a Swiss-based cloud services company -- but others exist.
 
 <figure markdown="span">
   ![Image title](assets/deployment/infomaniak.png){ width="100%" }
-  <figcaption>A VPS for 3CHF/month, count me in.</figcaption>
+  <figcaption>A side-project-dedicated machine for 3CHF/month.</figcaption>
 </figure>
 
 ## Basic VPS setup
 
 Getting into it -- SSH
+
+<figure markdown="span">
+  ![Image title](assets/modelling/placeholder.png){ width="100%" }
+  <figcaption>Using SSH to access our VPS.</figcaption>
+</figure>
+
 
 Link subdomain to my VPS' IP, as it's likely static.
 
