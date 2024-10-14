@@ -27,17 +27,43 @@ The internet is ripe with low-cost VPS offers. I went with Infomaniak -- a Swiss
 
 ## Basic VPS setup
 
-Getting into it -- SSH
+Now that we have our VPS, how do we access it?
+
+During the renting-out process, the VPS provider -- here Infomaniak -- gave us the private key needed to access our VPS.
+
+Knowing this private key, I can authenticate myself to our remote machine and access it -- through SSH -- over the internet.
 
 <figure markdown="span">
   ![Image title](assets/modelling/placeholder.png){ width="100%" }
-  <figcaption>Using SSH to access our VPS.</figcaption>
+  <figcaption>Figure with on one side myself, on another side our remote machine, and SSH acting like a bridge.</figcaption>
 </figure>
 
+TODO explain SSH briefly, and the manipulation to access the remote machine.
 
-Link subdomain to my VPS' IP, as it's likely static.
+<figure markdown="span">
+  ![Image title](assets/modelling/placeholder.png){ width="100%" }
+  <figcaption>Accessing our remote machine through SSH.</figcaption>
+</figure>
 
-Install practical packages to make dealing with my vps more comfortable.
+Amazing! Now, writing out our remote machine's IP all the time can be cumbersome. As with most VPS, its public IP is static. Hence, I can assign a subdomain[^2] to it, so that anyone -- including me -- can refer to its public IP via its subdomain.
+
+[^2] When you own a domain -- e.g. `arthurgassner.ch` -- you can create subdomains -- e.g. `thisisasubdomain.arthurgassner.ch` -- at your will. This can come in handy.
+
+In practice, this means going on my domain registrar's website -- in my case _GoDaddy_ -- and TODO HIGHLIGHT EXACT PROCEDURE.
+
+<figure markdown="span">
+  ![Image title](assets/deployment/ping_vps.gif){ width="100%" }
+  <figcaption>Pinging our VPS via its subdomain.</figcaption>
+</figure>
+
+Similarly, this now mean that we can SSH into our remote machine through said subdomain.
+
+<figure markdown="span">
+  ![Image title](assets/modelling/placeholder.png){ width="100%" }
+  <figcaption>Accessing our remote machine through SSH<br>via our newly-created subdomain.</figcaption>
+</figure>
+
+Now, to make things more comfortable, we can setup our VPS with productivity tools, as we would with any newly-installed machine.
 
 ## Pull the software's latest version
 
