@@ -18,7 +18,7 @@ The way we deploy our model will heavily influence how we design our ML system, 
 
     An unused ML solution is a failed ML solution.
 
-In this section, we will go over the ML system design of our solution, followed by tools and tips on how to end up with a reliable and readable software.
+In this section, we will go over the ML system design of our solution, followed by tools and tips on how to end up with production-ready software.
 
 ## ML System Design
 
