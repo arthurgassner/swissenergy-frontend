@@ -59,7 +59,6 @@ Another facet of bringing an ML solution to a user is that we now need to have c
 
 All three issues are interlinked.
 If you're the one maintaining the code, you're basically sharing with future you, who has to reproduce past results.
-As such, we will talk about upping the maintainability of our code.
 
 So far, we were basically experimenting, which allowed for some leeway in terms of coding practices for the sake of speed.
 Now, let's look over some tools to make your code more maintainable.[^4]
