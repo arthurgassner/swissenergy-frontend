@@ -6,7 +6,7 @@ We now have a working model, performing at an acceptable level. Our goal is to b
 
 Which begs the question: How does our user want to consume our solution?[^1]
 
-[^1]: During our first discussions with our user, we sketched out a rough idea of how the solution would be consumed -- and deployed. It is important not to wait till we're at the doors of industrialization to start thinking about deployment options, they might impact the modelling options available to us. We do _not_ want to end up so far in, only to have to go back to modelling because we realized the user wants to consume their massive model on a low-power chip. 
+[^1]: When we first talked to our user, we sketched out a rough idea of how the solution would be consumed -- and deployed. It is important not to wait till we're at the doors of industrialization to start thinking about deployment options, they might impact the modelling options available to us. We do _not_ want to end up so far in, only to have to go back to modelling because we realized the user wants to consume their massive model on a low-power chip. 
 
 The way the ML model will be consumed educates us on how we should deploy it. 
 The way we deploy our model will heavily influence how we design our ML system, and hence how we will industrialize[^2] it.
