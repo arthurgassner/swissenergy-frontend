@@ -74,8 +74,8 @@ This "good-enough" threshold is the lowest performance that satisfies the needs 
 [^5]: Here we talk about performance as if it was uni-dimensional. It rarely is You should consider -- amongst other things -- the raw performance, the inference time, the ease of maintenance, the explainability, the upfront training cost and the deployment cost. 
 
 <figure markdown="span">
-  ![Image title](assets/modelling/placeholder.png){ width="100%" }
-  <figcaption>PLOT MODEL COMPLEXITY vs PERFORMANCE METRIC, with good-enough threshold"</figcaption>
+  ![Image title](assets/modelling/complexity_performance__good_enough.png){ width="80%"}
+  <figcaption>Performance vs complexity, highlighting how there's such a thing as "good-enough" -- especially in industry.</figcaption>
 </figure>
 
 Back at our initial choice, and we can either start simple or complex.
@@ -98,8 +98,8 @@ We **really** should start simple, for many reasons:
 Wonderful, let's say we listened and started with a simple approach -- a _dummy baseline_. Unfortunately, the user is not satisfied -- i.e. the business need is not answered, and we're below the "good-enough" threshold.
 
 <figure markdown="span">
-  ![Image title](assets/modelling/placeholder.png){ width="100%" }
-  <figcaption>TODO PLOT MODEL COMPLEXITY vs PERFORMANCE METRIC with good-enough threshold, and a simple datapoint under the threshold</figcaption>
+  ![Image title](assets/modelling/complexity_performance__dummy_baseline.png){ width="80%"}
+  <figcaption>Performance vs complexity, with our dummy baseline.</figcaption>
 </figure>
 
 From that point on, we can add complexity step-by-step, till we -- hopefully -- surpasses the "good-enough" threshold.
@@ -112,8 +112,8 @@ As we try different approaches, we should be mindful that we are facing a perfor
 That is, there is _in almost all cases_ some amount of randomness when predicting the future from a given set of observations. A direct consequence of that is that regardless of how good your model is, you will not be able to perfectly predict the future.
 
 <figure markdown="span">
-  ![Image title](assets/modelling/placeholder.png){ width="100%" }
-  <figcaption>PLOT MODEL COMPLEXITY vs PERFORMANCE METRCI, adding horizontal line for "highest-possible score".</figcaption>
+  ![Image title](assets/modelling/complexity_performance__highest_achievable.png){ width="80%"}
+  <figcaption>Performance vs complexity, highlighting the performance upperbound.</figcaption>
 </figure>
 
 All you can do is hope that this upper-bound is above the "good-enough" threshold.
@@ -121,8 +121,8 @@ Akin to the "good-enough" threshold, this upper-bound is rarely available to us.
 What we can do is measure the human-level performance on that task, which would give us a lower-bound to that upper-bound.
 
 <figure markdown="span">
-  ![Image title](assets/modelling/placeholder.png){ width="100%" }
-  <figcaption>TODO PLOT MODEL COMPLEXITY vs PERFORMANCE METRCI, adding horizontal line for human-performance</figcaption>
+  ![Image title](assets/modelling/complexity_performance__human_level.png){ width="80%"}
+  <figcaption>Performance vs complexity, highlighting the human-level performance threshold.</figcaption>
 </figure>
 
 Now that we've talked _extensively_ about where to start, let's actually start modelling.
