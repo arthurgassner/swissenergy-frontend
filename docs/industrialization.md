@@ -39,7 +39,7 @@ That model will then be used to predict the loads for the next 24h, which will b
 Upon receiving the appropriate request through the REST API, the machine will return the latest forecast.
 
 <figure markdown="span">
-  ![Image title](assets/industrialization/ml_system_design.png){ width="75%" }
+  ![Image title](assets/industrialization/ml_system_design.png){ width="90%" }
   <figcaption>System Design of our ML solution.</figcaption>
 </figure>
 
