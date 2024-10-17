@@ -65,12 +65,6 @@ Now, let's look over some tools to make your code more maintainable.[^4]
 
 [^4]: Some of these tools might feel like common sense to some people, but I prefer to highlight the obvious than be confusing.
 
-<figure markdown="span">
-  ![Image title](assets/modelling/placeholder.png){ width="50%" }
-  <figcaption>A bunch fo .ipynb ==> a bunch of .py, with a git repo, tests, CI/CD</figcaption>
-</figure>
-
-
 ### Version Control
 
 I use `git` and `Github` for any project from the very beginning. 
