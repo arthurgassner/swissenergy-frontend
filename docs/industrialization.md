@@ -40,7 +40,7 @@ Upon receiving the appropriate request through the REST API, the machine will re
 
 <figure markdown="span">
   ![Image title](assets/industrialization/ml_system_design.png){ width="90%" }
-  <figcaption>System Design of our ML solution.</figcaption>
+  <figcaption>Big picture of our ML solution's system design</figcaption>
 </figure>
 
 ## Production-ready software
