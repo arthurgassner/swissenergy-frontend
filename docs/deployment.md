@@ -236,21 +236,21 @@ To do so, we need to:
 1. Make sure we can reach our VPS by opening up the port `443` through your VPS provider -- as they likely have their own firewall.
   > HTTPS goes -- by default -- through port `443`.
 
-2. Assign a domain -- or subdomain[^3] -- pointing to our VPS' public IP. In practice, this means going on my domain registrar's website -- in my case _GoDaddy_ -- and _adding a new DNS record_ of Type A[^5], whose name is `vps` pointing to our VPS's public IP.
-  > This step is needed since TLS[^4] certificates are usually only issued for domain names, not public IPs.
-
-<figure markdown="span">
-  ![Image title](assets/deployment/ping_vps.gif){ width="100%" }
-  <figcaption>Pinging our VPS via its public IP and via its subdomain -- i.e. `vps.arthurgassner.ch`.</figcaption>
-</figure>
+2. Assign a domain -- or subdomain[^3] -- pointing to our VPS' public IP. In practice, this means going on my domain registrar's website -- in my case _GoDaddy_ -- and _adding a new DNS record_ of Type A[^4], whose name is `vps` pointing to our VPS's public IP.
+  > This step is needed since TLS[^5] certificates are usually only issued for domain names, not public IPs.
 
 3. 
 
+<figure markdown="span">
+  ![Image title](assets/deployment/ping_vps.gif){ width="100%" }
+  <figcaption>Pinging our VPS via its public IP and via its subdomain, i.e. `vps.arthurgassner.ch`.</figcaption>
+</figure>
+
 [^3]: When you own a domain -- e.g. `arthurgassner.ch` -- you can create subdomains -- e.g. `thisisasubdomain.arthurgassner.ch` -- at your will. This can come in handy.
 
-[^4]: _Transport Layer Security_, the encryption protocol used by HTTPS.
+[^4]: More informations on DNS record types can be found [here](https://en.wikipedia.org/wiki/List_of_DNS_record_types)
 
-[^5]: More informations on DNS record types can be found [here](https://en.wikipedia.org/wiki/List_of_DNS_record_types)
+[^5]: _Transport Layer Security_, the encryption protocol used by HTTPS.
 
 
 ## Time-triggered automation
