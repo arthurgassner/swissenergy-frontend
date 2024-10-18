@@ -176,6 +176,9 @@ To run our containerized ML solution, we run `docker compose up`, et _voilà_!
   <figcaption>Running <code>docker compose up</code> from our VPS.</figcaption>
 </figure>
 
+!!! note "Use `screen`"
+    To have your container run in the background, the `screen` command is handy and wildly-available, although unintuititive to use.
+
 ## Accessing our ML solution from the outside
 
 Our containerized ML solution is running on our VPS, and can respond to specific requests on specific routes, but not from the internet.
