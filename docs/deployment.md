@@ -203,12 +203,14 @@ To be able to reach our ML solution from the outside, we need to:
   > HTTP goes -- by default -- through port `80`.
 
 2. Set up the `/etc/caddy/Caddyfile` to redirect outside traffic on port `80` to `localhost:8080`, i.e. our ML backend.
-  ```json
+  ```json title="/etc/caddy/Caddyfile"
   {
+    # Disable automatic HTTPS
     auto_https off 
   }
 
-  <VPS_PUBLIC_IP>:80 {
+  # Route HTTP traffic to our ML backend
+  <VPS_PUBLIC_IP> {
     reverse_proxy localhost:8080
   }
   ```
@@ -229,7 +231,7 @@ And _voilà_! We can now reach our containerized ML solution from the outside:
 ### Enabling HTTPS
 
 We now can access our ML solution through HTTP, but not HTTPS.
-For the sake of security, we'd like to allow for HTTPS connections, and have all HTTP connections redirected to HTTPS.
+For the sake of security, we'd like to allow HTTPS traffic, and have all HTTP traffic redirected to HTTPS.
 
 To do so, we need to:
 
@@ -237,9 +239,26 @@ To do so, we need to:
   > HTTPS goes -- by default -- through port `443`.
 
 2. Assign a domain -- or subdomain[^3] -- pointing to our VPS' public IP. In practice, this means going on my domain registrar's website -- in my case _GoDaddy_ -- and _adding a new DNS record_ of Type A[^4], whose name is `vps` pointing to our VPS's public IP.
-  > This step is needed since TLS[^5] certificates are usually only issued for domain names, not public IPs.
+  > This step is needed since TLS[^5] certificates are usually only issued for domain names, not public IPs. Note that it can take up to two days to take effect.
 
-3. 
+3. Update our `/etc/caddy/Caddyfile` to reflect our newly-found preference of HTTPS
+  ```json title="/etc/caddy/Caddyfile"
+  {
+    # Enable automatic HTTPS
+    auto_https on 
+  }
+
+  # Redirect HTTP requests to HTTPS
+  # Send a 301 status code, indicating a permanent redirect
+  195.15.213.78 {
+    redir / https://vps.arthurgassner.ch{uri} 301
+  }
+
+  # Route HTTPS requests to our ML backend
+  vps.arthurgassner.ch {
+    reverse_proxy localhost:8080
+  }
+  ```
 
 <figure markdown="span">
   ![Image title](assets/deployment/ping_vps.gif){ width="100%" }
