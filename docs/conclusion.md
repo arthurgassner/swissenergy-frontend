@@ -1,28 +1,18 @@
 # Conclusion
 
-## Conclusion
+## Our ML Solution
 
 <figure markdown="span">
   ![Image title](assets/conclusion/vps_github_docker_cron.png){ width="100%" }
   <figcaption>Our final ML solution.</figcaption>
 </figure>
 
-Building this side-project, I kept going back and improving things I had built in previous steps.
+## Potential future work
 
+Building this side-project, I kept going back and improving things I had built in previous steps.<br>
 This iterative approach is normal, and fundamental to the ML engineering work.
-
-!!! tip "ML engineering is iterative."
-    I wrote these sections as if the ML engineering work was made out of distinct sections, where each section could be finished before going onto the next one.
-
-    This is not the case. Working on a section will reveal opportunities -- and flaws -- in the approach taken previous sections.
-    This is due to the unique context of each problem.
-
-    It is generally a good idea not to try everything, and instead focusing on advancing onto the next section.
-
 Despite this nature, an unused ML solution is a failed ML solution. <br>
 Hence, we must deliver something. As such, this page serves as a summary of potential next steps.
-
-## Potential future work
 
 ### Data ingestion 
 
@@ -42,7 +32,3 @@ Hence, we must deliver something. As such, this page serves as a summary of pote
 ### Deployment
 
 - To update the server, we manually SSH into it, pull from the repo, build the new Docker container and start it. How about automating this process, leveraging the `Docker Hub`, or `GitHub Webhooks`?
-
-## Conclusion
-
-TODO
