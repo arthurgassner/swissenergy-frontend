@@ -181,15 +181,46 @@ To run our containerized ML solution, we run `docker compose up`, et _voilà_!
 
 ## Accessing our ML solution from the outside
 
-Our containerized ML solution is running on our VPS, and can respond to specific requests on specific routes, but not from the internet.
+Our containerized ML solution is running on our VPS, and publishing locally on the port 8080.[^2]
 
-Allowing others -- from the outside -- to access our ML solution requires setting up a _reverse proxy_.
+[^2]: Which means we can access our solution's routes from within our VPS, via `localhost:8080/SOME_ROUTE`
+
+Someone outside of our VPS cannot access these routes. 
+A **reverse proxy** addresses this problem by acting as an interface between the outside -- the internet -- and the inside. 
+
+<figure markdown="span">
+  ![Image title](assets/deployment/reverse_proxy.gif){ width="100%" }
+  <figcaption>Illustration of a reverse proxy sitting between user and backend.</figcaption>
+</figure>
 
 ### Setting up a reverse proxy
 
-open the ports
-ufw?
-nginx, caddy, traefik
+[Caddy](https://caddyserver.com/docs/install#debian-ubuntu-raspbian) is a reverse proxy known for its simplicity and security.
+
+Setting up a reverse proxy with Caddy is as simple as:
+
+- Making sure we can reach our VPS by opening up the port `80` through your VPS provider -- as they likely have their own firewall.
+- Setup the `Caddyfile` to redirect outside traffic on port `80` to `localhost:8080`, i.e. our ML backend.
+  ```json
+  {
+    auto_https off 
+  }
+
+  <VPS_PUBLIC_IP>:80 {
+    reverse_proxy localhost:8080
+  }
+  ```
+- Enabling and restarting the caddy systemd deamon
+  ```bash
+  sudo systemctl enable caddy && sudo systemctl restart caddy
+  ```
+
+And _voilà_! We can now reach our containerized ML solution from the outside:
+
+<figure markdown="span">
+  ![Image title](assets/deployment/curl_http.gif){ width="100%" }
+  <figcaption>Accessing our ML solution through the internet.</figcaption>
+</figure>
 
 ### Enabling HTTPS
 
