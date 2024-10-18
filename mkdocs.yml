@@ -1,7 +1,7 @@
 site_name: Swiss Energy Forecast 
 site_url: https://swissenergy.arthurgassner.ch
-repo_name: swiss-energy-frontend
-repo_url: https://github.com/arthurgassner/swiss-energy-frontend/
+repo_name: swissenergy-frontend
+repo_url: https://github.com/arthurgassner/swissenergy-frontend/
 theme:
   name: material
   icon:
@@ -23,6 +23,7 @@ nav:
   - Modelling: modelling.md
   - Industrialization: industrialization.md
   - Deployment: deployment.md
+  - Next steps: next_steps.md
 
 extra_css:
   - https://unpkg.com/katex@0/dist/katex.min.css

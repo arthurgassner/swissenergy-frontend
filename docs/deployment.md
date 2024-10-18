@@ -67,13 +67,14 @@ To make it more comfortable to work on our VPS, we can set it up with our favour
 
 ## Pull the software's latest version
 
-How can we get our production-ready code onto our VPS?<br>
-With [GitHub deploy keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys).
-They can grant our VPS a limited access -- read-only to a single repository -- and allows us to easily cancel them in the future.
+How can we get our production-ready code onto our VPS?
+
+[GitHub deploy keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys) address this need.
+They can grant our VPS a limited access -- read-only to a single repository -- and allow us to easily cancel them in the future.
 
 <figure markdown="span">
   ![Image title](assets/deployment/github_deploy_keys.png){ width="100%" }
-  <figcaption>GitHub interface administrating deploy keys</figcaption>
+  <figcaption>Administrating deploy keys on GitHub.</figcaption>
 </figure>
 
 
@@ -89,7 +90,8 @@ They can grant our VPS a limited access -- read-only to a single repository -- a
 
 ## Containerization
 
-How can we package our software to ensure it'll run on our VPS, since VPS' environment will differ from our development environment -- i.e. my personal computer.<br>
+How can we package our software to ensure it'll run on our VPS, since VPS' environment will differ from our development environment -- i.e. my personal computer?
+
 Containerization addresses this issue, with tools such as [Docker](https://www.docker.com/).
 
 Through a `Dockerfile`, we can setup reproducible steps outlining the environment within which our ML solution will live.
