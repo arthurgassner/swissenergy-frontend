@@ -136,6 +136,38 @@ We rely on Docker volumes to save data accross runs of our container.
   <figcaption>Our VPS, running our containerized ML solution.</figcaption>
 </figure>
 
+!!! note "Use `docker-compose`" 
+    Since we only have a single container, one way to make it run would be to use following command
+    
+    ```bash
+    docker run --env-file ~/swissenergy-backend/.env --name swissenergy-backend -p 8080:80 -v swissenergy-backend-data:/code/data swissenergy-backend-image
+    ```
+
+    Doing it this way is both long and un-versioned.<br>
+    A better way is to use `docker-compose`, which is usually used to run several containers at once.
+
+    A command such like one above turns into a `.yml` file:
+
+    ```yaml title="docker-compose.yml"
+    name: swissenergy-backend
+    services:
+        swissenergy-backend-image:
+            env_file:
+                - ~/swissenergy-backend/.env
+            container_name: swissenergy-backend
+            ports:
+                - 8080:80
+            volumes:
+                - swissenergy-backend-data:/code/data
+            image: swissenergy-backend-image
+    volumes:
+        swissenergy-backend-data:
+            external: true
+            name: swissenergy-backend-data
+    ```
+
+    Then, we TODO.
+
 ## Publishing our ML solution
 
 Our ML solution is running on our VPS, and can respond to specific requests on specific routes, but not from the internet.
