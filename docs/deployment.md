@@ -200,7 +200,9 @@ A **reverse proxy** addresses this problem by acting as an interface between the
 Setting up a reverse proxy with Caddy is as simple as:
 
 - Making sure we can reach our VPS by opening up the port `80` through your VPS provider -- as they likely have their own firewall.
-- Setup the `Caddyfile` to redirect outside traffic on port `80` to `localhost:8080`, i.e. our ML backend.
+  > HTTP goes -- by default -- through port `80`.
+
+- Setup the `/etc/caddy/Caddyfile` to redirect outside traffic on port `80` to `localhost:8080`, i.e. our ML backend.
   ```json
   {
     auto_https off 
@@ -210,6 +212,8 @@ Setting up a reverse proxy with Caddy is as simple as:
     reverse_proxy localhost:8080
   }
   ```
+  > `/etc/caddy/Caddyfile` contains the config governing Caddy.
+  
 - Enabling and restarting the caddy systemd deamon
   ```bash
   sudo systemctl enable caddy && sudo systemctl restart caddy
@@ -224,13 +228,13 @@ And _voilà_! We can now reach our containerized ML solution from the outside:
 
 ### Enabling HTTPS
 
-TODO 
+We can access it 
 
 Amazing! Now, writing out our remote machine's IP all the time can be cumbersome. As with most VPS, its public IP is static. Hence, I can assign a subdomain[^2] to it, so that anyone -- including me -- can refer to its public IP via its subdomain.
 
 [^2]: When you own a domain -- e.g. `arthurgassner.ch` -- you can create subdomains -- e.g. `thisisasubdomain.arthurgassner.ch` -- at your will. This can come in handy.
 
-In practice, this means going on my domain registrar's website -- in my case _GoDaddy_ -- and _adding a new DNS record_ of Type A[^3], whose name is `thisisasubdomain` pointing to my VPS's public IP..
+In practice, this means going on my domain registrar's website -- in my case _GoDaddy_ -- and _adding a new DNS record_ of Type A[^3], whose name is `thisisasubdomain` pointing to our VPS's public IP.
 
 [^3]: More informations on DNS record types can be found [here](https://en.wikipedia.org/wiki/List_of_DNS_record_types)
 
