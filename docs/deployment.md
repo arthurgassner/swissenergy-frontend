@@ -169,16 +169,18 @@ We rely on volumes to save data accross runs of our container, which should be c
         name: swissenergy-backend-data
     ```
 
-To run our containerized ML solution, we run `docker compose up`
+To run our containerized ML solution, we run `docker compose up`, et _voilà_!
 
 <figure markdown="span">
   ![Image title](assets/deployment/docker-compose.gif){ width="100%" }
   <figcaption>Running <code>docker compose up</code> from our VPS.</figcaption>
 </figure>
 
-## Publishing our ML solution
+## Accessing our ML solution
 
-Our ML solution is running on our VPS, and can respond to specific requests on specific routes, but not from the internet.
+Our containerized ML solution is running on our VPS, and can respond to specific requests on specific routes, but not from the internet.
+
+
 
 To enable that, we need to 
 1. Make sure our VPS ports are open 
