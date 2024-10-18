@@ -67,7 +67,7 @@ Now, let's look over some tools to make your code more maintainable.[^4]
 
 ### Version Control
 
-I use `git` and `GitHub` for any project from the very beginning. 
+I use `git` and `GitHub` for any project from the very beginning. <br>
 It allows me to treat my last commit as a "_at this point it was working_" state, and to have my code remotely saved, were anything to happen to my computer.
 
 An upside of using GitHub[^5] is their [GitHub Actions](https://github.com/features/actions), allowing us to automate part of our workflow, and further improve the shareability of our code.

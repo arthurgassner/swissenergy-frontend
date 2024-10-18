@@ -1,9 +1,5 @@
 # :material-pipe: Data Ingestion
 
-## Introduction 
-
-Now that we have a better understanding of our business problem, we can start the first step towards a solution: **getting the data**.
-
 ## Our data source: ENTSO-E
 
 The [European Network of Transmission System Operators](https://www.entsoe.eu/) represents 40 electricity transmission system operators across 36 european countries. They are one of the main data sources cited by the [Swiss Energy Dashboard](https://energiedashboard.admin.ch/strom/stromverbrauch), and checking their website shows that they make available -- amongst other things -- the actual load (hourly in MW) for Switzerland.
@@ -27,7 +23,7 @@ As it turns out, they have a [RESTful API](https://transparency.entsoe.eu/conten
 
 [^2]: It is quite unlikely you are the first person needing that wheel. The previous people having needed that wheel likely stumbled upon -- and solved -- problems you cannot yet envision. Building off their work, even if not _exactly_ what you had in mind, will likely win you time.
 
-To check we can access the data, let's load -- using the `entsoe-py` library -- the actual load and forecasted load for the first day of 2024:
+To ensure we can access the data, let's load -- using the `entsoe-py` library -- the actual load and forecasted load for the first day of 2024:
 
 ```python
 from entsoe import EntsoePandasClient

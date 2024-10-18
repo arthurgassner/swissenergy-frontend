@@ -38,11 +38,11 @@ Through the VPS-provider's website, we order an `Ubuntu 22.04.5 LTS` and -- afte
 
 How can we access our newly-created VPS?
 
-During the renting-out process, the VPS provider -- here Infomaniak -- gave us a private/public SSH key pair.
-Knowing the private key, I can authenticate myself to our remote machine and hence access it -- through SSH -- over the internet.
+During the renting-out process, the VPS provider -- here _Infomaniak_ -- gave us a private/public SSH key pair.
+Knowing the private key, we can authenticate ourselves to our remote machine and hence access it -- through SSH -- over the internet.
 
-```bash title="Access our VPS via SSH"
-ssh -i ~/<PATH_TO_VPS_PRIVATE_KEY> <USER_REMOTE_MACHINE>@<IP_REMOTE_MACHINE>
+```bash title="Accessing our VPS via SSH"
+ssh -i <PATH_TO_VPS_PRIVATE_KEY> <USER_REMOTE_MACHINE>@<IP_REMOTE_MACHINE>
 ```
 
 <figure markdown="span">
@@ -54,16 +54,16 @@ ssh -i ~/<PATH_TO_VPS_PRIVATE_KEY> <USER_REMOTE_MACHINE>@<IP_REMOTE_MACHINE>
 ??? note "Primer on public/private key encryption"
     Public/private key encryption is a widely-used authentification method.
 
-    This method revolves around two "keys", i.e. long string of seemingly-random characters.
+    This method revolves around two "keys", a key being a long string of seemingly-random characters.
 
     The public key is called _public_ because its owner can share it with everyone.<br>
     The private key is called _private_ because its owner should keep it to themselves.
 
     Its core principle is that **data encrypted with a *public* key can _only_ be decrypted with the corresponding *private* key**.
 
-    This means that if I encrypt some secret message with your public key -- which is public and hence wildely-available --, and you're able to decrypt it, then you _must_ have access to the corresponding private key.
+    This means that if I encrypt some secret message with **your** public key -- which is public and hence wildely-available --, and you're able to decrypt it, then it _must mean_ that you have access to the corresponding private key.
 
-    SSH -- and other protocols, like HTTPS -- rely on this property. That's how our VPS knows that I am who they say I am -- i.e. someone who's allowed in, since I have access to the private key matching their public key.
+    SSH -- and other protocols, like HTTPS -- rely on this property. That's how our VPS knows that we are who we say we are -- i.e. someone who's allowed in, since we have access to the private key matching their public key.
 
 To make it more comfortable to work on our VPS, we can set it up with our favourite productivity tools, as we would with any newly-installed machine.
 
@@ -93,19 +93,13 @@ To make it more comfortable to work on our VPS, we can set it up with our favour
     # Then, manually add zsh-autosuggestions to ~/.zshrc's plugins
     ```
 
-## Pull the software's latest version
+## Accessing our software from the VPS
 
 How can we get our production-ready code onto our VPS?
 
 If our GitHub repo is public, we can simply `git clone` it. <br>
 If it is private, then [GitHub deploy keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys) are there to address this need.
 They can grant our VPS a limited access -- read-only to a single repository -- and allow us to easily cancel them in the future.
-
-!!! note "Generating a dedicating public/private SSH key pair"
-    As not to use one SSH key pair for everything, we generate a public/private SSH key pair dedicated to authentifying us to GitHub.
-
-    To do so, follow the [`ssh-keygen` procedure](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key).
-
 
 <figure markdown="span">
   ![Image title](assets/deployment/github_deploy_keys.png){ width="100%" }
@@ -117,6 +111,11 @@ They can grant our VPS a limited access -- read-only to a single repository -- a
     
     That access can be read-only, or read-and-write.
 
+!!! note "Generating a dedicating public/private SSH key pair"
+    As not to use the same SSH key pair for everything, we generate a public/private SSH key pair dedicated to authentifying us to GitHub.
+    
+    The steps are outlined in the [`ssh-keygen` procedure](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key).
+
 <figure markdown="span">
   ![Image title](assets/deployment/vps_github.png){ width="100%" }
   <figcaption>Our VPS, now able to pull from our repo.</figcaption>
@@ -124,19 +123,24 @@ They can grant our VPS a limited access -- read-only to a single repository -- a
 
 ## Containerization
 
-How can we package our software to ensure it'll run on our VPS, since VPS' environment will differ from our development environment -- i.e. my personal computer?
+How can we package our software to ensure it'll run on our VPS, since the VPS' environment will differ from our development environment -- i.e. my private computer?
 
-Containerization addresses this issue, with tools such as [Docker](https://www.docker.com/).
+Containerization addresses this issue, with tools such as [docker](https://www.docker.com/). 
+
+<figure markdown="span">
+  ![Image title](assets/deployment/docker-logo-white.png){ width="30%" }
+  <figcaption>The docker logo.</figcaption>
+</figure>
 
 Through a `Dockerfile`, we can setup reproducible steps outlining the environment within which our ML solution will live.
-We rely on volumes to save data accross runs of our container, which should be created with `docker volume create swissenergy-backend-data`.
+We rely on [volumes](https://docs.docker.com/engine/storage/volumes/) to save data accross runs of our container, which should be created with `docker volume create swissenergy-backend-data`.
 
 <figure markdown="span">
   ![Image title](assets/deployment/vps_github_docker.png){ width="100%" }
   <figcaption>Our VPS, running our containerized ML solution.</figcaption>
 </figure>
 
-??? note "Use `docker-compose`" 
+??? note "Use `docker compose`" 
     Since we only have a single container, one way to make it run would be to use following command
     
     ```bash
@@ -169,6 +173,8 @@ We rely on volumes to save data accross runs of our container, which should be c
         name: swissenergy-backend-data
     ```
 
+    We can then build our image with `docker compose build`, and run it with `docker compose run`.
+
 To run our containerized ML solution, we run `docker compose up`, et _voilà_!
 
 <figure markdown="span">
@@ -183,7 +189,7 @@ To run our containerized ML solution, we run `docker compose up`, et _voilà_!
 
 Our containerized ML solution is running on our VPS, and publishing locally on the port 8080.[^2]
 
-[^2]: Which means we can access our solution's routes from within our VPS, via `localhost:8080/SOME_ROUTE`
+[^2]: Which means we can access our solution's routes from within our VPS, via `localhost:8080/SOME_ROUTE`.
 
 Someone outside of our VPS cannot access these routes. 
 A **reverse proxy** addresses this problem by acting as an interface between the outside -- the internet -- and the inside. 
@@ -272,7 +278,7 @@ To do so, we need to:
 
 [^3]: When you own a domain -- e.g. `arthurgassner.ch` -- you can create subdomains -- e.g. `thisisasubdomain.arthurgassner.ch` -- at your will. This can come in handy.
 
-[^4]: More informations on DNS record types can be found [here](https://en.wikipedia.org/wiki/List_of_DNS_record_types)
+[^4]: More informations on DNS record types can be found [here](https://en.wikipedia.org/wiki/List_of_DNS_record_types).
 
 [^5]: _Transport Layer Security_, the encryption protocol used by HTTPS.
 

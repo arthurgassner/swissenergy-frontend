@@ -30,5 +30,8 @@ None of these questions are trivial, nor should they be. It is likely that it wi
 !!! tip "Talk to your users[^1]"
     Get as close as possible to the would-be users of your ML solution and **talk to them**.
 
-
 [^1]: I talk about _users_ as if we were selling a SaaS; we are not, but we are building a solution **for someone**. That someone is our user. If they don't end up using our solution, we failed.
+
+## Conclusion
+
+With a sound understanding of our problem, we can start looking at the data sources available to us.
