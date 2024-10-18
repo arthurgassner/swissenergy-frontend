@@ -98,6 +98,11 @@ Making the ML solution available to the user often means having the user interac
 
 [`FastAPI`](https://fastapi.tiangolo.com/)[^8] is handy Python-based tool, allowing us to easily turn our ML solution into an accessible endpoint.
 
+<figure markdown="span">
+  ![Image title](assets/industrialization/fastapi.png){ width="80%" }
+  <figcaption><code>FastAPI</code> allows us to turn a Python script into an accessible endpoint.</figcaption>
+</figure>
+
 [^8]: [`Flask`](https://flask.palletsprojects.com/en/) is an alternative.
 
 ### Productivity tools
