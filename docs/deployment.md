@@ -129,7 +129,7 @@ How can we package our software to ensure it'll run on our VPS, since VPS' envir
 Containerization addresses this issue, with tools such as [Docker](https://www.docker.com/).
 
 Through a `Dockerfile`, we can setup reproducible steps outlining the environment within which our ML solution will live.
-We rely on Docker volumes to save data accross runs of our container.
+We rely on volumes to save data accross runs of our container, which should be created with `docker volume create swissenergy-backend-data`.
 
 <figure markdown="span">
   ![Image title](assets/deployment/vps_github_docker.png){ width="100%" }
@@ -151,22 +151,26 @@ We rely on Docker volumes to save data accross runs of our container.
     ```yaml title="docker-compose.yml"
     name: swissenergy-backend
     services:
-        swissenergy-backend-image:
-            env_file:
-                - ~/swissenergy-backend/.env
-            container_name: swissenergy-backend
-            ports:
-                - 8080:80
-            volumes:
-                - swissenergy-backend-data:/code/data
-            image: swissenergy-backend-image
+      swissenergy-backend:
+        build:
+          context: .
+          dockerfile: Dockerfile
+        env_file:
+            - .env
+        container_name: swissenergy-backend
+        ports:
+            - 8080:80
+        volumes:
+            - swissenergy-backend-data:/code/data
+        image: swissenergy-backend-image
     volumes:
-        swissenergy-backend-data:
-            external: true
-            name: swissenergy-backend-data
+      swissenergy-backend-data:
+        external: true
+        name: swissenergy-backend-data
     ```
 
-    Then, we TODO.
+To run containerized ML solution, we run `docker compose up`
+> Note that 
 
 ## Publishing our ML solution
 
