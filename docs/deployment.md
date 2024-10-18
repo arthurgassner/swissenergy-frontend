@@ -189,8 +189,8 @@ Someone outside of our VPS cannot access these routes.
 A **reverse proxy** addresses this problem by acting as an interface between the outside -- the internet -- and the inside. 
 
 <figure markdown="span">
-  ![Image title](assets/deployment/reverse_proxy.gif){ width="100%" }
-  <figcaption>Illustration of a reverse proxy sitting between user and backend.</figcaption>
+  ![Image title](assets/deployment/reverse_proxy.png){ width="100%" }
+  <figcaption>Our ML solution, accessible through the internet via a reverse proxy.</figcaption>
 </figure>
 
 ### Setting up a reverse proxy
@@ -264,7 +264,7 @@ To do so, we need to:
   ```bash
   sudo systemctl restart caddy
   ```
-  
+
 <figure markdown="span">
   ![Image title](assets/deployment/ping_vps.gif){ width="100%" }
   <figcaption>Pinging our VPS via its public IP and via its subdomain, i.e. `vps.arthurgassner.ch`.</figcaption>
