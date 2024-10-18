@@ -128,7 +128,7 @@ How can we package our software to ensure it'll run on our VPS, since the VPS' e
 Containerization addresses this issue, with tools such as [docker](https://www.docker.com/). 
 
 <figure markdown="span">
-  ![Image title](assets/deployment/docker-logo-white.png){ width="30%" }
+  ![Image title](assets/deployment/docker-logo-white.svg){ width="100%" }
   <figcaption>The docker logo.</figcaption>
 </figure>
 
