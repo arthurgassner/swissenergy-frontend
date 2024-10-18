@@ -97,7 +97,8 @@ To make it more comfortable to work on our VPS, we can set it up with our favour
 
 How can we get our production-ready code onto our VPS?
 
-[GitHub deploy keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys) address this need.
+If our GitHub repo is public, we can simply `git clone` it. <br>
+If it is private, then [GitHub deploy keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys) are there to address this need.
 They can grant our VPS a limited access -- read-only to a single repository -- and allow us to easily cancel them in the future.
 
 !!! note "Generating a dedicating public/private SSH key pair"
