@@ -250,8 +250,8 @@ To do so, we need to:
 
   # Redirect HTTP requests to HTTPS
   # Send a 301 status code, indicating a permanent redirect
-  195.15.213.78 {
-    redir / https://vps.arthurgassner.ch{uri} 301
+  <VPS_PUBLIC_IP> {
+    redir / https:/vps.arthurgassner.ch{uri} 301
   }
 
   # Route HTTPS requests to our ML backend
