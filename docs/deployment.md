@@ -39,7 +39,7 @@ Through the VPS-provider's website, we order an `Ubuntu 22.04.5 LTS` and -- afte
 How can we access our newly-created VPS?
 
 During the renting-out process, the VPS provider -- here Infomaniak -- gave us a private/public SSH key pair.
-Knowing its private key, I can authenticate myself to our remote machine and hence access it -- through SSH -- over the internet.
+Knowing the private key, I can authenticate myself to our remote machine and hence access it -- through SSH -- over the internet.
 
 ```bash title="SSH into our VPS"
 ssh -i ~/<PATH_TO_VPS_PRIVATE_KEY> <USER_REMOTE_MACHINE>@<IP_REMOTE_MACHINE>
@@ -66,6 +66,32 @@ ssh -i ~/<PATH_TO_VPS_PRIVATE_KEY> <USER_REMOTE_MACHINE>@<IP_REMOTE_MACHINE>
     SSH -- and other protocols, like HTTPS -- rely on this property. That's how our VPS knows that I am who they say I am -- i.e. someone who's allowed in, since I have access to the private key matching their public key.
 
 To make it more comfortable to work on our VPS, we can set it up with our favourite productivity tools, as we would with any newly-installed machine.
+
+??? note "Setting up our remote machine"
+    This step is completely up to personal preferences.
+
+    On my end, my setting-up-the-vps flow looks like
+
+    ```bash
+    sudo apt install && sudo apt upgrade # Upgrade the installed-by-default software 
+    sudo reboot
+
+    # Install oh-my-zsh 
+    sudo apt install zsh
+    sudo chsh -s $(which zsh)
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+    # Install fzf
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf 
+    ~/.fzf/install
+    # Then, manuall add the below lines to ~/.zshrc to fix some fzf-related bug
+    # export LC_CTYPE=en_US.UTF-8
+    # export LC_ALL=en_US.UTF-8
+
+    # Install zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    # Then, manually add zsh-autosuggestions to ~/.zshrc's plugins
+    ```
 
 ## Pull the software's latest version
 
