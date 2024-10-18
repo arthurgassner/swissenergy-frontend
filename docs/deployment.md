@@ -218,8 +218,8 @@ Setting up a reverse proxy with Caddy is as simple as:
 And _voilà_! We can now reach our containerized ML solution from the outside:
 
 <figure markdown="span">
-  ![Image title](assets/deployment/curl_http.gif){ width="100%" }
-  <figcaption>Accessing our ML solution through the internet.</figcaption>
+  ![Image title](assets/deployment/http_vps.png){ width="100%" }
+  <figcaption>Accessing our ML solution through the internet<br> by typing our VPS' public IP in the URL bar.</figcaption>
 </figure>
 
 ### Enabling HTTPS
