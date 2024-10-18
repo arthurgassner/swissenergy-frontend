@@ -33,3 +33,5 @@ We will proceed stage by stage, but _very often_ go back to previous stages, due
     Each stage highlights opportunities -- and flaws -- in the previous stages, leading us to go back and rework them.
 
     This iterative process is expected and a direct consequence of each problem's unique context.
+
+Now that we know what to expect, let's dive in.
