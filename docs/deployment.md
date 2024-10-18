@@ -32,7 +32,7 @@ The internet is ripe with low-cost VPS offers. I went with Infomaniak -- a Swiss
   <figcaption>A side-project-dedicated machine for 3CHF/month.</figcaption>
 </figure>
 
-## Basic VPS setup
+## Accessing the VPS
 
 How can we access our newly-created VPS?
 
@@ -81,9 +81,20 @@ They can grant our VPS a limited access -- read-only to a single repository -- a
   <figcaption>Our VPS, now able to pull from our repo.</figcaption>
 </figure>
 
-## Containerize with Docker
+## Containerization
 
-Docker to run my software in a packaged, reproducible way
+How can we package our software to ensure it'll run on our VPS, since VPS' environment will differ from our development environment -- i.e. my personal computer.<br>
+Containerization addresses this issue, with tools such as [Docker](https://www.docker.com/).
+
+Through a `Dockerfile`, we can setup reproducible steps outlining the environment within which our ML solution will live.
+We rely on Docker volumes to save data accross runs of our container.
+
+<figure markdown="span">
+  ![Image title](assets/deployment/vps_github_docker.png){ width="100%" }
+  <figcaption>Our VPS, running our containerized ML solution.</figcaption>
+</figure>
+
+## Screen 
 
 Screen not to have 
 
