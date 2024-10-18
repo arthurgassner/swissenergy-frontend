@@ -250,24 +250,19 @@ To do so, we need to:
 
 3. Update our `/etc/caddy/Caddyfile` to reflect our newly-found preference of HTTPS
   ```json title="/etc/caddy/Caddyfile"
-  {
-    # Enable automatic HTTPS
-    auto_https on 
-  }
-
   # Redirect HTTP requests to HTTPS
   # Send a 301 status code, indicating a permanent redirect
-  <VPS_PUBLIC_IP> {
-    redir / https:/vps.arthurgassner.ch{uri} 301
+  http://vps.arthurgassner.ch {
+    redir https://vps.arthurgassner.ch{uri} 301
   }
 
   # Route HTTPS requests to our ML backend
-  vps.arthurgassner.ch {
+  https://vps.arthurgassner.ch {
     reverse_proxy localhost:8080
   }
   ```
 
-3. Restart the `caddy` systemd deamon.
+4. Restart the `caddy` systemd deamon.
   ```bash
   sudo systemctl restart caddy
   ```
