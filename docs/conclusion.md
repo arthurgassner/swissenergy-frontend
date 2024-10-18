@@ -19,11 +19,6 @@ This iterative approach is normal, and fundamental to the ML engineering work.
 
     It is generally a good idea not to try everything, and instead focusing on advancing onto the next section.
 
-<figure markdown="span">
-  ![Image title](assets/next_steps/iterative_ml.png){ width="100%" }
-  <figcaption>ML engineering is an iterative process.</figcaption>
-</figure>
-
 Despite this nature, an unused ML solution is a failed ML solution. <br>
 Hence, we must deliver something. As such, this page serves as a summary of potential next steps.
 

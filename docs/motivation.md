@@ -13,36 +13,23 @@ Eventually, I stumbled upon the [Swiss Energy Dashboard](https://energiedashboar
   <figcaption>Electricity consumption plot from the Swiss Energy Dashboard</figcaption>
 </figure>
 
+## ML project's stages
 
-## Business problem
+Most ML projects can be roughly broken down into sequential stages:
 
-In industry, most -- if not all -- ML use-cases start with a business problem. That is, you work for a business, they have a problem, and they're turning to you because they think ML might be a way to a solution.
+1. **Problem understanding**: What problem are we trying to solve? In what context? 
+2. **Data ingestion**: What data can we access to solve this problem? How?
+3. **Exploratory Data Analysis (EDA)**: What does that data look like?
+4. **Modelling**: How can we use that data to solve our problem?
+5. **Industrialization**: How can we prepare our solution for it to be used by other people?
+6. **Deployment**: How can the people having the initial problem use our solution? 
 
-In our case, let's assume the business problem is a colleague coming to us saying
+We will proceed stage by stage, but _very often_ go back to previous stages, due to the **iterative nature of ML engineering**.[^1]
 
-!!! note "Business Problem"
-    We are an energy distribution company.
-    As such, we deal with the consumption of energy throughout our grid.
-    We don't know how said consumption will evolve in the future, and it would help us to know.
+[^1]: The write-up of this side-project might give the impression of working through each stage methodically, closing one off before moving onto the next one. This is only an appearance.
 
-Great, but not enough to go from. 
+!!! tip "ML engineering is an iterative process."
+    We start our ML journey at the first stage and work our way towards the last.<br>
+    Each stage highlights opportunities -- and flaws -- in the previous stages, leading us to go back and rework them.
 
-It's capital to better define what's going on around our problem before we start digging.
-What is _the future_? How are things currently done? What happens if a prediction is wrong? Why would it be useful for us to know that future? Who would be impacted? How? What data do we have currently? Can we trust it? How far back does it go?
-
-!!! tip "Never assume anything"
-    Clarify the **context**, the **constraints**, and the **needs**.
-
-Let's break it down.
-
-- `Clarify the context`: Who would be impacted by these predictions? Who would use them? How would they use them?
-- `Clarify the constraints`: How much data do we have? How is the quality of that data? What does the data-gathering process look like?
-- `Clarify the needs`: What is needed actually? A prediction model? How accurate? How often should it run? How far away should it predict? What is shortest path to success?
-    
-None of these questions are trivial, nor should they be. It is likely that it will take time and back-and-forth to answer them to a somewhat-satisfying level, if ever. Identifying early-on who would be using your ML solution -- and having them in the loop -- greatly reduces the risk of misunderstanding the business problem.
-
-!!! tip "Talk to your users[^1]"
-    Get as close as possible to the would-be users of your ML solution and **talk to them**.
-
-
-[^1]: I talk about _users_ as if we were selling a SaaS; we are not, but we are building a solution **for someone**. That someone is our user. If they don't end up using our solution, we failed.
+    This iterative process is expected and a direct consequence of each problem's unique context.

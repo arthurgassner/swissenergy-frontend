@@ -18,6 +18,7 @@ plugins: [] # disable search
 nav:
   - Home: index.md    
   - Motivation: motivation.md                
+  - Problem Understanding: problem_understanding.md                
   - Data Ingestion: data_ingestion.md                
   - EDA: eda.md
   - Modelling: modelling.md
