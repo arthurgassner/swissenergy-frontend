@@ -176,24 +176,21 @@ To run our containerized ML solution, we run `docker compose up`, et _voilà_!
   <figcaption>Running <code>docker compose up</code> from our VPS.</figcaption>
 </figure>
 
-## Accessing our ML solution
+## Accessing our ML solution from the outside
 
 Our containerized ML solution is running on our VPS, and can respond to specific requests on specific routes, but not from the internet.
 
-To open up 
+Allowing others -- from the outside -- to access our ML solution requires setting up a _reverse proxy_.
 
-To enable that, we need to 
-1. Make sure our VPS ports are open 
+### Setting up a reverse proxy
 
-## Open the ports
+open the ports
+ufw?
+nginx, caddy, traefik
 
-## Firewall
+### Enabling HTTPS
 
-## Reverse Proxy
-
-Access from the outside: caddy
-
-## HTTPS
+TODO 
 
 Amazing! Now, writing out our remote machine's IP all the time can be cumbersome. As with most VPS, its public IP is static. Hence, I can assign a subdomain[^2] to it, so that anyone -- including me -- can refer to its public IP via its subdomain.
 
