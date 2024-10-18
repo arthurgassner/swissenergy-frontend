@@ -8,7 +8,7 @@ In this section, we'll see how to deploy an ML solution so that our user can con
 
 ## Someone else's computer
 
-Back to the big picture of our ML solution, we need our code to run a remote machine, i.e. _someone's_ computer. Ideally, not us.
+Back to the big picture of our ML solution, we need our code to run on a remote machine, i.e. _someone's_ computer, ideally not ours.
 
 <figure markdown="span">
   ![Image title](assets/industrialization/ml_system_design.png){ width="90%" }
@@ -41,7 +41,7 @@ How can we access our newly-created VPS?
 During the renting-out process, the VPS provider -- here Infomaniak -- gave us a private/public SSH key pair.
 Knowing the private key, I can authenticate myself to our remote machine and hence access it -- through SSH -- over the internet.
 
-```bash title="SSH into our VPS"
+```bash title="Access our VPS via SSH"
 ssh -i ~/<PATH_TO_VPS_PRIVATE_KEY> <USER_REMOTE_MACHINE>@<IP_REMOTE_MACHINE>
 ```
 
