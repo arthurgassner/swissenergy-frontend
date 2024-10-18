@@ -1,6 +1,11 @@
-# Next steps
+# Conclusion
 
-## Introduction
+## Conclusion
+
+<figure markdown="span">
+  ![Image title](assets/deployment/vps_github_docker_cron.png){ width="100%" }
+  <figcaption>Our final ML solution.</figcaption>
+</figure>
 
 Building this side-project, I kept going back and improving things I had built in previous steps.
 

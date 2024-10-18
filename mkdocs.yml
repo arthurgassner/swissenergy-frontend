@@ -16,14 +16,14 @@ theme:
     accent: pink     # Accent color
 plugins: [] # disable search
 nav:
-  - Home: index.md                
+  - Home: index.md    
   - Motivation: motivation.md                
   - Data Ingestion: data_ingestion.md                
   - EDA: eda.md
   - Modelling: modelling.md
   - Industrialization: industrialization.md
   - Deployment: deployment.md
-  - Next steps: next_steps.md
+  - Conclusion: conclusion.md
 
 extra_css:
   - https://unpkg.com/katex@0/dist/katex.min.css

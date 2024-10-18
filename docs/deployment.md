@@ -267,7 +267,7 @@ To do so, we need to:
 
 <figure markdown="span">
   ![Image title](assets/deployment/ping_vps.gif){ width="100%" }
-  <figcaption>Pinging our VPS via its public IP and via its subdomain, i.e. `vps.arthurgassner.ch`.</figcaption>
+  <figcaption>Pinging our VPS via its public IP and via its subdomain, i.e. <code>vps.arthurgassner.ch</code>.</figcaption>
 </figure>
 
 [^3]: When you own a domain -- e.g. `arthurgassner.ch` -- you can create subdomains -- e.g. `thisisasubdomain.arthurgassner.ch` -- at your will. This can come in handy.
@@ -277,8 +277,19 @@ To do so, we need to:
 [^5]: _Transport Layer Security_, the encryption protocol used by HTTPS.
 
 
-## Time-triggered automation
+## Scheduled updating of the forecast
 
-Cron
+We can now access our ML solution through the internet; amazing!
+
+But how can we update it? We would like for it to automatically fetch the latest ENTSO-E data, train the model and update the forecasted values -- roughly every hour, since the ENTSO-E data gets updated at this frequency.
+
+Enters [`cron`](https://en.wikipedia.org/wiki/Cron), a wonderful job scheduler.
+
+TODO explain setup process
+
+<figure markdown="span">
+  ![Image title](assets/deployment/vps_docker_cron.png){ width="100%" }
+  <figcaption>Our VPS updating its forecast every hour, thanks to <code>cron</cron></figcaption>
+</figure>
 
 ## Conclusion
