@@ -306,3 +306,5 @@ And _voilà_! Cron will run in our VPS' background, and send our GET request to 
 </figure>
 
 ## Conclusion
+
+We now have a deployed ML solution, that can be accessed through the internet.
