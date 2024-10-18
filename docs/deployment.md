@@ -61,17 +61,24 @@ Now, to make things more comfortable, we can setup our VPS with our favourite pr
 
 ## Pull the software's latest version
 
-How can we get our production-ready code onto our VPS? 
+How can we get our production-ready code onto our VPS?<br>
 With [GitHub deploy keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys).
-
-!!! note "GitHub deploy keys"
-    Deploy keys are SSH keys that can grant read-only access to a single repository.
-
-    By uploading -- through the GitHub web interface -- an SSH public key, GitHub can check -- when trying to pull a specific repository -- that you have read-access to that repository. 
+They can grant our VPS a limited access -- read-only to a single repository -- and allows us to easily cancel them in the future.
 
 <figure markdown="span">
   ![Image title](assets/deployment/github_deploy_keys.png){ width="100%" }
   <figcaption>GitHub interface administrating deploy keys</figcaption>
+</figure>
+
+
+!!! note "GitHub deploy keys"
+    A deploy key is a public SSH key that was uploaded on GitHub, granting the owner of the matching private key with access to a single repository.
+    
+    That access can be read-only, or read-and-write.
+
+<figure markdown="span">
+  ![Image title](assets/deployment/vps_github.png){ width="100%" }
+  <figcaption>Our VPS, now able to pull from our repo.</figcaption>
 </figure>
 
 ## Containerize with Docker
