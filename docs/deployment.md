@@ -208,7 +208,7 @@ To be able to reach our ML solution from the outside, we need to:
 1. Make sure we can reach our VPS by opening up the port `80` through your VPS provider -- as they likely have their own firewall.
   > HTTP goes -- by default -- through port `80`.
 
-2. Set up the `/etc/caddy/Caddyfile` to redirect outside traffic on port `80` to `localhost:8080`, i.e. our ML backend.
+2. Set up the `/etc/caddy/Caddyfile` to redirect in-bound traffic on port `80` to `localhost:8080`, i.e. our ML backend.
   ```json title="/etc/caddy/Caddyfile"
   {
     # Disable automatic HTTPS
@@ -231,12 +231,12 @@ And _voilà_! We can now reach our containerized ML solution from the outside:
 
 <figure markdown="span">
   ![Image title](assets/deployment/http_vps.png){ width="100%" }
-  <figcaption>Accessing our ML solution through the internet<br> by typing our VPS' public IP in the URL bar.</figcaption>
+  <figcaption>Accessing our ML solution through the internet<br> by typing our VPS' public IP in our browser's URL bar.</figcaption>
 </figure>
 
 ### Enabling HTTPS
 
-We now can access our ML solution through HTTP, but not HTTPS.
+We now can access our ML solution through HTTP, but not HTTPS.<br>
 For the sake of security, we'd like to allow HTTPS traffic, and have all HTTP traffic redirected to HTTPS.
 
 To do so, we need to:
@@ -244,8 +244,9 @@ To do so, we need to:
 1. Make sure we can reach our VPS by opening up the port `443` through your VPS provider -- as they likely have their own firewall.
   > HTTPS goes -- by default -- through port `443`.
 
-2. Assign a domain -- or subdomain[^3] -- pointing to our VPS' public IP. In practice, this means going on my domain registrar's website -- in my case _GoDaddy_ -- and _adding a new DNS record_ of Type A[^4], whose name is `vps` pointing to our VPS's public IP.
-  > This step is needed since TLS[^5] certificates are usually only issued for domain names, not public IPs. Note that it can take up to two days to take effect.
+2. Assign a domain -- or subdomain[^3] -- pointing to our VPS' public IP. In practice, this means going on our domain registrar's website -- in my case _GoDaddy_ -- and _adding a new DNS record_ of Type A[^4], whose name is `vps` pointing to our VPS's public IP.
+  > This step creates the `vps.arthurgassner.ch` subdomain and have it point to our VPS' public IP.
+  > It is needed since TLS[^5] certificates are usually only issued for domain names, not public IPs. Note that it can take up to two days to take effect.
 
 3. Update our `/etc/caddy/Caddyfile` to reflect our newly-found preference of HTTPS
   ```json title="/etc/caddy/Caddyfile"
@@ -287,7 +288,8 @@ To do so, we need to:
 
 We can now access our ML solution through the internet; amazing!
 
-But how can we update it? We would like for it to automatically fetch the latest ENTSO-E data, train the model and update the forecasted values -- roughly every hour, since the ENTSO-E data gets updated at this frequency.
+But how are the forecast kept up-to-date? We would like for it to automatically fetch the latest ENTSO-E data, train the model and update the forecasted values -- roughly every hour, since the ENTSO-E data gets updated at this frequency.
+
 
 Enters [`cron`](https://en.wikipedia.org/wiki/Cron), a wonderful job scheduler.
 
