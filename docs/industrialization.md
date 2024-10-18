@@ -6,7 +6,7 @@ We now have a working model, performing at an acceptable level. Our goal is to b
 
 Which begs the question: How does our user want to consume our solution?[^1]
 
-[^1]: When we first talked to our user, we sketched out a rough idea of how the solution would be consumed -- and deployed. It is important not to wait till we're at the doors of industrialization to start thinking about deployment options, they might impact the modelling options available to us. We do _not_ want to end up so far in, only to have to go back to modelling because we realized the user wants to consume their massive model on a low-power chip. 
+[^1]: When we first talked to our user, we sketched out a rough idea of how the solution would be consumed -- and deployed. It is important not to wait till we're at the doors of industrialization to start thinking about deployment options, as they might impact the modelling options available to us. We do _not_ want to end up so far in, only to have to go back to modelling because we realized the user wants to consume their massive model on a low-power chip. 
 
 The way the ML model will be consumed educates us on how we should deploy it. 
 The way we deploy our model will heavily influence how we design our ML system, and hence how we will industrialize[^2] it.
@@ -68,7 +68,7 @@ Now, let's look over some tools to make your code more maintainable.[^4]
 ### Version Control
 
 I use `git` and `Github` for any project from the very beginning. 
-It allows me to treat my last commit as a "at this point it was working" state, and to have my code remotely saved, were anything to happen to my computer.
+It allows me to treat my last commit as a "_at this point it was working_" state, and to have my code remotely saved, were anything to happen to my computer.
 
 An upside of using GitHub[^5] is their [Github Actions](https://github.com/features/actions), allowing us to automate part of our workflow, and further improve the shareability of our code.
 
@@ -76,17 +76,17 @@ An upside of using GitHub[^5] is their [Github Actions](https://github.com/featu
 
 ### Use `.env`
 
-Using `git` means creating a trail of every single (commited) state that the software has been in.
-It would be easy for one to hard-code sensitive -- i.e. private -- data, such as an API key or a password -- and have it saved in that trail, seemingly-forever.[^6]
+Using `git` means creating a trail of every single (commited) state that the software went through.
+Hard-coding sensitive -- i.e. private -- data, such as an API key or password -- is an easy-mistake, which would result in saving it to that trail, seemingly-forever.[^6]
 
-[^6]: You can always edit a file's history, but it's messy.
+[^6]: You can always edit a file's git history, but it's messy.
 
-Additionally, we might have certain variables that would depend on our environment -- developpement or production.
+Additionally, we might have certain variables that would depend on our running environment, i.e. dev or production.
 
 Using an `.env` file solves both of these issues.
 
 !!! tip "Use `.env`"
-    Private or environment-dependent variables should go in an `.env`, which you will not be commited to history.[^7]
+    Private or environment-dependent variables should go in an `.env`, which you will not be committing to history.[^7]
 
     I use and like [`python-dotenv`](https://github.com/theskumar/python-dotenv), but alternatives exist.
 
@@ -94,11 +94,11 @@ Using an `.env` file solves both of these issues.
 
 ### Build REST API with `FastAPI`
 
-link to their github
-quick, automatic reloading, automattif swagger ui
-show swagger ui
-show a gif of running the server
-flask is an alternative
+Making the ML solution available to the user often means having the user interact with our solution through a REST API.
+
+[`FastAPI`](https://fastapi.tiangolo.com/)[^8] is handy Python-based tool, allowing us to easily turn our ML solution into an accessible endpoint.
+
+[^8]: [`Flask`](https://flask.palletsprojects.com/en/) is an alternative.
 
 ### Productivity tools
 
