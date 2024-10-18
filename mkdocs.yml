@@ -10,6 +10,7 @@ theme:
   features:
     - content.footnote.tooltips
     - content.code.copy
+    - navigation.footer
   palette:
     scheme: slate  # Options: default, slate, or custom
     primary: plum  # Primary color
@@ -25,7 +26,17 @@ nav:
   - Industrialization: industrialization.md
   - Deployment: deployment.md
   - Conclusion: conclusion.md
-
+  - About me: about_me.md
+extra:
+  social:
+    - icon: fontawesome/brands/github 
+      link: https://github.com/arthurgassner
+    - icon: fontawesome/brands/linkedin 
+      link: https://www.linkedin.com/in/arthur-gassner/
+    - icon: fontawesome/solid/globe
+      link: https://arthurgassner.ch
+    - icon: material/email
+      link: mailto:arth.gassner@gmail.com
 extra_css:
   - https://unpkg.com/katex@0/dist/katex.min.css
   
