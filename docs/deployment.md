@@ -260,6 +260,11 @@ To do so, we need to:
   }
   ```
 
+3. Restart the `caddy` systemd deamon.
+  ```bash
+  sudo systemctl restart caddy
+  ```
+  
 <figure markdown="span">
   ![Image title](assets/deployment/ping_vps.gif){ width="100%" }
   <figcaption>Pinging our VPS via its public IP and via its subdomain, i.e. `vps.arthurgassner.ch`.</figcaption>
