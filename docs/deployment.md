@@ -213,7 +213,7 @@ Setting up a reverse proxy with Caddy is as simple as:
   }
   ```
   > `/etc/caddy/Caddyfile` contains the config governing Caddy.
-  
+
 - Enabling and restarting the caddy systemd deamon
   ```bash
   sudo systemctl enable caddy && sudo systemctl restart caddy
@@ -228,26 +228,23 @@ And _voilà_! We can now reach our containerized ML solution from the outside:
 
 ### Enabling HTTPS
 
-We can access it 
+We can access our ML solution through HTTP, but not HTTPS.
+For the sake of security, we'd like to have all HTTP connections redirected to HTTPS, and to enable HTTPS connections.
 
-Amazing! Now, writing out our remote machine's IP all the time can be cumbersome. As with most VPS, its public IP is static. Hence, I can assign a subdomain[^2] to it, so that anyone -- including me -- can refer to its public IP via its subdomain.
+To be able to handle HTTPS connections, we need to assign a domain -- or subdomain[^3] -- pointing to our VPS' public IP, as TLS[^4] certificates are usually only issued for domain names. This is done 
 
-[^2]: When you own a domain -- e.g. `arthurgassner.ch` -- you can create subdomains -- e.g. `thisisasubdomain.arthurgassner.ch` -- at your will. This can come in handy.
+[^3]: When you own a domain -- e.g. `arthurgassner.ch` -- you can create subdomains -- e.g. `thisisasubdomain.arthurgassner.ch` -- at your will. This can come in handy.
 
-In practice, this means going on my domain registrar's website -- in my case _GoDaddy_ -- and _adding a new DNS record_ of Type A[^3], whose name is `thisisasubdomain` pointing to our VPS's public IP.
+[^4]: _Transport Layer Security_, the encryption protocol used by HTTPS.
 
-[^3]: More informations on DNS record types can be found [here](https://en.wikipedia.org/wiki/List_of_DNS_record_types)
+In practice, this means going on my domain registrar's website -- in my case _GoDaddy_ -- and _adding a new DNS record_ of Type A[^5], whose name is `thisisasubdomain` pointing to our VPS's public IP.
+
+[^5]: More informations on DNS record types can be found [here](https://en.wikipedia.org/wiki/List_of_DNS_record_types)
 
 <figure markdown="span">
   ![Image title](assets/deployment/ping_vps.gif){ width="100%" }
   <figcaption>Pinging our VPS via its public IP and via its subdomain.</figcaption>
 </figure>
-
-Similarly, this now mean that we can SSH into our remote machine through said subdomain.
-
-## Screen 
-
-Screen not to have 
 
 ## Time-triggered automation
 
