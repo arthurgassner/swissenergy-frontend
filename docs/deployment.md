@@ -246,7 +246,7 @@ To do so, we need to:
 
 2. Assign a domain -- or subdomain[^3] -- pointing to our VPS' public IP. In practice, this means going on our domain registrar's website -- in my case _GoDaddy_ -- and _adding a new DNS record_ of Type A[^4], whose name is `vps` pointing to our VPS's public IP.
   > This step creates the `vps.arthurgassner.ch` subdomain and have it point to our VPS' public IP.
-  > It is needed since TLS[^5] certificates are usually only issued for domain names, not public IPs. Note that it can take up to two days to take effect.
+  > It is needed since TLS[^5] certificates are usually only issued for domain names, not public IPs. Note that it can take up to two days to take effect, due to DNS propagation.
 
 3. Update our `/etc/caddy/Caddyfile` to reflect our newly-found preference of HTTPS
   ```json title="/etc/caddy/Caddyfile"
