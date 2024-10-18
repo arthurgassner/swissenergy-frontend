@@ -125,16 +125,26 @@ Developping on Linux, I interact with the terminal _a lot_. To make this whole p
 
 ### Virtual environment
 
-A given Python project will call for a specific Python version with specific libraries.
-To compartimentalize all the Python libraries used in a given project, use a **virtual environment**.
+A given Python project will call for a specific Python version with specific packages.
+To compartimentalize all the Python packages used in a given project, use a **virtual environment**.
 
 !!! tip "Use a virtual environment"
-    I use `conda`, but others exist.
+    I use `conda` to manage them, but others exist.
 
 ### Use `requirements.txt`
 
-So far, we've been `pip install`ing needed libraries willy-nilly. 
-That is not very reproducible, and hence we should write a file to centralize the needed libraries -- versionned -- that our project relies on, i.e. the `requirements.txt`
+So far, we've been `pip install`ing needed packages willy-nilly.
+Due to that, it would hard for us -- or anyone we would like to share the code with -- to reproduce the Python environment in which our code is running.
+
+Writing a `requirements.txt` file -- centralizing the needed packages that our project relies on addresses that.
+
+```yaml title="Example of a requirements.txt"
+fastapi==0.112.2 # package_name==version
+fastapi-cli==0.0.5
+entsoe-py==0.6.8
+numpy==1.26.4
+pandas==2.2.2
+```
 
 ### From notebooks to `.py`
 
