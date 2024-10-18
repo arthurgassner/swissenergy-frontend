@@ -197,12 +197,12 @@ A **reverse proxy** addresses this problem by acting as an interface between the
 
 [Caddy](https://caddyserver.com/docs/install#debian-ubuntu-raspbian) is a reverse proxy known for its simplicity and security.
 
-Setting up a reverse proxy with Caddy is as simple as:
+To be able to reach our ML solution from the outside, we need to:
 
-- Making sure we can reach our VPS by opening up the port `80` through your VPS provider -- as they likely have their own firewall.
+1. Make sure we can reach our VPS by opening up the port `80` through your VPS provider -- as they likely have their own firewall.
   > HTTP goes -- by default -- through port `80`.
 
-- Setup the `/etc/caddy/Caddyfile` to redirect outside traffic on port `80` to `localhost:8080`, i.e. our ML backend.
+2. Set up the `/etc/caddy/Caddyfile` to redirect outside traffic on port `80` to `localhost:8080`, i.e. our ML backend.
   ```json
   {
     auto_https off 
@@ -214,7 +214,7 @@ Setting up a reverse proxy with Caddy is as simple as:
   ```
   > `/etc/caddy/Caddyfile` contains the config governing Caddy.
 
-- Enabling and restarting the caddy systemd deamon
+3. Enable and restart the `caddy` systemd deamon.
   ```bash
   sudo systemctl enable caddy && sudo systemctl restart caddy
   ```
@@ -228,23 +228,30 @@ And _voilà_! We can now reach our containerized ML solution from the outside:
 
 ### Enabling HTTPS
 
-We can access our ML solution through HTTP, but not HTTPS.
-For the sake of security, we'd like to have all HTTP connections redirected to HTTPS, and to enable HTTPS connections.
+We now can access our ML solution through HTTP, but not HTTPS.
+For the sake of security, we'd like to allow for HTTPS connections, and have all HTTP connections redirected to HTTPS.
 
-To be able to handle HTTPS connections, we need to assign a domain -- or subdomain[^3] -- pointing to our VPS' public IP, as TLS[^4] certificates are usually only issued for domain names. This is done 
+To do so, we need to:
+
+1. Make sure we can reach our VPS by opening up the port `443` through your VPS provider -- as they likely have their own firewall.
+  > HTTPS goes -- by default -- through port `443`.
+
+2. Assign a domain -- or subdomain[^3] -- pointing to our VPS' public IP. In practice, this means going on my domain registrar's website -- in my case _GoDaddy_ -- and _adding a new DNS record_ of Type A[^5], whose name is `vps` pointing to our VPS's public IP.
+  > This step is needed since TLS[^4] certificates are usually only issued for domain names, not public IPs.
+
+<figure markdown="span">
+  ![Image title](assets/deployment/ping_vps.gif){ width="100%" }
+  <figcaption>Pinging our VPS via its public IP and via its subdomain -- i.e. `vps.arthurgassner.ch`.</figcaption>
+</figure>
+
+3. 
 
 [^3]: When you own a domain -- e.g. `arthurgassner.ch` -- you can create subdomains -- e.g. `thisisasubdomain.arthurgassner.ch` -- at your will. This can come in handy.
 
 [^4]: _Transport Layer Security_, the encryption protocol used by HTTPS.
 
-In practice, this means going on my domain registrar's website -- in my case _GoDaddy_ -- and _adding a new DNS record_ of Type A[^5], whose name is `thisisasubdomain` pointing to our VPS's public IP.
-
 [^5]: More informations on DNS record types can be found [here](https://en.wikipedia.org/wiki/List_of_DNS_record_types)
 
-<figure markdown="span">
-  ![Image title](assets/deployment/ping_vps.gif){ width="100%" }
-  <figcaption>Pinging our VPS via its public IP and via its subdomain.</figcaption>
-</figure>
 
 ## Time-triggered automation
 
