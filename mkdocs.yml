@@ -17,7 +17,7 @@ theme:
     accent: pink     # Accent color
 plugins: [] # disable search
 nav:
-  - Home: index.md    
+  - Dashboard: index.md    
   - Motivation: motivation.md                
   - Problem Understanding: problem_understanding.md                
   - Data Ingestion: data_ingestion.md                
