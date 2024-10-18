@@ -34,7 +34,7 @@ The internet is ripe with low-cost VPS offers. I went with Infomaniak -- a Swiss
 
 ## Basic VPS setup
 
-Now that we have our VPS, how do we access it?
+How can we access our newly-created VPS?
 
 During the renting-out process, the VPS provider -- here Infomaniak -- gave us a SSH private/public key pair.
 Knowing this private key, I can authenticate myself to our remote machine and access it -- through SSH -- over the internet.
@@ -42,6 +42,49 @@ Knowing this private key, I can authenticate myself to our remote machine and ac
 ```bash title="SSH into our VPS"
 ssh -i ~/<PATH_TO_VPS_PRIVATE_KEY> <USER_REMOTE_MACHINE>@<IP_REMOTE_MACHINE>
 ```
+
+??? note "Primer on public/private key encryption"
+    Public/private key encryption is a widely-used authentification method.
+
+    This method revolves around two "keys", i.e. long string of seemingly-random characters.
+
+    The public key is called _public_ because its owner can share it with everyone.<br>
+    The private key is called _private_ because its owner should keep it to themselves.
+
+    Its core principle is that **data encrypted with a *public* key can _only_ be decrypted with the corresponding *private* key**.
+
+    This means that if I encrypt some secret message with your public key -- which is public and hence wildely-available --, and you're able to decrypt it, then you _must_ have access to the corresponding private key.
+
+    SSH -- and other protocols, like HTTPS -- rely on this property. That's how our VPS knows that I am who they say I am -- i.e. someone who's allowed in, since I have access to the private key matching their public key.
+
+Now, to make things more comfortable, we can setup our VPS with our favourite productivity tools, as we would with any newly-installed machine.
+
+## Pull the software's latest version
+
+How can we get our production-ready code onto our VPS? 
+With [GitHub deploy keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys).
+
+!!! note "GitHub deploy keys"
+    Deploy keys are SSH keys that can grant read-only access to a single repository.
+
+    By uploading -- through the GitHub web interface -- an SSH public key, GitHub can check -- when trying to pull a specific repository -- that you have read-access to that repository. 
+
+<figure markdown="span">
+  ![Image title](assets/deployment/github_deploy_keys.png){ width="100%" }
+  <figcaption>GitHub interface administrating deploy keys</figcaption>
+</figure>
+
+## Containerize with Docker
+
+Docker to run my software in a packaged, reproducible way
+
+Screen not to have 
+
+## Reverse Proxy
+
+Access from the outside: caddy
+
+## HTTPS
 
 Amazing! Now, writing out our remote machine's IP all the time can be cumbersome. As with most VPS, its public IP is static. Hence, I can assign a subdomain[^2] to it, so that anyone -- including me -- can refer to its public IP via its subdomain.
 
@@ -58,33 +101,6 @@ In practice, this means going on my domain registrar's website -- in my case _Go
 
 Similarly, this now mean that we can SSH into our remote machine through said subdomain.
 
-<figure markdown="span">
-  ![Image title](assets/modelling/placeholder.png){ width="100%" }
-  <figcaption>Accessing our remote machine through SSH<br>via our newly-created subdomain.</figcaption>
-</figure>
-
-Now, to make things more comfortable, we can setup our VPS with productivity tools, as we would with any newly-installed machine.
-
-## Pull the software's latest version
-
-Great, now we have a freshly-intalled machine. How can we get our production-ready code onto it? With [Github deploy keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys).
-
-Deploy keys are SSH keys that grant read-only access to a single repository. 
-
-<figure markdown="span">
-  ![Image title](assets/modelling/placeholder.png){ width="100%" }
-  <figcaption>Screenshot of the github deploykey interface, adding the rmeote machine's ssh key.</figcaption>
-</figure>
-
-## Containerize with Docker
-
-Docker to run my software in a packaged, reproducible way
-
-Screen not to have 
-
-## Reverse Proxy
-
-Access from the outside: caddy
 
 ## Time-triggered automation
 
