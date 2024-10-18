@@ -3,7 +3,7 @@
 ## Conclusion
 
 <figure markdown="span">
-  ![Image title](assets/deployment/vps_github_docker_cron.png){ width="100%" }
+  ![Image title](assets/conclusion/vps_github_docker_cron.png){ width="100%" }
   <figcaption>Our final ML solution.</figcaption>
 </figure>
 
