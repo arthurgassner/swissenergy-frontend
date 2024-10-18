@@ -36,12 +36,18 @@ The internet is ripe with low-cost VPS offers. I went with Infomaniak -- a Swiss
 
 How can we access our newly-created VPS?
 
-During the renting-out process, the VPS provider -- here Infomaniak -- gave us a SSH private/public key pair.
-Knowing this private key, I can authenticate myself to our remote machine and access it -- through SSH -- over the internet.
+During the renting-out process, the VPS provider -- here Infomaniak -- gave us a private/public SSH key pair.
+Knowing its private key, I can authenticate myself to our remote machine and hence access it -- through SSH -- over the internet.
 
 ```bash title="SSH into our VPS"
 ssh -i ~/<PATH_TO_VPS_PRIVATE_KEY> <USER_REMOTE_MACHINE>@<IP_REMOTE_MACHINE>
 ```
+
+<figure markdown="span">
+  ![Image title](assets/deployment/vps.png){ width="100%" }
+  <figcaption>Our VPS, accessible through SSH via the internet.</figcaption>
+</figure>
+
 
 ??? note "Primer on public/private key encryption"
     Public/private key encryption is a widely-used authentification method.
@@ -57,7 +63,7 @@ ssh -i ~/<PATH_TO_VPS_PRIVATE_KEY> <USER_REMOTE_MACHINE>@<IP_REMOTE_MACHINE>
 
     SSH -- and other protocols, like HTTPS -- rely on this property. That's how our VPS knows that I am who they say I am -- i.e. someone who's allowed in, since I have access to the private key matching their public key.
 
-Now, to make things more comfortable, we can setup our VPS with our favourite productivity tools, as we would with any newly-installed machine.
+To make it more comfortable to work on our VPS, we can set it up with our favourite productivity tools, as we would with any newly-installed machine.
 
 ## Pull the software's latest version
 
