@@ -102,9 +102,16 @@ We rely on Docker volumes to save data accross runs of our container.
   <figcaption>Our VPS, running our containerized ML solution.</figcaption>
 </figure>
 
-## Screen 
+## Publishing our ML solution
 
-Screen not to have 
+Our ML solution is running on our VPS, and can respond to specific requests on specific routes, but not from the internet.
+
+To enable that, we need to 
+1. Make sure our VPS ports are open 
+
+## Open the ports
+
+## Firewall
 
 ## Reverse Proxy
 
@@ -127,6 +134,9 @@ In practice, this means going on my domain registrar's website -- in my case _Go
 
 Similarly, this now mean that we can SSH into our remote machine through said subdomain.
 
+## Screen 
+
+Screen not to have 
 
 ## Time-triggered automation
 
