@@ -101,7 +101,7 @@ How can we get our production-ready code onto our VPS?
 They can grant our VPS a limited access -- read-only to a single repository -- and allow us to easily cancel them in the future.
 
 !!! note "Generating a dedicating public/private SSH key pair"
-    As not to use one SSH key pair for everything, we can generate a public/private SSH key pair dedicated to authentiying us to GitHub.
+    As not to use one SSH key pair for everything, we generate a public/private SSH key pair dedicated to authentifying us to GitHub.
 
     To do so, follow the [`ssh-keygen` procedure](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key).
 
