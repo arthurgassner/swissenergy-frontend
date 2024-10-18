@@ -169,8 +169,12 @@ We rely on volumes to save data accross runs of our container, which should be c
         name: swissenergy-backend-data
     ```
 
-To run containerized ML solution, we run `docker compose up`
-> Note that 
+To run our containerized ML solution, we run `docker compose up`
+
+<figure markdown="span">
+  ![Image title](assets/deployment/docker-compose.gif){ width="100%" }
+  <figcaption>Running <code>docker compose up</code> from our VPS.</figcaption>
+</figure>
 
 ## Publishing our ML solution
 
