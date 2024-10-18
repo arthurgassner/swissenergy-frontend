@@ -136,7 +136,7 @@ We rely on volumes to save data accross runs of our container, which should be c
   <figcaption>Our VPS, running our containerized ML solution.</figcaption>
 </figure>
 
-!!! note "Use `docker-compose`" 
+??? note "Use `docker-compose`" 
     Since we only have a single container, one way to make it run would be to use following command
     
     ```bash
@@ -180,7 +180,7 @@ To run our containerized ML solution, we run `docker compose up`, et _voilà_!
 
 Our containerized ML solution is running on our VPS, and can respond to specific requests on specific routes, but not from the internet.
 
-
+To open up 
 
 To enable that, we need to 
 1. Make sure our VPS ports are open 
