@@ -100,11 +100,16 @@ How can we get our production-ready code onto our VPS?
 [GitHub deploy keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys) address this need.
 They can grant our VPS a limited access -- read-only to a single repository -- and allow us to easily cancel them in the future.
 
+!!! note "Generating a dedicating public/private SSH key pair"
+    As not to use one SSH key pair for everything, we can generate a public/private SSH key pair dedicated to authentiying us to GitHub.
+
+    To do so, follow the [`ssh-keygen` procedure](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key).
+
+
 <figure markdown="span">
   ![Image title](assets/deployment/github_deploy_keys.png){ width="100%" }
   <figcaption>Administrating deploy keys on GitHub.</figcaption>
 </figure>
-
 
 !!! note "GitHub deploy keys"
     A deploy key is a public SSH key that was uploaded on GitHub, granting the owner of the matching private key with access to a single repository.
