@@ -133,7 +133,7 @@ Containerization addresses this issue, with tools such as [docker](https://www.d
 </figure>
 
 Through a `Dockerfile`, we can setup reproducible steps outlining the environment within which our ML solution will live.
-We rely on [volumes](https://docs.docker.com/engine/storage/volumes/) to save data accross runs of our container, which should be created with `docker volume create swissenergy-backend-data`.
+We rely on [volumes](https://docs.docker.com/engine/storage/volumes/) to have data persist accross runs of our container, which should be created with `docker volume create swissenergy-backend-data`.
 
 <figure markdown="span">
   ![Image title](assets/deployment/vps_github_docker.png){ width="100%" }
