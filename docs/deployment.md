@@ -300,9 +300,34 @@ To run a command at the 15th minute of every hour, simply:
 
 And _voilà_! Cron will run in our VPS' background, and send our GET request to the our ML backend's `/update-forecast` route on the 15th minutes of each hour. 
 
+??? note "Not exposing `/update-forecast` to the outside with `caddy`" 
+    Since `cron` will handle the forecast update from the inside of the VPS, there is no need for us to expose it to the outside.
+    We can explicitely do that through our `Caddyfile`: 
+
+    ```json title="/etc/caddy/Caddyfile" hl_lines="10-12"
+    # Redirect HTTP requests to HTTPS
+    # Send a 301 status code, indicating a permanent redirect
+    http://vps.arthurgassner.ch {
+      redir https://vps.arthurgassner.ch{uri} 301
+    }
+
+    # Route HTTPS requests to our ML backend
+    https://vps.arthurgassner.ch {
+      # Block /update-forecast by returning 404
+      route /update-forecast {
+        respond 404
+      }
+
+      reverse_proxy localhost:8080
+    }
+    ```
+
+    Don't forget to reload `caddy` with `sudo systemctl reload caddy`!
+
+
 <figure markdown="span">
   ![Image title](assets/deployment/vps_docker_cron.png){ width="100%" }
-  <figcaption>Our VPS updating its forecast every hour, thanks to <code>cron</cron>.</figcaption>
+  <figcaption>Our VPS will now receive a GET request from <code>cron</code><br> every 15th of an hour, in perpetuity, ensuring our forecast is fresh.</figcaption>
 </figure>
 
 ## Conclusion
