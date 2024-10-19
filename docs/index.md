@@ -226,7 +226,7 @@ function createBarTraces(mapeData) {
     const entsoeTrace = {
         x: durationsEntsoe,
         y: mapeEntsoe,
-        name: 'ENTSO-E Model',
+        name: "ENTSO-E's Model",
         type: 'bar'
     };
 
