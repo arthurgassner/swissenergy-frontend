@@ -226,10 +226,7 @@ Because we're not solving a typical regression task, we're dealing with timeseri
 
 How does that impact us in our time-series prediction task? Well, by randomly dividing up the data into train and test sets, we're allowing the model to peek into the future. The model is learning to **interpolate**, whereas in real-life it will have to **extrapolate**:
 
-<figure markdown="span">
-  ![Image title](assets/modelling/placeholder.png){ width="50%" }
-  <figcaption>Interpolation vs Extrapolation</figcaption>
-</figure>
+<iframe src="../assets/modelling/interpolation_extrapolation.html" width="100%" height="300"></iframe>
 
 Hence, whenever the data we are feeding our model is time-sensitive -- even if not explicitely a time-series -- we should split the train and test set time-wise. 
 
