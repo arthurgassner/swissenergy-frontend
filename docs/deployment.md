@@ -304,7 +304,7 @@ And _voilà_! Cron will run in our VPS' background, and send our GET request to 
     Since `cron` will handle the forecast update from the inside of the VPS, there is no need for us to expose it to the outside.
     We can explicitely do that through our `Caddyfile`: 
 
-    ```json title="/etc/caddy/Caddyfile" hl_lines="10-12"
+    ```json title="/etc/caddy/Caddyfile" hl_lines="9-12"
     # Redirect HTTP requests to HTTPS
     # Send a 301 status code, indicating a permanent redirect
     http://vps.arthurgassner.ch {
