@@ -197,10 +197,20 @@ async function fetchMapeData() {
 // Create Plotly traces for the bar plot
 function createBarTraces(mapeData) {
     // Extract durations and MAPE values
-    const durationsEntsoe = Object.keys(mapeData.entsoe_model); // ['1h', '24h', '7d', '4w']
+    const durationsEntsoe = Object.keys(mapeData.entsoe_model).map(duration => {
+        if (duration === '7d') return '1 week';
+        if (duration === '4w') return '1 month';
+        return duration;
+    }); // ['1h', '24h', '1 week', '1 month']
+    
     const mapeEntsoe = Object.values(mapeData.entsoe_model);    // Corresponding MAPE values
 
-    const durationsOurModel = Object.keys(mapeData.our_model);  // ['1h', '24h']
+    const durationsOurModel = Object.keys(mapeData.our_model).map(duration => {
+        if (duration === '7d') return '1 week';
+        if (duration === '4w') return '1 month';
+        return duration;
+    });  // ['1h', '24h', '1 week', '1 month']
+    
     const mapeOurModel = Object.values(mapeData.our_model);     // Corresponding MAPE values
 
     // Trace for ENTSOE model
