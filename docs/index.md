@@ -105,23 +105,56 @@
     return [actualLoadTrace, officialForecastTrace, ourForecastTrace];
   }
 
-  // Create Plotly layout
+  // Create Plotly layout with the vertical line and "Now" text
   function createLayout() {
-    return {
-      title: 'Load and forecasted load [MW]',
-      xaxis: { title: 'Time' },
-      yaxis: { title: 'Load [MW]' },
-      plot_bgcolor: '#1e1e1e', // Dark background for the plot area
-      paper_bgcolor: '#1e1e1e', // Dark background for the plot area
-      font: { color: '#ffffff' }, // White font for better contrast
-      legend: {
-        orientation: 'h',
-        yanchor: 'top',
-        y: 1.2,
-        xanchor: 'center',
-        x: .85
-      }
-    };
+      const currentTime = new Date(); // Get current time
+      return {
+          title: 'Load and forecasted load [MW]',
+          xaxis: { title: 'Time' },
+          yaxis: { title: 'Load [MW]' },
+          plot_bgcolor: '#1e1e1e', // Dark background for the plot area
+          paper_bgcolor: '#1e1e1e', // Dark background for the plot area
+          font: { color: '#ffffff' }, // White font for better contrast
+          legend: {
+              orientation: 'h',
+              yanchor: 'top',
+              y: 1.2,
+              xanchor: 'center',
+              x: .85
+          },
+          shapes: [
+              {
+                  type: 'line',
+                  x0: currentTime,   // Start point of the line (current time)
+                  x1: currentTime,   // End point of the line (same, to make it vertical)
+                  y0: 0,             // Y-axis start (bottom of the plot)
+                  y1: 1,             // Y-axis end (top of the plot, in relative units)
+                  xref: 'x',         // Reference to the x-axis
+                  yref: 'paper',     // Reference to the full plot height
+                  line: {
+                      color: 'rgba(255, 0, 0, 0.5)', // Red color with 50% opacity
+                      width: 2,
+                      dash: 'dot'                   // Dashed line style
+                  }
+              }
+          ],
+          annotations: [
+              {
+                  x: currentTime,         // Position the annotation at the current time on the x-axis
+                  y: 0,                   // Position near the bottom of the plot
+                  xref: 'x',              // X-axis reference
+                  yref: 'paper',          // Y-axis reference in plot height units
+                  text: 'Now',            // The label text
+                  showarrow: false,       // No arrow pointing to the label
+                  xanchor: 'left',        // Anchor text to the left of the point
+                  yanchor: 'bottom',      // Anchor text to the bottom
+                  font: {
+                      color: 'rgba(255, 0, 0, 0.9)', // Slightly more opaque red for the text
+                      size: 12                       // Font size for the label
+                  }
+              }
+          ]
+      };
   }
 
   // Render the Plotly chart
