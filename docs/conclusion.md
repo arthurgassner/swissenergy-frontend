@@ -26,6 +26,7 @@ Hence, we must deliver something. As such, this page serves as a summary of pote
 
 ### Industrialization
 
+- We focused on getting something that could run, with little thought to computation cost. How about reusing past predictions if the features haven't changed?
 - Our testing strategy focused on unit tests. How about implementing integration tests? How about testing the generated Docker image?
 - Past models are not kept track of. How about tracking the training performance through MLOps tools, e.g. with `MLflow`.
 
