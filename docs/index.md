@@ -213,6 +213,15 @@ function createBarTraces(mapeData) {
     
     const mapeOurModel = Object.values(mapeData.our_model);     // Corresponding MAPE values
 
+    // Calculate error bars for Our Model
+    const errorBars = durationsOurModel.map((duration, index) => {
+        // Check if the duration is "1 week" or "1 month" and apply 10% error
+        if (duration === '1 week' || duration === '1 month') {
+            return 0.05 * mapeOurModel[index]; // 10% of the MAPE value
+        }
+        return 0; // No error for other durations
+    });
+
     // Trace for ENTSOE model
     const entsoeTrace = {
         x: durationsEntsoe,
@@ -221,16 +230,22 @@ function createBarTraces(mapeData) {
         type: 'bar'
     };
 
-    // Trace for Our model
+    // Trace for Our model with error bars
     const ourModelTrace = {
         x: durationsOurModel,
         y: mapeOurModel,
         name: 'Our Model',
-        type: 'bar'
+        type: 'bar',
+        error_y: {
+            type: 'data', // Error values based on data
+            array: errorBars,
+            visible: true // Show the error bars
+        }
     };
 
     return [entsoeTrace, ourModelTrace];
 }
+
 
 // Create layout for the bar plot
 function createBarLayout() {
