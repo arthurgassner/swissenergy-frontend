@@ -203,7 +203,7 @@ Whenever I am solving a task where it might give an answer, I try it. I'll only 
 
 Let's continue our modelling journey by building upon it.
 
-### Back-testing
+### Walk-forward validation
 
 Now, before we dive into training -- and testing -- an LightGBM-based model -- any model really -- we should take a step back and think about what we're about to do.
 
@@ -235,24 +235,19 @@ Hence, whenever the data we are feeding our model is time-sensitive -- even if n
 
 [^9]: By _time-sensitive_, I mean any kind of data gathered through time. It does not really matter if the actual time is part of the features, because seemingly-non-time-related features _might_ contain _time-related_ informations. If that is the case, the model might infer the time-data from these features -- even just partially -- and break once in production where it won't be able to leverage it in the same way.
 
-In our case, this calls for what is called **_back-testing_**.
+In our case, this calls for what is called **_walk-forward validation_**.
 We're training our model once per prediction, feeding all the data that was available at the fictious time of prediction.
 Hence, to predict the next 24h -- 24 predictions -- we'll train 24 models.
-
-<figure markdown="span">
-  ![Image title](assets/modelling/placeholder.png){ width="50%" }
-  <figcaption>Backtesting, highlighting the train set --> predicted val</figcaption>
-</figure>
 
 ### Naive LightGBM
 
 Back to our gradient-boosted trees, let's build a LightGBM model leveraging the same data as our dummy model, i.e. the load 24h ago. 
 
-We build it incorporating the back-testing strategy -- and test it as such -- over the last year. Note that this means training 8760[^10] models, one for each hour in a year.
+We build it incorporating the walk-forward strategy -- and test it as such -- over the last year. Note that this means training 8760[^10] models, one for each hour in a year.
 
 [^10]: `24 * 365 == 8760` 
 
-??? note "Train-test a LightGBM model, with back-testing"
+??? note "Train-test a LightGBM model, with walk-forward validation"
     ```python
     import lightgbm as lgb
     import pandas as pd
