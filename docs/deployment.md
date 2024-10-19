@@ -93,7 +93,7 @@ To make it more comfortable to work on our VPS, we can set it up with our favour
     # Then, manually add zsh-autosuggestions to ~/.zshrc's plugins
     ```
 
-## Accessing our software from the VPS
+## Getting our software onto the VPS
 
 How can we get our production-ready code onto our VPS?
 
@@ -121,11 +121,11 @@ They can grant our VPS a limited access -- read-only to a single repository -- a
   <figcaption>Our VPS, now able to pull from our repo.</figcaption>
 </figure>
 
-## Containerization
+## Running our software on the VPS
 
 How can we package our software to ensure it'll run on our VPS, since the VPS' environment will differ from our development environment -- i.e. my private computer?
 
-Containerization addresses this issue, with tools such as [docker](https://www.docker.com/). 
+**Containerization** addresses this issue, with tools such as [docker](https://www.docker.com/). 
 
 <figure markdown="span">
   ![Image title](assets/deployment/docker-logo-white.svg){ width="100%" }
@@ -279,7 +279,7 @@ To do so, we need to:
 [^5]: _Transport Layer Security_, the encryption protocol used by HTTPS.
 
 
-## Scheduled updating of the forecast
+## Scheduling automated updates of the forecast
 
 We can now access our ML solution through the internet; amazing!
 
