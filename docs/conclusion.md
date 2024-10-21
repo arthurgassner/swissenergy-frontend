@@ -1,18 +1,42 @@
 # Conclusion
 
-## Our ML Solution
+## Summary
 
 <figure markdown="span">
   ![Image title](assets/conclusion/vps_github_docker_cron.png){ width="100%" }
   <figcaption>Our final ML solution.</figcaption>
 </figure>
 
+And here we are! An end-to-end ML solution, that our user can actually benefit from.
+
+We're nearing the end of our journey. As outlined before, the steps towards a deployed model were as follows:
+
+1. **Problem understanding**: What problem are we trying to solve? In what context? 
+2. **Data ingestion**: What data can we access to solve this problem? How?
+3. **Exploratory Data Analysis (EDA)**: What does that data look like?
+4. **Modelling**: How can we use that data to solve our problem?
+5. **Industrialization**: How can we prepare our solution for it to be used by other people?
+6. **Deployment**: How can the people having the initial problem use our solution? 
+
 ## Potential future work
 
-Building this side-project, I kept going back and improving things I had built in previous steps.<br>
+Building this side-project, I kept going back and improving things I had built in previous stages.<br>
 This iterative approach is normal, and fundamental to the ML engineering work.
-Despite this nature, an unused ML solution is a failed ML solution. <br>
-Hence, we must deliver something. As such, this page serves as a summary of potential next steps.
+
+Regardless, an **unused ML solution is a failed ML solution**. As such, we must get to the last stage -- deployment -- and ship. Doing so fosters insights, and improvement ideas.
+
+!!! tip "Make it work, make it right, make it fast"
+    To deliver, we must get to the end.
+
+    It is easy -- especially as engineers -- to get lost in premature optimization. To go forward:
+
+    First, **make it work**.<br>
+    Then, **make it right**.<br>
+    Finally, **make it fast**.<br>
+
+
+A trick we can use to prevent us from premature optimization is to gather our improvement ideas somewhere, so that we know when to look **_if_** these improvements end up making sense. This section is this project's somewhere.
+
 
 ### Data ingestion 
 
@@ -28,7 +52,8 @@ Hence, we must deliver something. As such, this page serves as a summary of pote
 
 - We focused on getting something that could run, with little thought to computation cost. How about reusing past predictions if the features haven't changed?
 - Our testing strategy focused on unit tests. How about implementing integration tests? How about testing the generated Docker image?
-- Past models are not kept track of. How about tracking the training performance through MLOps tools, e.g. with `MLflow`.
+- Every hour, we retrain 24 models -- for the 24 hours. How about re-using past data -- that hasn't been updated by the `ENTSO-E` and save on computation cost?
+- Past models are not kept track of. How about tracking the training performance through MLOps tools, e.g. with `MLflow`?
 
 ### Deployment
 
