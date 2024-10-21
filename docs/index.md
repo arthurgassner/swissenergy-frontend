@@ -1,6 +1,6 @@
-# Swiss Energy Forecast
+# How much energy are we consuming?
 
-
+## Swiss Energy Forecast
 <div id="last-updated"></div>
 <div id="plotly-chart" style="width: 100%; height: 400px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);"></div>
 
@@ -23,7 +23,7 @@
     function displayLastUpdated(timestamp) {
         const lastUpdatedDate = new Date(timestamp * 1000); // Convert from seconds to milliseconds
         const timeAgo = timeSince(lastUpdatedDate);
-        document.getElementById('last-updated').textContent = `Last updated ${timeAgo} ago`;
+        document.getElementById('last-updated').textContent = `Last update: ${timeAgo} ago`;
     }
 
     function timeSince(date) {
@@ -181,7 +181,7 @@
   document.addEventListener("DOMContentLoaded", main);
 </script>
 
-
+## Forecast Performance 
 <div id="plotly-bar-chart"></div>
 
 <script>
@@ -250,7 +250,7 @@ function createBarTraces(mapeData) {
 // Create layout for the bar plot
 function createBarLayout() {
     return {
-        title: 'MAPE comparision between ENTSO-E\'s model and our model',
+        title: 'MAPE comparision between ENTSO-E\'s model and our model\n Lower MAPE is better',
         xaxis: { title: 'Duration' },
         yaxis: { title: 'MAPE (%)' },
         barmode: 'group', // Group bars for comparison
