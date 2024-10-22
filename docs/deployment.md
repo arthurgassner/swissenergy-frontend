@@ -327,7 +327,7 @@ And _voilà_! Cron will run in our VPS' background, and send our GET request to 
 
 <figure markdown="span">
   ![Image title](assets/deployment/vps_docker_cron.png){ width="100%" }
-  <figcaption>Our VPS will now receive a GET request from <code>cron</code><br> every 15th of an hour, in perpetuity, ensuring our forecast is fresh.</figcaption>
+  <figcaption>Our VPS will now receive a GET request from <code>cron</code><br> every 15th minute of an hour, in perpetuity, ensuring our forecast is fresh.</figcaption>
 </figure>
 
 ## Conclusion
