@@ -133,7 +133,9 @@ How can we package our software to ensure it'll run on our VPS, since the VPS' e
 </figure>
 
 Through a `Dockerfile`, we can setup reproducible steps outlining the environment within which our ML solution will live.
-We rely on [volumes](https://docs.docker.com/engine/storage/volumes/) to have data persist accross runs of our container, which should be created with `docker volume create swissenergy-backend-data`.
+We rely on [volumes](https://docs.docker.com/engine/storage/volumes/) to have data persist when restarting our container.
+
+> Our docker volume can be created with `docker volume create swissenergy-backend-data`.
 
 <figure markdown="span">
   ![Image title](assets/deployment/vps_github_docker.png){ width="100%" }
@@ -148,9 +150,9 @@ We rely on [volumes](https://docs.docker.com/engine/storage/volumes/) to have da
     ```
 
     Doing it this way is both long and un-versioned.<br>
-    A better way is to use `docker-compose`, which is usually used to run several containers at once.
+    A better way is to use `docker-compose`. It is usually used to run several containers at once, but still very useful with only one container.
 
-    A command such like one above turns into a `.yml` file:
+    A command such as the one above turns into a `.yml` file:
 
     ```yaml title="docker-compose.yml"
     name: swissenergy-backend
