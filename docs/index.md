@@ -90,8 +90,7 @@
       mode: 'lines',
       type: 'scatter',
       name: 'ENTSO-E\'s previous-day forecasted load [MW]',
-      opacity: 0.5,
-      line: { dash: 'dash' } // Dashed line
+      opacity: 0.3,
     };
 
     const ourForecastTrace = {
