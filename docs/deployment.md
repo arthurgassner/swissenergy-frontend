@@ -51,7 +51,7 @@ ssh -i <PATH_TO_VPS_PRIVATE_KEY> <USER_REMOTE_MACHINE>@<IP_REMOTE_MACHINE>
 </figure>
 
 
-??? note "Primer on public/private key encryption"
+??? note "How does public/private key encryption work?"
     Public/private key encryption is a widely-used authentification method.
 
     This method revolves around two "keys", a key being a long string of seemingly-random characters.
