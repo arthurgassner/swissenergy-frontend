@@ -6,7 +6,7 @@ The [European Network of Transmission System Operators](https://www.entsoe.eu/) 
 
 <figure markdown="span">
   ![Image title](assets/data_ingestion/entsoe_screenshot.png){ width="100%" }
-  <figcaption>Hourly actual and forecasted load [MW] for Switzerland, <br>as seen on the ENTSO-E website</figcaption>
+  <figcaption>Hourly actual and forecasted load [MW] for Switzerland, <br>as seen on the ENTSO-E website.</figcaption>
 </figure>
 
 We'll start building our solution on this data source.
@@ -45,7 +45,7 @@ And _voilà!_, the data is available to us[^3]:
 
 <figure markdown="span">
   ![Image title](assets/data_ingestion/entsoe_dataframe.png){ width="75%" }
-  <figcaption>First 5 rows of the actual and forecasted load [MW] for Switzerland for the 1st day of 2024, as fetched by the <code>entsoe-py</code> library</figcaption>
+  <figcaption>First 5 rows of the actual and forecasted load [MW] for Switzerland for the 1st day of 2024, as fetched by the <code>entsoe-py</code> library.</figcaption>
 </figure>
 
 ## Conclusion

@@ -1,15 +1,15 @@
 # Conclusion
 
-## Summary
+## Solution oveview
 
 <figure markdown="span">
   ![Image title](assets/conclusion/vps_github_docker_cron.png){ width="100%" }
-  <figcaption>Our final ML solution.</figcaption>
+  <figcaption>Overview of our final ML solution.</figcaption>
 </figure>
 
 And here we are! An end-to-end ML solution, that our user can actually benefit from.
 
-We're nearing the end of our journey. As outlined before, the steps towards a deployed model were as follows:
+We're nearing the end of our journey. As expected, the steps towards a deployed model were as follows:
 
 1. **Problem understanding**: What problem are we trying to solve? In what context? 
 2. **Data ingestion**: What data can we access to solve this problem? How?
@@ -17,6 +17,10 @@ We're nearing the end of our journey. As outlined before, the steps towards a de
 4. **Modelling**: How can we use that data to solve our problem?
 5. **Industrialization**: How can we prepare our solution for it to be used by other people?
 6. **Deployment**: How can the people having the initial problem use our solution? 
+
+> Naturally, the work doesn't end here. We'll hear back from our user, and -- potentially -- address their comments by making changes to our pipeline. 
+
+Congratulation to us on building -- and most importantly shipping -- our ML solution! 🎆🥳
 
 ## Potential future work
 

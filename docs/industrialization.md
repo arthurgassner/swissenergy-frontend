@@ -40,7 +40,7 @@ Upon receiving the appropriate request through the REST API, the machine will re
 
 <figure markdown="span">
   ![Image title](assets/industrialization/ml_system_design.png){ width="90%" }
-  <figcaption>Big picture of our ML solution's system design</figcaption>
+  <figcaption>Big picture of our ML solution's system design.</figcaption>
 </figure>
 
 ## Production-ready software
@@ -67,10 +67,15 @@ Now, let's look over some tools to make your code more maintainable.[^4]
 
 ### Version Control
 
-I use `git` and `GitHub` for any project from the very beginning. <br>
-It allows me to treat my last commit as a "_at this point it was working_" state, and to have my code remotely saved, were anything to happen to my computer.
+Version control software allows you to keep track of the changes in your code, greatly enhancing maintainability.
+
+`git` is by far the industry-standard, along with `GitHub` as a hosting solution.
+I recommend using them as early as possible, in any project.<br>
 
 An upside of using GitHub[^5] is their [GitHub Actions](https://github.com/features/actions), allowing us to automate part of our workflow, and further improve the shareability of our code.
+
+!!! tip "Version control your code"
+    Version control your code to keep track of its evolution.    
 
 [^5]: Most `git` hosting solutions have an equivalent.
 
@@ -79,7 +84,7 @@ An upside of using GitHub[^5] is their [GitHub Actions](https://github.com/featu
 Using `git` means creating a trail of every single (commited) state that the software went through.
 Hard-coding sensitive -- i.e. private -- data, such as an API key or password -- is an easy-mistake, which would result in saving it to that trail, seemingly-forever.[^6]
 
-[^6]: You can always edit a file's git history, but it's messy.
+[^6]: You can always edit a file's `git` history, but it's messy.
 
 Additionally, we might have certain variables that would depend on our running environment, i.e. dev or production.
 
@@ -90,13 +95,13 @@ Using an `.env` file solves both of these issues.
 
     I use and like [`python-dotenv`](https://github.com/theskumar/python-dotenv), but alternatives exist.
 
-[^7]: Thank you `.gitignore`
+[^7]: Thank you `.gitignore`.
 
 ### Build REST API with `FastAPI`
 
 Making the ML solution available to the user often means having the user interact with our solution through a REST API.
 
-[`FastAPI`](https://fastapi.tiangolo.com/)[^8] is handy Python-based tool, allowing us to easily turn our ML solution into an accessible endpoint.
+[`FastAPI`](https://fastapi.tiangolo.com/)[^8] is a handy Python-based tool, allowing us to easily turn our ML solution into an accessible endpoint.
 
 <figure markdown="span">
   ![Image title](assets/industrialization/fastapi.png){ width="80%" }
@@ -113,14 +118,14 @@ Developping on Linux, I interact with the terminal _a lot_. To make this whole p
 
 <figure markdown="span">
   ![Image title](assets/industrialization/zsh.gif){ width="100%" }
-  <figcaption>A comfortable terminal session, thanks -- amongst others -- to <code>oh-my-zsh</code></figcaption>
+  <figcaption>A comfortable terminal session, thanks, amongst others, to <code>oh-my-zsh</code>.</figcaption>
 </figure>
 
 - [`terminator`](https://gnome-terminator.org) allows for several terminal sessions within one terminal
 
 <figure markdown="span">
   ![Image title](assets/industrialization/terminator.png){ width="100%" }
-  <figcaption>Several terminal sessions in one terminal, thanks to <code>terminator</code></figcaption>
+  <figcaption>Several terminal sessions in one terminal, thanks to <code>terminator</code>.</figcaption>
 </figure>
 
 ### Virtual environment

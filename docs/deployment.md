@@ -12,7 +12,7 @@ Back to the big picture of our ML solution, we need our code to run on a remote 
 
 <figure markdown="span">
   ![Image title](assets/industrialization/ml_system_design.png){ width="90%" }
-  <figcaption>Big picture of our ML solution's system design</figcaption>
+  <figcaption>Big picture of our ML solution's system design.</figcaption>
 </figure>
 
 So how about renting someone else's computer, hosting our code there -- now that it's shareable -- and giving our user access to that computer? 
@@ -250,7 +250,7 @@ To do so, we need to:
   > This step creates the `vps.arthurgassner.ch` subdomain and have it point to our VPS' public IP.
   > It is needed since TLS[^5] certificates are usually only issued for domain names, not public IPs. Note that it can take up to two days to take effect, due to DNS propagation.
 
-3. Update our `/etc/caddy/Caddyfile` to reflect our newly-found preference of HTTPS
+3. Update our `/etc/caddy/Caddyfile` to reflect our newly-found preference of HTTPSF
   ```json title="/etc/caddy/Caddyfile"
   # Redirect HTTP requests to HTTPS
   # Send a 301 status code, indicating a permanent redirect
@@ -271,7 +271,7 @@ To do so, we need to:
 
 <figure markdown="span">
   ![Image title](assets/deployment/ping_vps.gif){ width="100%" }
-  <figcaption>Pinging our VPS via its public IP and via its subdomain, i.e. <code>vps.arthurgassner.ch</code>.</figcaption>
+  <figcaption>Showing our DNS record in action by pinging our VPS via its public IP and via its subdomain, i.e. <code>vps.arthurgassner.ch</code>.</figcaption>
 </figure>
 
 [^3]: When you own a domain -- e.g. `arthurgassner.ch` -- you can create subdomains -- e.g. `thisisasubdomain.arthurgassner.ch` -- at your will. This can come in handy.

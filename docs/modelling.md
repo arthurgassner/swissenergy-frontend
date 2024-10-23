@@ -25,7 +25,7 @@ In our case, we take inspiration from the way the ENTSO-E names their own predic
 
 Our modelling task could then be formulated as such: 
 
-!!! note "Modelling task"
+!!! abstract "Modelling task"
     At time `t`, given all the load data prior to `t`, predict the load in MW at `t + 24h`
 
 <center>
@@ -60,6 +60,7 @@ We can go with an ARIMA model, a transformer-based approach, or even the latest 
 Really, we have to choose how complex[^3] our first attempt at modelling should be.
 
 [^2]: We all know that itch.
+
 [^3]: When I talk about complexity here, I don't mean amount of parameters -- although it is usually correlated -- but complexity of the overall ML lifecycle of our approach. We are building a full-fledged solution -- along with tooling to maintain, fix and update our solution. Its complexity goes beyond how many fake-neurons our model has.
 
 Young and freshly out-of-college, we could let our excitement win and dive straight into implementing the most complex ML-based time-series prediction model. Assuming that surely complexity and modernity are synonymous with performance, _right_? This would be a mistake, as our goal is _not_ to build the best model, but to answer the need of the business.[^4] 

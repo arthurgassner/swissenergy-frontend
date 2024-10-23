@@ -10,7 +10,7 @@ Eventually, I stumbled upon the [Swiss Energy Dashboard](https://energiedashboar
 
 <figure markdown="span">
   ![Image title](assets/motivation/swiss-energy-dashboard.png){ width="100%" }
-  <figcaption>Electricity consumption plot from the Swiss Energy Dashboard</figcaption>
+  <figcaption>Electricity consumption plot from the Swiss Energy Dashboard.</figcaption>
 </figure>
 
 ## ML project's stages
