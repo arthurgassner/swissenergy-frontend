@@ -1,4 +1,4 @@
-# `swissenergy-frontend`
+# swissenergy-frontend
 
 > [!IMPORTANT]
 > :rocket: Here you can find the [**live website**](https://swissenergy.arthurgassner.ch). :rocket:
