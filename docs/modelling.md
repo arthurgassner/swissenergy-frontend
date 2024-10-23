@@ -8,9 +8,9 @@ This section goes over the process of getting from understood data to working mo
 
 ## From business problem to modelling task
 
-Let's go back to our business problem, i.e.: 
+Let's go back to our business problem:
 
-!!! note "Business Problem"
+!!! abstract "Business Problem"
     We are an energy distribution company.
     As such, we deal with the consumption of energy throughout our grid.
     We don't know how said consumption will evolve in the future, and it would help us to know.

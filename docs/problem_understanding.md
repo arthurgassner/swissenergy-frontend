@@ -6,7 +6,7 @@ In industry, most -- if not all -- ML use-cases start with a business problem. T
 
 In our case, let's assume the business problem is a colleague coming to us saying
 
-!!! note "Business Problem"
+!!! abstract "Business Problem"
     We are an energy distribution company.
     As such, we deal with the consumption of energy throughout our grid.
     We don't know how said consumption will evolve in the future, and it would help us to know.
