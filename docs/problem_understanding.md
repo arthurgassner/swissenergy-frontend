@@ -1,4 +1,4 @@
-# Problem understanding 
+#  :octicons-people-24: Problem understanding 
 
 ## Business problem
 
