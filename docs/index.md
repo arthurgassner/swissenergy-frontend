@@ -249,7 +249,7 @@ function createBarTraces(mapeData) {
 // Create layout for the bar plot
 function createBarLayout() {
     return {
-        title: 'MAPE comparision between ENTSO-E\'s model and our model\n Lower MAPE is better',
+        title: 'MAPE comparision between ENTSO-E\'s model and our model<br> <small>Lower MAPE is better</small>',
         xaxis: { title: 'Duration' },
         yaxis: { title: 'MAPE (%)' },
         barmode: 'group', // Group bars for comparison
