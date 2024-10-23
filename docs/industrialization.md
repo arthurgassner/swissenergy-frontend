@@ -131,7 +131,12 @@ To compartimentalize all the Python packages used in a given project, use a **vi
 !!! tip "Use a virtual environment"
     I use `conda` to manage them, but others exist.
 
-### Use `requirements.txt`
+### From notebooks to `.py`
+
+Jupyter notebooks (`.ipynb`) -- while great for experimentation -- are hard to test and run non-interactively. 
+Hence, we move away from them, and start implementing our ML pipeline in `.py`.
+
+#### Use `requirements.txt`
 
 So far, we've been `pip install`ing needed packages willy-nilly.
 Due to that, it would hard for us -- or anyone we would like to share the code with -- to reproduce the Python environment in which our code is running.
@@ -146,15 +151,10 @@ numpy==1.26.4
 pandas==2.2.2
 ```
 
-### From notebooks to `.py`
+#### Write clean code
 
-Jupyter notebooks (`.ipynb`) -- while great for experimentation -- are hard to test and run non-interactively. 
-Hence, we move away from them, and start implementing our ML pipeline in `.py`.
-
-### Code quality
-
-There is no easy way to measure the "quality" of a codebase.
-Below are a few non-exhaustive list of guidelines I follow to write readable code.
+There is no easy way to measure the "cleanliness" of a codebase.
+Below are a few non-exhaustive list of guidelines I follow to write clean and readable code.
 
 - Write docstrings and comments
 
@@ -178,7 +178,7 @@ Below are a few non-exhaustive list of guidelines I follow to write readable cod
 
 - Use [pre-commit hooks](https://pre-commit.com/) to automatically apply certain code-formatting steps upon committing to `git`.
 
-### Testing
+#### Write tests
 
 Untested code breaks easily. What happens if in 2 months I make some change to the codebase; can I be confident I didn't break the whole thing?
 That's were tests come in. To test python code, [`pytest`](https://docs.pytest.org/en/stable/) is a battle-tested solution.
