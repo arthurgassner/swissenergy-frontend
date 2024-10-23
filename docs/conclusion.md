@@ -20,7 +20,7 @@ We're nearing the end of our journey. As expected, the steps towards a deployed 
 
 > Naturally, the work doesn't end here. We'll hear back from our user, and -- potentially -- address their comments by making changes to our pipeline. 
 
-Congratulation to us on building -- and most importantly shipping -- our ML solution! 🎆🥳
+Congratulations to us on building -- and most importantly shipping -- our ML solution! 🎆🥳
 
 ## Potential future work
 
