@@ -37,6 +37,7 @@ extra:
       link: https://arthurgassner.ch
     - icon: material/email
       link: mailto:arth.gassner@gmail.com
+
 extra_css:
   - https://unpkg.com/katex@0/dist/katex.min.css
   
@@ -45,6 +46,9 @@ extra_javascript:
   - https://unpkg.com/katex@0/dist/katex.min.js
   - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
   - javascripts/katex.js
+  - javascripts/consumption_lineplot.js
+  - javascripts/last_updated.js
+  - javascripts/mape_barplot.js
 
 markdown_extensions:
   - tables
