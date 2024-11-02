@@ -1,6 +1,6 @@
 // Fetch MAPE data (GET request)
 async function fetchMapeData() {
-    const response = await fetch('https://vps.arthurgassner.ch/latest-mape');
+    const response = await fetch('https://swissenergy-backend.arthurgassner.ch/latest-mape');
     if (!response.ok) {
         throw new Error('Network response was not ok: ' + response.statusText);
     }
