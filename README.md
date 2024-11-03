@@ -1,6 +1,6 @@
 # swissenergy-frontend
 
-> <p align="center">🚀 <a href="https://swissenergy.arthurgassner.ch"><strong>live website</strong></a> 🚀</p>
+<p align="center">🚀 <a href="https://swissenergy.arthurgassner.ch"><strong>live website</strong></a> 🚀</p>
 
 <br>
 
