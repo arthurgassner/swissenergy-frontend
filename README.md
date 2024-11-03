@@ -1,6 +1,5 @@
 # swissenergy-frontend
 
-> An End-to-End Machine Learning project built off the Swiss energy consumption data.
 > <p align="center">🚀 <a href="https://swissenergy.arthurgassner.ch"><strong>live website</strong></a> 🚀</p>
 
 <br>
