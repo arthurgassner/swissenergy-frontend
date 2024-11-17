@@ -72,7 +72,7 @@ Young and freshly out-of-college, we could let our excitement win and dive strai
 
 This "good-enough" threshold is the lowest performance that satisfies the needs of the business. It's often hard to express in hard numbers, and comes from understanding the business needs. Often, you will end up with an approximation acting as a proxy, meaning that a model performing up to that standard _should_ fulfill those needs.[^5] 
 
-[^5]: Here we talk about performance as if it was uni-dimensional. It rarely is You should consider -- amongst other things -- the raw performance, the inference time, the ease of maintenance, the explainability, the upfront training cost and the deployment cost. 
+[^5]: Here we talk about performance as if it was uni-dimensional. It rarely is. You should consider -- amongst other things -- the raw performance, the inference time, the ease of maintenance, the explainability, the upfront training cost and the deployment cost. 
 
 <figure markdown="span">
   ![Image title](assets/modelling/complexity_performance__good_enough.png){ width="80%"}
