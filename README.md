@@ -4,9 +4,7 @@
 <p align="center">🚀 <a href="https://swissenergy.arthurgassner.ch"><strong>live website</strong></a> 🚀</p>
 <br>
 
-<div style="text-align: center;">
-    <img src="img/landing_page.gif">
-</div>
+<p align="center"><img src="img/landing_page.gif"><p>
 
 
 This repo contains the frontend of the [`https://swissenergy.arthurgassner.ch`]() website, showcasing an end-to-end ML solution in the energy industry.
