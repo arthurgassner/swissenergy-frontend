@@ -51,6 +51,7 @@ A trick we can use to prevent us from premature optimization is to gather our im
 
 - We focused on an LGBM-based approach from the get-go. How about exploring other models?
 - We selected our features by intuition. How about approaching feature selection -- and model selection -- in a more methodical and scientific manner, e.g. with `SHAP` and `optuna`?
+- We built our model to solve the "Predict the load in 24h", but it seems like it isn't what the ENTSO-E model is solving. How about figuring out what problem they're solving to better understand their context?
 
 ### Industrialization
 
