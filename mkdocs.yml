@@ -29,6 +29,9 @@ nav:
   - Conclusion: conclusion.md
   - About me: about_me.md
 extra:
+  analytics:
+    provider: google
+    property: G-JYGEF8CYXF
   social:
     - icon: fontawesome/brands/github 
       link: https://github.com/arthurgassner
