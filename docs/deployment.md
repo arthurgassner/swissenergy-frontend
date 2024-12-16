@@ -250,7 +250,7 @@ To do so, we need to:
   > This step creates the `vps.arthurgassner.ch` subdomain and have it point to our VPS' public IP.
   > It is needed since TLS[^5] certificates are usually only issued for domain names, not public IPs. Note that it can take up to two days to take effect, due to DNS propagation.
 
-3. Update our `/etc/caddy/Caddyfile` to reflect our newly-found preference of HTTPSF
+3. Update our `/etc/caddy/Caddyfile` to reflect our newly-found preference of HTTPS.
   ```json title="/etc/caddy/Caddyfile"
   # Redirect HTTP requests to HTTPS
   # Send a 301 status code, indicating a permanent redirect
