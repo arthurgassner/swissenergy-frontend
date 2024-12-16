@@ -4,6 +4,7 @@ repo_name: swissenergy-backend
 repo_url: https://github.com/arthurgassner/swissenergy-backend/
 theme:
   name: material
+  custom_dir: overrides # Needed for the google search metatag
   icon:
     logo: fontawesome/solid/plug-circle-bolt
     repo: fontawesome/brands/github
