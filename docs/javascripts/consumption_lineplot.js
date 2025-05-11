@@ -1,6 +1,6 @@
   // Fetch latest forecast data (GET request)
   async function fetchForecastData() {
-    const response = await fetch('https://swissenergy-backend.arthurgassner.ch/latest-forecast');
+    const response = await fetch('https://swissenergy-backend.arthurgassner.ch/forecasts/fetch/latest/predictions');
     if (!response.ok) {
       throw new Error('Network response was not ok: ' + response.statusText);
     }
@@ -9,7 +9,7 @@
 
   // Fetch ENTSOE loads data (POST request)
   async function fetchEntsoeLoads() {
-    const response = await fetch('https://swissenergy-backend.arthurgassner.ch/entsoe-loads', {
+    const response = await fetch('https://swissenergy-backend.arthurgassner.ch/entsoe-loads/fetch/latest', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
