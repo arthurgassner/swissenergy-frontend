@@ -303,39 +303,38 @@ To run a command at the 15th minute of every hour, simply:
 And _voilà_! Cron will run in our VPS' background, and send our GET request to the our ML backend's `/forecasts/update` route on the 15th minutes of each hour. 
 
 ??? note "Only exposing necessary routes through `caddy`. 
-    Since `cron` will handle the forecast update from the inside of the VPS, there is no need for us to expose `/forecasts/update` to the outside.
-    We can explicitely whitelist certain routes through our `Caddyfile`: 
+  Since `cron` will handle the forecast update from the inside of the VPS, there is no need for us to expose `/forecasts/update` to the outside.
+  We can explicitely whitelist certain routes through our `Caddyfile`: 
 
-    ```json title="/etc/caddy/Caddyfile" hl_lines="9-12"
-    # Redirect HTTP requests to HTTPS
-    # Send a 301 status code, indicating a permanent redirect
-    http://vps.arthurgassner.ch {
-      redir https://vps.arthurgassner.ch{uri} 301
+  ```json title="/etc/caddy/Caddyfile" hl_lines="9-12"
+  # Redirect HTTP requests to HTTPS
+  # Send a 301 status code, indicating a permanent redirect
+  http://vps.arthurgassner.ch {
+    redir https://vps.arthurgassner.ch{uri} 301
+  }
+
+  # Route HTTPS requests to our ML backend
+  https://vps.arthurgassner.ch {
+    # List all allowed paths
+    @allowed_paths {
+      path /
+      path /entsoe-loads/fetch/latest
+      path /forecasts/fetch/latest/predictions
+      path /forecasts/fetch/latest/ts
+      path /forecasts/fetch/latest/mape
     }
 
-    # Route HTTPS requests to our ML backend
-    https://vps.arthurgassner.ch {
-      # List all allowed paths
-      @allowed_paths {
-        path /
-        path /entsoe-loads/fetch/latest
-        path /forecasts/fetch/latest/predictions
-        path /forecasts/fetch/latest/ts
-        path /forecasts/fetch/latest/mape
-      }
-
-      handle {
-        respond "Forbidden" 403
-      }
-
-      # Reverse proxy to backend
-      handle @allowed_paths {
-        reverse_proxy localhost:8080
-      }
+    handle {
+      respond "Forbidden" 403
     }
-    ```
 
-    Don't forget to reload `caddy` with `sudo systemctl reload caddy`!
+    # Reverse proxy to backend
+    handle @allowed_paths {
+      reverse_proxy localhost:8080
+    }
+  }
+  ```
+  Don't forget to reload `caddy` with `sudo systemctl reload caddy`!
 
 
 <figure markdown="span">
