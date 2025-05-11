@@ -287,7 +287,7 @@ We can now access our ML solution through the internet; amazing!
 
 But how are the forecast kept up-to-date? We would like for it to automatically fetch the latest ENTSO-E data, train the model and update the forecasted values -- roughly every hour, since the ENTSO-E data gets updated at this frequency.
 
-We built a route into our ML backend -- `/update-forecast` -- which triggers this process, but how can we send a GET request to that route at regular interval?
+We built a route into our ML backend -- `/forecasts/update` -- which triggers this process, but how can we send a GET request to that route at regular interval?
 
 Enters [`cron`](https://en.wikipedia.org/wiki/Cron), a wonderful job scheduler.
 
@@ -297,12 +297,12 @@ To run a command at the 15th minute of every hour, simply:
 2. Add the scheduled job
   ```bash
   # Every 15th minute of an hour, run this curl command
-  15 * * * * curl -X 'GET' 'http://localhost:8080/update-forecast' -H 'accept: ap>
+  15 * * * * curl -X 'GET' 'http://localhost:8080/forecasts/update' -H 'accept: ap>
   ```
 
-And _voilà_! Cron will run in our VPS' background, and send our GET request to the our ML backend's `/update-forecast` route on the 15th minutes of each hour. 
+And _voilà_! Cron will run in our VPS' background, and send our GET request to the our ML backend's `/forecasts/update` route on the 15th minutes of each hour. 
 
-??? note "Not exposing `/update-forecast` to the outside with `caddy`" 
+??? note "Not exposing `/forecasts/update` to the outside with `caddy`" 
     Since `cron` will handle the forecast update from the inside of the VPS, there is no need for us to expose it to the outside.
     We can explicitely do that through our `Caddyfile`: 
 
@@ -315,8 +315,8 @@ And _voilà_! Cron will run in our VPS' background, and send our GET request to 
 
     # Route HTTPS requests to our ML backend
     https://vps.arthurgassner.ch {
-      # Block /update-forecast by returning 404
-      route /update-forecast {
+      # Block /forecasts/update by returning 404
+      route /forecasts/update {
         respond 404
       }
 
