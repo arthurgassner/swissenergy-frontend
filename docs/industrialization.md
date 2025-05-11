@@ -131,10 +131,12 @@ Developping on Linux, I interact with the terminal _a lot_. To make this whole p
 ### Virtual environment
 
 A given Python project will call for a specific Python version with specific packages.
-To compartimentalize all the Python packages used in a given project, use a **virtual environment**.
+To compartimentalize all the Python packages used in a given project, use a **virtual environment** (venv for short).
 
 !!! tip "Use a virtual environment"
-    I use `conda` to manage them, but others exist.
+    I use `uv` to manage them, but others exist.
+
+    `uv` will create a `.venv` folder, which will contain all the packages installed in the virtual environment. 
 
 ### From notebooks to `.py`
 
