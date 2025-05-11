@@ -169,7 +169,7 @@ Logging libraries distinct themselves from simple `print` statements thanks to t
 These levels help us read through the logs, as well as parse them were something to go wrong.
 
 - **Formatting** utilities, allowing us to color and/or format (e.g. specifying the file logging, or the timestamp).
-- **Multiple output destinations**, allowing us to output our logs to several spots, e.g. the shell and some `.logs/` folder, for safe-keeping.  
+- **Multiple sinks**, allowing us to output our logs to several locations, e.g. the shell and some `.logs/` folder, for safe-keeping.  
 
 !!! tip "Log diligently"
     Many logging libraries help you get the job done. I find `loguru` easier to use, with less boilerplate and neat shell coloring.
