@@ -175,9 +175,9 @@ We rely on [volumes](https://docs.docker.com/engine/storage/volumes/) to have da
         name: swissenergy-backend-data
     ```
 
-    We can then build our image with `docker compose build`, and run it with `docker compose run`.
+    We can then build our image with `docker compose build`, and run it with `docker compose up`.
 
-To run our containerized ML solution, we run `docker compose up`, et _voilà_!
+To run our containerized ML solution, we run `docker compose up --build`, et _voilà_!
 
 <figure markdown="span">
   ![Image title](assets/deployment/docker-compose.gif){ width="100%" }
