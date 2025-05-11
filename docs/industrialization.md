@@ -158,6 +158,20 @@ numpy==1.26.4
 pandas==2.2.2
 ```
 
+#### Log properly 
+
+While developping, an over-reliance on `print` statements is acceptable, as current-us will likely be the only consumer of these "logs".
+
+As we move onto industrialisation, a proper logging setup eases future pain, and helps ensuring the system is running as we'd expect.
+
+Logging libraries distinct themselves from simple `print` statements thanks to their 
+- **Log level support**, allowing us to distinguish between -- e.g. -- mere good-to-know logs (INFO), watch-out-something-wrong-happened logs (WARNING) and failures (ERROR). 
+
+These levels help us read through the logs, as well as parse them were something to go wrong.
+
+- **Formatting** utilities, allowing us to color and/or format (e.g. specifying the file logging, or the timestamp).
+- **Multiple output destinations**, allowing us to output our logs to several spots, e.g. the shell and some `.logs/` folder, for safe-keeping.  
+
 #### Write clean code
 
 There is no easy way to measure the "cleanliness" of a codebase.
