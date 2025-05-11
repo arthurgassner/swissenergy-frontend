@@ -28,7 +28,7 @@
 
     const actualLoadTrace = {
       x: entsoeData.timestamps.map(t => new Date(new Date(t).getTime() + oneDayInMilliseconds)), // Shift 24h into the future
-      y: entsoeData['24h_later_load'],
+      y: entsoeData['day_later_loads'],
       mode: 'lines',
       type: 'scatter',
       name: 'Actual Load [MW]'
@@ -36,7 +36,7 @@
 
     const officialForecastTrace = {
       x: entsoeData.timestamps.map(t => new Date(new Date(t).getTime() + oneDayInMilliseconds)), // Shift 24h into the future
-      y: entsoeData['24h_later_forecast'],
+      y: entsoeData['day_later_forecasts'],
       mode: 'lines',
       type: 'scatter',
       name: 'ENTSO-E\'s previous-day forecasted load [MW]',
