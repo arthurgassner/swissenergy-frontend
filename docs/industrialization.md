@@ -174,6 +174,11 @@ These levels help us read through the logs, as well as parse them were something
 !!! tip "Log diligently"
     Many logging libraries help you get the job done. I find `loguru` easier to use, with less boilerplate and neat shell coloring.
 
+<figure markdown="span">
+  ![Image title](assets/industrialization/loguru.png){ width="100%" }
+  <figcaption>A readable log output, thanks to <code>loguru</code>.</figcaption>
+</figure>
+
 #### Write clean code
 
 There is no easy way to measure the "cleanliness" of a codebase.
