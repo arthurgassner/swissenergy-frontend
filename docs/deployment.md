@@ -302,9 +302,9 @@ To run a command at the 15th minute of every hour, simply:
 
 And _voilà_! Cron will run in our VPS' background, and send our GET request to the our ML backend's `/forecasts/update` route on the 15th minutes of each hour. 
 
-??? note "Not exposing `/forecasts/update` to the outside with `caddy`" 
-    Since `cron` will handle the forecast update from the inside of the VPS, there is no need for us to expose it to the outside.
-    We can explicitely do that through our `Caddyfile`: 
+??? note "Only exposing necessary routes through `caddy`. 
+    Since `cron` will handle the forecast update from the inside of the VPS, there is no need for us to expose `/forecasts/update` to the outside.
+    We can explicitely whitelist certain routes through our `Caddyfile`: 
 
     ```json title="/etc/caddy/Caddyfile" hl_lines="9-12"
     # Redirect HTTP requests to HTTPS
@@ -315,12 +315,23 @@ And _voilà_! Cron will run in our VPS' background, and send our GET request to 
 
     # Route HTTPS requests to our ML backend
     https://vps.arthurgassner.ch {
-      # Block /forecasts/update by returning 404
-      route /forecasts/update {
-        respond 404
+      # List all allowed paths
+      @allowed_paths {
+        path /
+        path /entsoe-loads/fetch/latest
+        path /forecasts/fetch/latest/predictions
+        path /forecasts/fetch/latest/ts
+        path /forecasts/fetch/latest/mape
       }
 
-      reverse_proxy localhost:8080
+      handle {
+        respond "Forbidden" 403
+      }
+
+      # Reverse proxy to backend
+      handle @allowed_paths {
+        reverse_proxy localhost:8080
+      }
     }
     ```
 
