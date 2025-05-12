@@ -297,7 +297,7 @@ To run a command at the 15th minute of every hour, simply:
 2. Add the scheduled job
   ```bash
   # Every 15th minute of an hour, run this curl command
-  15 * * * * curl -X 'GET' 'http://localhost:8080/forecasts/update' -H 'accept: ap>
+  15 * * * * curl -X 'GET' 'http://localhost:8080/forecasts/update'
   ```
 
 And _voilà_! Cron will run in our VPS' background, and send our GET request to the our ML backend's `/forecasts/update` route on the 15th minutes of each hour. 
