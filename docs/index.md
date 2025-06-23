@@ -1,3 +1,7 @@
+---
+title: Swiss Energy Forecast | An end-to-end machine learning project
+---
+
 # How much energy are we consuming?
 
 ## Swiss Energy Forecast
