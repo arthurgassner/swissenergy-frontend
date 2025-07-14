@@ -179,14 +179,12 @@ We'll start with the following dummy baseline:
 
 Approaching our problem like this yields the following results over the past year:
 
-<center>
-
+<div class="center-table" markdown>
 | Yearly-MAPE [%]           | Model                          |
 | ------------------------- | :----------------------------- |
 | 10.8                      | ENTSO-E forecast               |
 | **8.97**                  | Dummy baseline                 |
-
-</center>
+</div>
 
 <iframe src="../assets/modelling/dummy_forecast_lineplot.html" width="100%" height="400"></iframe>
 
@@ -374,7 +372,7 @@ Wonderful! As we hoped, we can get away with only sampling 10% of the data and s
 
 Let's go back to training our LightGBM model, this time judging it on 1% of the data, i.e. 87 samples:
 
-<center>
+<div class="center-table" markdown>
 
 | Yearly-MAPE [%]                             | Model                          |
 | ------------------------------------------- | :----------------------------- |
@@ -382,7 +380,7 @@ Let's go back to training our LightGBM model, this time judging it on 1% of the 
 | 8.97                                        | Dummy baseline                 |
 | **8.47** (estimated w/ 1% of timestamps)    | LightGBM w/ 24h-ago-load       |
 
-</center>
+</div>
 
 Great, on par with our dummy baseline. Let's do better.
 
@@ -399,7 +397,7 @@ df['7d_ago_load'] = df['24h_later_load'].shift(24 + 24*7)
 df.head(3)
 ```
 
-<center>
+<div class="center-table" markdown>
 
 | Yearly-MAPE [%]                             | Model                                 |
 | ------------------------------------------- | :-------------------------------------|
@@ -408,7 +406,7 @@ df.head(3)
 | 8.47 (estimated w/ 1% of timestamps)        | LightGBM <br>w/ 24h-ago-load          |
 | **7.98** (estimated w/ 1% of timestamps)    | LightGBM <br>w/ several past loads    |
 
-</center>
+</div>
 
 Even better! Let's dive deeper and further improve our model.
 
@@ -426,7 +424,7 @@ df['weekday'] = df.index.weekday
 df.head(3)
 ```
 
-<center>
+<div class="center-table" markdown>
 
 | Yearly-MAPE [%]                             | Model                                 |
 | ------------------------------------------- | :-------------------------------------|
@@ -436,7 +434,7 @@ df.head(3)
 | 7.98 (estimated w/ 1% of timestamps)        | LightGBM <br>w/ several past loads    |
 | **5.40** (estimated w/ 1% of timestamps)    | LightGBM <br>w/ several past loads <br>& datetime attributes   |
 
-</center>
+</div>
 
 That's great! Can we fly higher?
 
@@ -461,7 +459,7 @@ df['7d_max'] = df['1h_ago_load'].rolling(window=24*7, min_periods=1).apply(np.na
 df['7d_median'] = df['1h_ago_load'].rolling(window=24*7, min_periods=1).apply(np.nanmedian)
 ```
 
-<center>
+<div class="center-table" markdown>
 
 | Yearly-MAPE [%]                             | Model                                 |
 | ------------------------------------------- | :-------------------------------------|
@@ -472,7 +470,7 @@ df['7d_median'] = df['1h_ago_load'].rolling(window=24*7, min_periods=1).apply(np
 | 5.40 (estimated w/ 1% of timestamps)        | LightGBM <br>w/ several past loads <br>& datetime attributes   |
 | **4.11** (estimated w/ 1% of timestamps)    | LightGBM <br>w/ several past loads <br>& datetime attributes <br>& past load statistics   |
 
-</center>
+</div>
 
 Beautiful! 
 

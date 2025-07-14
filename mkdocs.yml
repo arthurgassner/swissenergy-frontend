@@ -44,6 +44,7 @@ extra:
       link: mailto:arth.gassner@gmail.com
 
 extra_css:
+  - css/extra-styles.css
   - https://unpkg.com/katex@0/dist/katex.min.css
   
 extra_javascript:
