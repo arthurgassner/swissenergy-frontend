@@ -152,9 +152,9 @@ We rely on [volumes](https://docs.docker.com/engine/storage/volumes/) to have da
     Doing it this way is both long and un-versioned.<br>
     A better way is to use `docker-compose`. It is usually used to run several containers at once, but still very useful with only one container.
 
-    A command such as the one above turns into a `.yml` file:
+    A command such as the one above turns into a `.yaml` file:
 
-    ```yaml title="docker-compose.yml"
+    ```yaml title="compose.yaml"
     name: swissenergy-backend
     services:
       swissenergy-backend:
