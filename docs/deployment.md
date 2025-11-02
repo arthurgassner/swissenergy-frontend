@@ -302,7 +302,7 @@ To run a command at the 15th minute of every hour, simply:
 
 And _voilà_! Cron will run in our VPS' background, and send our GET request to the our ML backend's `/forecasts/update` route on the 15th minutes of each hour. 
 
-??? note "Only exposing necessary routes through `caddy`. 
+??? note "Only exposing necessary routes through `caddy`."
   Since `cron` will handle the forecast update from the inside of the VPS, there is no need for us to expose `/forecasts/update` to the outside.
   We can explicitely whitelist certain routes through our `Caddyfile`: 
 
