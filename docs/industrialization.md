@@ -134,7 +134,7 @@ A given Python project will call for a specific Python version with specific pac
 To compartimentalize all the Python packages used in a given project, use a **virtual environment** (venv for short).
 
 !!! tip "Use a virtual environment"
-    I use `uv` to manage them, but others exist.
+    I use [`uv`](https://docs.astral.sh/uv/) to manage them, but others exist.
 
     `uv` will create a `.venv` folder, which will contain all the packages installed in the virtual environment. 
 
@@ -143,7 +143,7 @@ To compartimentalize all the Python packages used in a given project, use a **vi
 Jupyter notebooks (`.ipynb`) -- while great for experimentation -- are hard to test and run non-interactively. 
 Hence, we move away from them, and start implementing our ML pipeline in `.py`.
 
-#### Use `requirements.txt`
+#### Use `requirements.txt` (or even better, `pyproject.toml`)
 
 So far, we've been `pip install`ing needed packages willy-nilly.
 Due to that, it would hard for us -- or anyone we would like to share the code with -- to reproduce the Python environment in which our code is running.
@@ -156,6 +156,32 @@ fastapi-cli==0.0.5
 entsoe-py==0.6.8
 numpy==1.26.4
 pandas==2.2.2
+```
+
+Another, more complete approach, is to write a `pyproject.toml` file, which will contain all your project-related settings and dependencies. [`uv`](https://docs.astral.sh/uv/) handles this by default, resolving your dependencies into a `uv.lock` file. This approach allows for environment-specific dependencies (e.g. `dev`), and for an easier time upgrading dependencies.
+
+```yaml title="Example of a pyproject.toml"
+[project]
+name = "swissenergy-backend"
+version = "0.1.0"
+requires-python = ">=3.13.5"
+dependencies = [
+    "entsoe-py>=0.7.8",
+    "fastapi[standard]>=0.120.4",
+    "human-readable>=2.0.0",
+    "joblib>=1.5.2",
+    "lightgbm>=4.6.0",
+    "loguru>=0.7.3",
+    "pandas>=2.3.3",
+    "pydantic-settings>=2.11.0",
+    "scikit-learn>=1.7.2",
+    "tqdm>=4.67.1",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.3.0",
+]
 ```
 
 #### Log properly 
