@@ -191,9 +191,12 @@ While developping, an over-reliance on `print` statements is acceptable, as curr
 As we move onto industrialisation, a proper logging setup eases future pain, and helps ensuring the system is running as we'd expect.
 
 Logging libraries distinct themselves from simple `print` statements thanks to their 
+
 - **Log level support**, allowing us to distinguish between -- e.g. -- mere good-to-know logs (INFO), watch-out-something-wrong-happened logs (WARNING) and failures (ERROR). 
 These levels help us read through the logs, as well as parse them were something to go wrong.
+
 - **Formatting** utilities, allowing us to color and/or format (e.g. specifying the file logging, or the timestamp).
+
 - **Multiple sinks**, allowing us to output our logs to several locations, e.g. the shell and some `logs/` folder, for safe-keeping.  
 
 !!! tip "Log diligently"
