@@ -192,7 +192,7 @@ As we move onto industrialisation, a proper logging setup eases future pain, and
 
 Logging libraries distinct themselves from simple `print` statements thanks to their 
 
-- **Log level support**, allowing us to distinguish between -- e.g. -- mere good-to-know logs (INFO), watch-out-something-wrong-happened logs (WARNING) and failures (ERROR). 
+- **Log level support**, allowing us to distinguish between -- e.g. -- mere good-to-know logs (`INFO`), watch-out-something-wrong-happened logs (`WARNING`) and failures (`ERROR`). 
 These levels help us read through the logs, as well as parse them were something to go wrong.
 
 - **Formatting** utilities, allowing us to color and/or format (e.g. specifying the file logging, or the timestamp).
@@ -212,19 +212,19 @@ These levels help us read through the logs, as well as parse them were something
 There is no easy way to measure the "cleanliness" of a codebase.
 Below are a few non-exhaustive list of guidelines I follow to write clean and readable code.
 
-- Write docstrings and comments
+- Write docstrings and comments.
 
     !!! tip "Write Docstrings"
         Over the years, a lot of docstring flavors saw the light of day. <br>
         Just [pick one you like](https://docs.dasch.swiss/latest/DSP-TOOLS/developers/code-quality-tools/python-docstring-formatting/) and stick to it throughout your codebase.
 
-- Use [typehints](https://docs.python.org/3/library/typing.html)
+- Use [typehints](https://docs.python.org/3/library/typing.html).
 
     !!! tip "Strongly-typed docstrings in a dynamically-typed language"
         Python is dynamically-typed, meaning no types are enforced. <br>
         Still, to increase readability one should use typehints, as well as write the types in the docstring.
 
-- Use code formatters
+- Use code formatters.
 
     !!! tip "Code formatters"
         Consistency improves readability.
